@@ -84,19 +84,9 @@ const LandingPage = () => (
             json
           }
           evictorsList {
-            evictors {
-              citywideRank
-              name
-              photo {
-                sizes(maxWidth: 250) {
-                  aspectRatio
-                  src
-                  srcSet
-                  sizes
-                }
-              }
-            }
-            dishonorableMentionImage {
+            citywideRank
+            name
+            photo {
               sizes(maxWidth: 250) {
                 aspectRatio
                 src
@@ -109,10 +99,7 @@ const LandingPage = () => (
       }
     `}
     render={data => {
-      const {
-        evictors,
-        dishonorableMentionImage
-      } = data.contentfulLandingPage.evictorsList;
+      const evictors = data.contentfulLandingPage.evictorsList;
 
       return (
         <Layout>
@@ -186,28 +173,6 @@ const LandingPage = () => (
                       </>
                     </Link>
                   ))}
-                  <Link
-                    key={`e-dishonor`}
-                    to="/list#dm"
-                    className="column col-3 col-xl-4 col-lg-6 bg-error text-secondary fade-in-21"
-                  >
-                    <>
-                      <div className="container">
-                        <div
-                          className="evictor-icon background-cover-photo"
-                          style={
-                            dishonorableMentionImage && {
-                              backgroundImage: `url(${dishonorableMentionImage.sizes.src})`
-                            }
-                          }
-                        />
-                        <div className="eyebrow">*</div>
-                      </div>
-                      <div className="hover-label text-right">
-                        Dishonorable Mentions
-                      </div>
-                    </>
-                  </Link>
                 </div>
               </div>
             </div>

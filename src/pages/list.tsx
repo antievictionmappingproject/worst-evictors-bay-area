@@ -35,9 +35,7 @@ const CitywideEvictorsListPage = () => (
             subsidies
             publicFundingType
             estimatedWorth
-            citywideEvictionsMapUrl {
-              citywideEvictionsMapUrl
-            }
+            citywideEvictionsMapUrl
             whoOwnsWhatUrl
             citywideListDescription {
               json
