@@ -1,0 +1,48 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "root": true,
+  "plugins": ["svelte3", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {"files": ["*.svelte"], "processor": "svelte3/svelte3"}
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "settings": {
+    "svelte3/typescript": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true
+        }
+      }
+    ],
+    "valid-jsdoc": "off",
+    "no-unused-vars": ["error", {"varsIgnorePattern": "_"}],
+    "no-multi-spaces": "error",
+    "no-invalid-this": "error",
+    "no-trailing-spaces": "error",
+    "array-bracket-spacing": ["error", "never"],
+    "object-curly-spacing": "error",
+    "camelcase": ["error", {"properties": "never"}],
+    "comma-spacing": "error",
+    "comma-style": "error"
+  }
+}

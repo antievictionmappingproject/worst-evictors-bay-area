@@ -8,12 +8,6 @@ const AboutPage = () => (
       query {
         contentfulArchivePage {
           title
-          subtitle {
-            json
-          }
-          description {
-            json
-          }
         }
       }
     `}

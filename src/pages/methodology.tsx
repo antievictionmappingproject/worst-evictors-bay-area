@@ -8,12 +8,6 @@ const AboutPage = () => (
       query {
         contentfulMethodologyPage {
           title
-          subtitle {
-            json
-          }
-          description {
-            json
-          }
         }
       }
     `}

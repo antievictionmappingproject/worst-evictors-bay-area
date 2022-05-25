@@ -8,6 +8,14 @@ import contentfulOptions from "../utils/contentful-rich-text-options";
 
 import "../styles/evictors-list.scss";
 
+                // ...GatsbyContentfulFluid
+                /*           {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
+          */
+
 const CitywideEvictorsListPage = () => (
   <StaticQuery
     query={graphql`
@@ -20,11 +28,6 @@ const CitywideEvictorsListPage = () => (
             name
             corporation
             primaryBusinessAddress
-            photo {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
             photoCaption
             citywideEvictions
             pastExecutedEvictions
@@ -37,20 +40,6 @@ const CitywideEvictorsListPage = () => (
             estimatedWorth
             citywideEvictionsMapUrl
             whoOwnsWhatUrl
-            citywideListDescription {
-              json
-            }
-          }
-          dishonorableMentionImage {
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
-          dishonorableMentionImageCaption {
-            json
-          }
-          citywideDishonorableMentions {
-            json
           }
         }
       }

@@ -53,47 +53,12 @@ const LandingPage = () => (
     query={graphql`
       query {
         contentfulLandingPage {
-          openingTitle {
-            json
-          }
-          openingSubtitle {
-            json
-          }
           mapTitle
-          mapDescription {
-            json
-          }
           mapButton
-          mapBackground {
-            description
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
           kyrTitle
-          kyrImage {
-            description
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
-          kyrDescription {
-            json
-          }
-          kyrContent {
-            json
-          }
           evictorsList {
             citywideRank
             name
-            photo {
-              sizes(maxWidth: 250) {
-                aspectRatio
-                src
-                srcSet
-                sizes
-              }
-            }
           }
         }
       }

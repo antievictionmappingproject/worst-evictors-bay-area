@@ -74,24 +74,21 @@ export const InfoPage: React.FC<InfoPageProps> = ({
   </Layout>
 );
 
+/*
+ *           {
+            description
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
+
+ */
 const AboutPage = () => (
   <StaticQuery
     query={graphql`
       query {
         contentfulAboutPage {
           title
-          subtitle {
-            json
-          }
-          description {
-            json
-          }
-          image {
-            description
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
         }
       }
     `}
