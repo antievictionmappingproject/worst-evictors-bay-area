@@ -1,19 +1,19 @@
-import React from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
-import { StaticQuery, graphql } from "gatsby";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import React from "react"
+import AnchorLink from "react-anchor-link-smooth-scroll"
+import { StaticQuery, graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import "../styles/map.scss";
+import "../styles/map.scss"
 
-import Layout from "../components/layout";
-import contentfulOptions from "../utils/contentful-rich-text-options";
-import { OutboundLink } from "../components/outbound-link";
+import Layout from "../components/layout"
+import contentfulOptions from "../utils/contentful-rich-text-options"
+import { OutboundLink } from "../components/outbound-link"
 
 const CITYWIDE_MAP_URL =
-  "https://ampitup.carto.com/builder/22338af2-9fab-4e3b-89aa-2fcb1b509f9e/embed";
+  "https://ampitup.carto.com/builder/22338af2-9fab-4e3b-89aa-2fcb1b509f9e/embed"
 
 const EVICTION_CRISIS_MONITOR_URL =
-  "https://www.righttocounselnyc.org/evictioncrisismonitor";
+  "https://www.righttocounselnyc.org/evictioncrisismonitor"
 
 const MapPage: React.FC<{ location: any }> = ({ location }) => (
   <StaticQuery
@@ -24,15 +24,19 @@ const MapPage: React.FC<{ location: any }> = ({ location }) => (
         }
       }
     `}
-    render={data => {
-      const mapLoaded = function() {
-        const loadingElem = document.getElementById("map-iframe-loading");
-        if (!!loadingElem) loadingElem.className = "";
-        const loadingFrame = document.getElementById("map-iframe");
-        if (!!loadingFrame) loadingFrame.className = "map-container d-block";
-      };
+    render={(data) => {
+      const mapLoaded = function () {
+        const loadingElem = document.getElementById(
+          "map-iframe-loading"
+        )
+        if (!!loadingElem) loadingElem.className = ""
+        const loadingFrame = document.getElementById("map-iframe")
+        if (!!loadingFrame)
+          loadingFrame.className = "map-container d-block"
+      }
 
-      const { title, description, descriptionFooter } = data.contentfulMapPage;
+      const { title, description, descriptionFooter } =
+        data.contentfulMapPage
 
       return (
         <Layout
@@ -73,7 +77,10 @@ const MapPage: React.FC<{ location: any }> = ({ location }) => (
               About this map <i className="icon icon-arrow-down"></i>
             </AnchorLink>
           </div>
-          <div className="columns bg-primary text-secondary" id="map-context">
+          <div
+            className="columns bg-primary text-secondary"
+            id="map-context"
+          >
             <div className="column col-4 col-lg-12 bg-primary sticky-column-desktop">
               <br />
               <div className="eyebrow">Worst Evictors Map</div>
@@ -84,7 +91,10 @@ const MapPage: React.FC<{ location: any }> = ({ location }) => (
             <div className="column col-4 col-lg-12" />
             <div className="column col-8 col-lg-12">
               <div className="rich-text-bulleted-list">
-                {documentToReactComponents(description.json, contentfulOptions)}
+                {documentToReactComponents(
+                  description.json,
+                  contentfulOptions
+                )}
                 <OutboundLink
                   href={EVICTION_CRISIS_MONITOR_URL}
                   className="btn btn-primary"
@@ -103,9 +113,9 @@ const MapPage: React.FC<{ location: any }> = ({ location }) => (
             </div>
           </div>
         </Layout>
-      );
+      )
     }}
   />
-);
+)
 
-export default MapPage;
+export default MapPage

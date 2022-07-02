@@ -19,6 +19,7 @@ const config: GatsbyConfig = {
     title: "NYC's Worst Evictors",
   },
   plugins: [
+    "data-fetch", // our custom fetch plugin to integrate evictorbook and contentful
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-manifest",

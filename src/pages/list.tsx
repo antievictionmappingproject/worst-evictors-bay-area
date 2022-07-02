@@ -1,21 +1,24 @@
-import React from "react";
+import React from "react"
+/* 
 import { StaticQuery, graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 import BackgroundImage from "gatsby-background-image";
 import EvictorProfile from "../components/evictor";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import contentfulOptions from "../utils/contentful-rich-text-options";
+*/
 
-import "../styles/evictors-list.scss";
+import "../styles/evictors-list.scss"
 
-                // ...GatsbyContentfulFluid
-                /*           {
+// ...GatsbyContentfulFluid
+/*           {
             fluid {
               ...GatsbyContentfulFluid
             }
           }
           */
 
+/* 
 const CitywideEvictorsListPage = () => (
   <StaticQuery
     query={graphql`
@@ -107,4 +110,7 @@ const CitywideEvictorsListPage = () => (
   />
 );
 
-export default CitywideEvictorsListPage;
+*/
+
+const CitywideEvictorsListPage = () => <div>placeholder</div>
+export default CitywideEvictorsListPage

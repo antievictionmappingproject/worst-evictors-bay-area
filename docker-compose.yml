@@ -1,6 +1,6 @@
-version: '2'
+version: "2"
 services:
-  app: 
+  app:
     image: node:12
     volumes:
       - .:/website:delegated

@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "gatsby";
+import React, { useState } from "react"
+import { Link } from "gatsby"
 
-import "../styles/menu.scss";
-import FocusTrap from "focus-trap-react";
+import "../styles/menu.scss"
+import FocusTrap from "focus-trap-react"
 
 const NavMenu = () => {
-  const [isMenuVisible, setMenuVisibility] = useState(false);
-  const toggleMenu = () => setMenuVisibility(!isMenuVisible);
+  const [isMenuVisible, setMenuVisibility] = useState(false)
+  const toggleMenu = () => setMenuVisibility(!isMenuVisible)
 
   return (
     <div className="navbar text-primary">
       <button
         className={
-          "btn btn-secondary dropdown-toggle" + (isMenuVisible ? " d-none" : "")
+          "btn btn-secondary dropdown-toggle" +
+          (isMenuVisible ? " d-none" : "")
         }
         onClick={toggleMenu}
         tabIndex={0}
@@ -24,12 +25,13 @@ const NavMenu = () => {
         <FocusTrap
           active={isMenuVisible}
           focusTrapOptions={{
-            onDeactivate: toggleMenu
+            onDeactivate: toggleMenu,
           }}
         >
           <ul
             className={
-              "menu bg-secondary " + (isMenuVisible ? "d-flex" : "d-none")
+              "menu bg-secondary " +
+              (isMenuVisible ? "d-flex" : "d-none")
             }
             onClick={toggleMenu}
           >
@@ -65,7 +67,7 @@ const NavMenu = () => {
         </FocusTrap>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default NavMenu;
+export default NavMenu

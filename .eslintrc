@@ -8,7 +8,7 @@
   "plugins": ["svelte3", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "overrides": [
-    {"files": ["*.svelte"], "processor": "svelte3/svelte3"}
+    { "files": ["*.svelte"], "processor": "svelte3/svelte3" }
   ],
   "extends": [
     "eslint:recommended",
@@ -35,13 +35,13 @@
       }
     ],
     "valid-jsdoc": "off",
-    "no-unused-vars": ["error", {"varsIgnorePattern": "_"}],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "_" }],
     "no-multi-spaces": "error",
     "no-invalid-this": "error",
     "no-trailing-spaces": "error",
     "array-bracket-spacing": ["error", "never"],
     "object-curly-spacing": "error",
-    "camelcase": ["error", {"properties": "never"}],
+    "camelcase": ["error", { "properties": "never" }],
     "comma-spacing": "error",
     "comma-style": "error"
   }

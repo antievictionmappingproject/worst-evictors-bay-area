@@ -1,37 +1,37 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import contentfulOptions from "../utils/contentful-rich-text-options";
-import { Document } from "@contentful/rich-text-types";
-import BackgroundImage from "gatsby-background-image";
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
+import contentfulOptions from "../utils/contentful-rich-text-options"
+import { Document } from "@contentful/rich-text-types"
+import BackgroundImage from "gatsby-background-image"
 
-import Layout from "../components/layout";
+import Layout from "../components/layout"
 
 type InfoPageProps = {
-  title: string;
+  title: string
   subtitle?: {
-    json: Document;
+    json: Document
     content: {
       content: {
-        value: string;
-      };
-    };
-  };
+        value: string
+      }
+    }
+  }
   description: {
-    json: Document;
-  };
+    json: Document
+  }
   image?: {
-    description?: string;
-    fluid: any;
-  };
-};
+    description?: string
+    fluid: any
+  }
+}
 
 export const InfoPage: React.FC<InfoPageProps> = ({
   title,
   subtitle,
   description,
-  image
+  image,
 }) => (
   <Layout
     customTitle={`${title} | NYC's Worst COVID Evictors`}
@@ -46,7 +46,10 @@ export const InfoPage: React.FC<InfoPageProps> = ({
         </div>
         <div>
           {subtitle &&
-            documentToReactComponents(subtitle.json, contentfulOptions)}
+            documentToReactComponents(
+              subtitle.json,
+              contentfulOptions
+            )}
         </div>
       </div>
       <div className="column col-8 col-lg-12 bg-primary">
@@ -67,12 +70,15 @@ export const InfoPage: React.FC<InfoPageProps> = ({
       <div className="column col-4 col-lg-12" />
       <div className="column col-8 col-lg-12">
         <div className="rich-text-bulleted-list">
-          {documentToReactComponents(description.json, contentfulOptions)}
+          {documentToReactComponents(
+            description.json,
+            contentfulOptions
+          )}
         </div>
       </div>
     </div>
   </Layout>
-);
+)
 
 /*
  *           {
@@ -92,10 +98,10 @@ const AboutPage = () => (
         }
       }
     `}
-    render={data => {
-      return <InfoPage {...data.contentfulAboutPage} />;
+    render={(data) => {
+      return <InfoPage {...data.contentfulAboutPage} />
     }}
   />
-);
+)
 
-export default AboutPage;
+export default AboutPage

@@ -1,77 +1,84 @@
-import React from "react";
-import { Link } from "gatsby";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Document } from "@contentful/rich-text-types";
-import contentfulOptions from "../utils/contentful-rich-text-options";
-import BackgroundImage from "gatsby-background-image";
+import React from "react"
+import { Link } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { Document } from "@contentful/rich-text-types"
+import contentfulOptions from "../utils/contentful-rich-text-options"
+import BackgroundImage from "gatsby-background-image"
 
-import "../styles/evictors-list.scss";
+import "../styles/evictors-list.scss"
 
-import { OutboundLink } from "../components/outbound-link";
+import { OutboundLink } from "../components/outbound-link"
 
 const AddAmongOthers = (array: string[]) => {
-  const lastElem = array.slice(-1)[0] + " (Among Others)";
-  return array.slice(0, -1).concat([lastElem]);
-};
+  const lastElem = array.slice(-1)[0] + " (Among Others)"
+  return array.slice(0, -1).concat([lastElem])
+}
 
 const FormatListAsArray = (list: string) => {
-  const rawArray = list.split(",").map(item => item.trim());
-  return AddAmongOthers(rawArray);
-};
+  const rawArray = list.split(",").map((item) => item.trim())
+  return AddAmongOthers(rawArray)
+}
 
 const FormatPublicFundingSources = (sources: string[]) => {
   if (sources.includes("Other")) {
-    const mainSources = sources.filter(s => s !== "Other");
+    const mainSources = sources.filter((s) => s !== "Other")
     return !!mainSources.length
       ? AddAmongOthers(mainSources)
-      : ["Other (not HPD or HDC)"];
-  } else return sources;
-};
+      : ["Other (not HPD or HDC)"]
+  } else return sources
+}
 
 const FormatBusinessAddress = (addr: string) => {
-  const addressPartsAsArray = addr.split(" ");
-  const formattedAddress = addressPartsAsArray.reduce((address, part) => {
-    if (/[a-zA-Z]/.test(part.charAt(0)) && part !== "NY" && part !== "CT") {
-      return (
-        address +
-        " " +
-        part.charAt(0).toUpperCase() +
-        part.toLowerCase().slice(1)
-      );
-    } else return address + " " + part.toUpperCase();
-  }, "");
-  return formattedAddress;
-};
+  const addressPartsAsArray = addr.split(" ")
+  const formattedAddress = addressPartsAsArray.reduce(
+    (address, part) => {
+      if (
+        /[a-zA-Z]/.test(part.charAt(0)) &&
+        part !== "NY" &&
+        part !== "CT"
+      ) {
+        return (
+          address +
+          " " +
+          part.charAt(0).toUpperCase() +
+          part.toLowerCase().slice(1)
+        )
+      } else return address + " " + part.toUpperCase()
+    },
+    ""
+  )
+  return formattedAddress
+}
 
 type EvictorProps = {
   content: {
-    citywideRank: number;
-    rankLastYear: number;
-    name: string;
-    corporation: string;
-    primaryBusinessAddress: string;
+    citywideRank: number
+    rankLastYear: number
+    name: string
+    corporation: string
+    primaryBusinessAddress: string
     photo: {
-      fluid: any;
-    };
-    photoCaption: string;
-    citywideEvictions: number;
-    pastExecutedEvictions: number;
-    citywideUnits: number;
-    citywidePercentRs: number;
-    banks: string;
-    lawyers: string;
-    subsidies: string;
-    publicFundingType: string[];
-    estimatedWorth: string;
+      fluid: any
+    }
+    photoCaption: string
+    citywideEvictions: number
+    pastExecutedEvictions: number
+    citywideUnits: number
+    citywidePercentRs: number
+    banks: string
+    lawyers: string
+    subsidies: string
+    publicFundingType: string[]
+    estimatedWorth: string
     citywideEvictionsMapUrl: {
-      citywideEvictionsMapUrl: string;
-    };
-    whoOwnsWhatUrl: string;
+      citywideEvictionsMapUrl: string
+    }
+    whoOwnsWhatUrl: string
     citywideListDescription: {
-      json: Document;
-    };
-  };
-};
+      json: Document
+    }
+  }
+}
 
 const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
   <section
@@ -84,7 +91,9 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
         <div className="full-height-container-desktop">
           <div className="eyebrow rank">{content.citywideRank}.</div>
           {content.rankLastYear && (
-            <div className="eyebrow">Last Year: {content.rankLastYear}</div>
+            <div className="eyebrow">
+              Last Year: {content.rankLastYear}
+            </div>
           )}
           <br />
           <span className="text-bold">
@@ -92,25 +101,37 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
             <h2>{content.corporation}</h2>
             <br />
             <br />
-            <h2>{content.citywideEvictions} households sued for eviction</h2>
+            <h2>
+              {content.citywideEvictions} households sued for eviction
+            </h2>
           </span>
-          <p>{content.pastExecutedEvictions} evictions executed since 2017</p>
+          <p>
+            {content.pastExecutedEvictions} evictions executed since
+            2017
+          </p>
           <p>{content.citywideUnits} families housed</p>
           <p>{content.citywidePercentRs}% rent stabilized</p>
-          <p>{content.estimatedWorth || "Unknown amount"} paid for buildings</p>
+          <p>
+            {content.estimatedWorth || "Unknown amount"} paid for
+            buildings
+          </p>
           <br />
         </div>
         <Link
           to="/map"
           className="btn btn-primary"
           state={{
-            iframe: content.citywideEvictionsMapUrl.citywideEvictionsMapUrl,
-            mapType: "citywide"
+            iframe:
+              content.citywideEvictionsMapUrl.citywideEvictionsMapUrl,
+            mapType: "citywide",
           }}
         >
           See Map of Portfolio
         </Link>
-        <OutboundLink href={content.whoOwnsWhatUrl} className="btn btn-primary">
+        <OutboundLink
+          href={content.whoOwnsWhatUrl}
+          className="btn btn-primary"
+        >
           See if your building is in this portfolio
         </OutboundLink>
       </div>
@@ -127,12 +148,16 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
         <p>
           <span className="text-bold text-uppercase">Funded By</span>
           <br />
-          {FormatListAsArray(content.banks).map((bank: string, i: number) => (
-            <li key={i}>{bank}</li>
-          ))}
+          {FormatListAsArray(content.banks).map(
+            (bank: string, i: number) => (
+              <li key={i}>{bank}</li>
+            )
+          )}
         </p>
         <p>
-          <span className="text-bold text-uppercase">Represented by</span>
+          <span className="text-bold text-uppercase">
+            Represented by
+          </span>
           <br />
           {content.lawyers} (Among Others)
           <br />
@@ -161,11 +186,11 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
           <br />
           {!!content.publicFundingType ? (
             <>
-              {FormatPublicFundingSources(content.publicFundingType).map(
-                (fundingType: string, i: number) => (
-                  <li key={i}>{fundingType}</li>
-                )
-              )}
+              {FormatPublicFundingSources(
+                content.publicFundingType
+              ).map((fundingType: string, i: number) => (
+                <li key={i}>{fundingType}</li>
+              ))}
             </>
           ) : (
             "None"
@@ -193,6 +218,6 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => (
       </div>
     </div>
   </section>
-);
+)
 
-export default EvictorProfile;
+export default EvictorProfile

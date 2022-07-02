@@ -1,38 +1,40 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Link } from "gatsby";
-import Layout from "../components/layout";
-import BackgroundImage from "gatsby-background-image";
-import contentfulOptions from "../utils/contentful-rich-text-options";
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { Link } from "gatsby"
+import Layout from "../components/layout"
+import BackgroundImage from "gatsby-background-image"
+import contentfulOptions from "../utils/contentful-rich-text-options"
 
-import "../styles/index.scss";
+import "../styles/index.scss"
 
-const rtcLogo = require("../images/RTC_logo.png");
-const justfixLogo = require("../images/JustFix_logo.png");
-const aempLogo = require("../images/AEMP_logo.png");
+const rtcLogo = require("../images/RTC_logo.png")
+const justfixLogo = require("../images/JustFix_logo.png")
+const aempLogo = require("../images/AEMP_logo.png")
 
+/* 
 type EvictorDetails = {
   citywideRank: number;
   name: string;
   photo: any;
 };
+*/
 
 type ResponsiveImageProps = {
-  fluid: any;
-  description?: string;
+  fluid: any
+  description?: string
   /**
    * If set to `true`, will only show image on on devices smaller than a desktop.
    * If `false`, will only show on desktop.
    */
-  showMobileOnly?: boolean;
-};
+  showMobileOnly?: boolean
+}
 const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   fluid,
   description,
-  showMobileOnly
+  showMobileOnly,
 }) => {
-  const visibilityClass = showMobileOnly ? "show-lg" : "hide-lg";
+  const visibilityClass = showMobileOnly ? "show-lg" : "hide-lg"
   return (
     <>
       <BackgroundImage
@@ -45,8 +47,8 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         </span>
       )}
     </>
-  );
-};
+  )
+}
 
 const LandingPage = () => (
   <StaticQuery
@@ -56,15 +58,11 @@ const LandingPage = () => (
           mapTitle
           mapButton
           kyrTitle
-          evictorsList {
-            citywideRank
-            name
-          }
         }
       }
     `}
-    render={data => {
-      const evictors = data.contentfulLandingPage.evictorsList;
+    render={(data) => {
+      // const evictors = data.contentfulLandingPage.evictorsList;
 
       return (
         <Layout>
@@ -75,13 +73,13 @@ const LandingPage = () => (
                   <div>
                     <h1 className="immediate-fade-in">
                       {documentToReactComponents(
-                        data.contentfulLandingPage.openingTitle.json
+                        data.contentfulLandingPage.openingTitle
                       )}
                     </h1>
                   </div>
                   <div className="subtitle delayed-fade-in">
                     {documentToReactComponents(
-                      data.contentfulLandingPage.openingSubtitle.json
+                      data.contentfulLandingPage.openingSubtitle
                     )}
                   </div>
                 </div>
@@ -93,7 +91,11 @@ const LandingPage = () => (
                     src={rtcLogo}
                     alt="Right to Counsel NYC Coalition"
                   />
-                  <img className="logo" src={justfixLogo} alt="JustFix NYC" />
+                  <img
+                    className="logo"
+                    src={justfixLogo}
+                    alt="JustFix NYC"
+                  />
                   <img
                     className="logo"
                     src={aempLogo}
@@ -110,11 +112,14 @@ const LandingPage = () => (
                     className="column col-3 col-xl-4 col-lg-12 bg-primary text-right fade-in-0"
                   >
                     <span aria-hidden>
-                      COVID <br /> Worst <br className="hide-lg" /> Evictors
+                      COVID <br /> Worst <br className="hide-lg" />{" "}
+                      Evictors
                     </span>
-                    <span className="text-assistive">COVID Worst Evictor</span>
+                    <span className="text-assistive">
+                      COVID Worst Evictor
+                    </span>
                   </div>
-                  {evictors.map((evictor: EvictorDetails, i: number) => (
+                  {/* evictors.map((evictor: EvictorDetails, i: number) => (
                     <Link
                       key={`e-${i}`}
                       to={`/list#${evictor.citywideRank}`}
@@ -137,7 +142,7 @@ const LandingPage = () => (
                         </div>
                       </>
                     </Link>
-                  ))}
+                  )) */}
                 </div>
               </div>
             </div>
@@ -156,7 +161,7 @@ const LandingPage = () => (
                 )}
                 <div>
                   {documentToReactComponents(
-                    data.contentfulLandingPage.mapDescription.json
+                    data.contentfulLandingPage.mapDescription
                   )}
 
                   <Link to="/map" className="btn btn-secondary">
@@ -173,10 +178,15 @@ const LandingPage = () => (
               </div>
             </div>
 
-            <div id="rights" className="columns bg-primary text-secondary">
+            <div
+              id="rights"
+              className="columns bg-primary text-secondary"
+            >
               <div className="column col-4 col-lg-12 sticky-column-desktop full-height-container-desktop d-flex">
                 <div>
-                  <div className="eyebrow">Know your tenant rights </div>
+                  <div className="eyebrow">
+                    Know your tenant rights{" "}
+                  </div>
                   <h1>{data.contentfulLandingPage.kyrTitle}</h1>
                 </div>
                 {data.contentfulLandingPage.kyrImage && (
@@ -187,13 +197,15 @@ const LandingPage = () => (
                 )}
                 <div className="marginless">
                   {documentToReactComponents(
-                    data.contentfulLandingPage.kyrDescription.json
+                    data.contentfulLandingPage.kyrDescription
                   )}
                 </div>
               </div>
               <div className="column col-8 col-lg-12">
                 {data.contentfulLandingPage.kyrImage && (
-                  <ResponsiveImage {...data.contentfulLandingPage.kyrImage} />
+                  <ResponsiveImage
+                    {...data.contentfulLandingPage.kyrImage}
+                  />
                 )}
               </div>
               <div className="column col-4 col-lg-12"></div>
@@ -201,7 +213,7 @@ const LandingPage = () => (
                 {" "}
                 <div className="rich-text-bulleted-list">
                   {documentToReactComponents(
-                    data.contentfulLandingPage.kyrContent.json,
+                    data.contentfulLandingPage.kyrContent,
                     contentfulOptions
                   )}
                 </div>
@@ -209,9 +221,9 @@ const LandingPage = () => (
             </div>
           </div>
         </Layout>
-      );
+      )
     }}
   />
-);
+)
 
-export default LandingPage;
+export default LandingPage
