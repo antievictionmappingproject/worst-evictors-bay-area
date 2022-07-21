@@ -1,6 +1,6 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { InfoPage } from "./about"
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+import { InfoPage } from "./about";
 
 const AboutPage = () => (
   <StaticQuery
@@ -8,21 +8,22 @@ const AboutPage = () => (
       query {
         contentfulArchivePage {
           title
+          subtitle {
+            raw
+          }
+          description {
+            raw
+          }
         }
       }
     `}
     render={(data) => {
-      const { title, subtitle, description } =
-        data.contentfulArchivePage
+      const { title, subtitle, description } = data.contentfulArchivePage;
       return (
-        <InfoPage
-          title={title}
-          subtitle={subtitle}
-          description={description}
-        />
-      )
+        <InfoPage title={title} subtitle={subtitle} description={description} />
+      );
     }}
   />
-)
+);
 
-export default AboutPage
+export default AboutPage;

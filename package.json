@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "run-ts": "node --loader ts-node/esm --experimental-specifier-resolution=node",
-    "build": "yarn prettier:check && gatsby build",
-    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop --host 0:0:0:0",
     "format": "prettier --write '**/*.tsx'",
     "prettier": "prettier",
     "prettier:check": "prettier \"**/*.{ts,tsx,js,scss}\" --check",
@@ -48,8 +48,6 @@
     "gatsby-plugin-canonical-urls": "^4.15.0",
     "gatsby-plugin-client-side-redirect": "^1.1.0",
     "gatsby-plugin-emotion": "^7.15.0",
-    "gatsby-plugin-google-analytics": "^4.15.0",
-    "gatsby-plugin-google-tagmanager": "^4.15.0",
     "gatsby-plugin-image": "^2.15.0",
     "gatsby-plugin-manifest": "^4.15.0",
     "gatsby-plugin-offline": "^5.15.0",
@@ -61,6 +59,7 @@
     "gatsby-source-contentful": "^7.13.0",
     "gatsby-source-filesystem": "^4.0.0-next",
     "gatsby-transformer-remark": "^5.15.0",
+    "gatsby-transformer-sharp": "^4.19.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
@@ -77,7 +76,7 @@
     "gatsby"
   ],
   "engines": {
-    "npm": ">=8.9.0",
+    "npm": ">=18.2.0",
     "node": ">=18.2.0"
   }
 }

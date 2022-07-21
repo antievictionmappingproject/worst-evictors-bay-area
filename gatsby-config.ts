@@ -10,10 +10,6 @@ const contentfulConfig = {
   host: process.env.CONTENTFUL_HOST || "cdn.contentful.com",
 }
 
-const tracking = {
-  gtm: "GTM-NMPT5JP",
-}
-
 const config: GatsbyConfig = {
   siteMetadata: {
     title: "NYC's Worst Evictors",
@@ -21,6 +17,15 @@ const config: GatsbyConfig = {
   plugins: [
     "data-fetch", // our custom fetch plugin to integrate evictorbook and contentful
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-offline",
+    "gatsby-plugin-sass",
+    "gatsby-plugin-typescript",
+    "gatsby-transformer-remark",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-emotion",
+    "gatsby-plugin-client-side-redirect",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -34,42 +39,15 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: tracking.gtm,
-        // datalayer to be set before GTM is loaded
-        // should be an object or a function that is executed in the browser
-        // Defaults to null
-        defaultDataLayer: { platform: "gatsby" },
-      },
-    },
-    {
       resolve: "gatsby-plugin-canonical-urls",
       options: {
         siteUrl: "https://www.worstevictorsnyc.org/",
       },
     },
-    "gatsby-plugin-offline",
-    "gatsby-plugin-sass",
-    "gatsby-plugin-typescript",
-    "gatsby-transformer-remark",
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
-    {
-      resolve: "gatsby-plugin-emotion",
-    },
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
-        trackingId: "UA-67069242-7",
-      },
-    },
-    "gatsby-plugin-client-side-redirect",
   ],
   trailingSlash: "always",
 }

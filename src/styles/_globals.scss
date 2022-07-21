@@ -20,6 +20,10 @@ body {
     }
   }
 
+  p {
+    max-width: 60ch;
+  }
+
   a:hover,
   a:focus {
     color: $primary;

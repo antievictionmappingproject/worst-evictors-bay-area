@@ -1,107 +1,66 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
-import contentfulOptions from "../utils/contentful-rich-text-options"
-import { Document } from "@contentful/rich-text-types"
-import BackgroundImage from "gatsby-background-image"
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 
-import Layout from "../components/layout"
+import renderContent from "../utils/contentful-render";
+import Layout from "../components/layout";
 
 type InfoPageProps = {
-  title: string
+  title: string;
   subtitle?: {
-    json: Document
-    content: {
-      content: {
-        value: string
-      }
-    }
-  }
+    raw: string;
+  };
   description: {
-    json: Document
-  }
-  image?: {
-    description?: string
-    fluid: any
-  }
-}
+    raw: string;
+  };
+};
 
 export const InfoPage: React.FC<InfoPageProps> = ({
   title,
   subtitle,
   description,
-  image,
 }) => (
   <Layout
     customTitle={`${title} | NYC's Worst COVID Evictors`}
     customDescription={
-      subtitle ? documentToPlainTextString(subtitle.json) : undefined
+      subtitle ? documentToPlainTextString(JSON.parse(subtitle.raw)) : undefined
     }
   >
     <div className="columns bg-primary text-secondary">
-      <div className="column col-4 col-lg-12 bg-primary sticky-column-desktop d-flex">
+      <div className="column col-4 col-lg-12 bg-primary sticky-column-desktop">
         <div>
           <h1>{title}</h1>
         </div>
-        <div>
-          {subtitle &&
-            documentToReactComponents(
-              subtitle.json,
-              contentfulOptions
-            )}
-        </div>
+        <div>{subtitle && renderContent(subtitle)}</div>
       </div>
-      <div className="column col-8 col-lg-12 bg-primary">
-        {image && (
-          <>
-            <BackgroundImage
-              className="background-cover-photo"
-              fluid={image.fluid}
-            />
-            {image.description && (
-              <span className="text-assistive">
-                Image description: {image.description}
-              </span>
-            )}
-          </>
-        )}
-      </div>
-      <div className="column col-4 col-lg-12" />
       <div className="column col-8 col-lg-12">
         <div className="rich-text-bulleted-list">
-          {documentToReactComponents(
-            description.json,
-            contentfulOptions
-          )}
+          {renderContent(description)}
         </div>
       </div>
     </div>
   </Layout>
-)
+);
 
-/*
- *           {
-            description
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
-
- */
 const AboutPage = () => (
   <StaticQuery
     query={graphql`
       query {
         contentfulAboutPage {
           title
+          subtitle {
+            raw
+          }
+          description {
+            raw
+          }
         }
       }
     `}
     render={(data) => {
-      return <InfoPage {...data.contentfulAboutPage} />
+      return <InfoPage {...data.contentfulAboutPage} />;
     }}
   />
-)
+);
 
-export default AboutPage
+export default AboutPage;

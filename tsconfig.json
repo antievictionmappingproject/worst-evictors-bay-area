@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
+    "noImplicitAny": false,
     "strict": false,
     "strictFunctionTypes": true,
     "suppressImplicitAnyIndexErrors": true,

@@ -24,7 +24,7 @@ Please direct any development questions for this project to Nathan Kim
 For the moment, the following tools are required:
 
 - Git
-- Node v12 (nothing higher)
+- Node v18.2.0 (LTS as of 07-20222)
 - Yarn (can be installed with `npm install --global yarn`)
 
 It is also very useful to have Docker and Docker Compose on your
@@ -61,11 +61,11 @@ Run `yarn develop` to start developing.
 
 Your site is now running at `http://localhost:8000`!
 
-_Note: You'll also see a second link:
+\_Note: You'll also see a second link:
 `http://localhost:8000___graphql`. This is a tool you can use to
 experiment with querying your data. Learn more about using this tool
 in the
-[Gatsby tutorial](https://next.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+[Gatsby tutorial](https://next.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).\_
 
 4. **Edit some files!**
 

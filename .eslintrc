@@ -5,18 +5,8 @@
     "node": true
   },
   "root": true,
-  "plugins": ["svelte3", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
-  "overrides": [
-    { "files": ["*.svelte"], "processor": "svelte3/svelte3" }
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "settings": {
-    "svelte3/typescript": true
-  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parserOptions": {
     "ecmaVersion": 13,
     "sourceType": "module"
@@ -26,15 +16,6 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
-    "require-jsdoc": [
-      "warn",
-      {
-        "require": {
-          "FunctionDeclaration": true
-        }
-      }
-    ],
-    "valid-jsdoc": "off",
     "no-unused-vars": ["error", { "varsIgnorePattern": "_" }],
     "no-multi-spaces": "error",
     "no-invalid-this": "error",
@@ -43,6 +24,7 @@
     "object-curly-spacing": "error",
     "camelcase": ["error", { "properties": "never" }],
     "comma-spacing": "error",
-    "comma-style": "error"
+    "comma-style": "error",
+    "@typescript-eslint/no-explicit-any": false
   }
 }
