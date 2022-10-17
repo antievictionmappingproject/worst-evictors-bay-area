@@ -7,7 +7,7 @@
   "scripts": {
     "run-ts": "node --loader ts-node/esm --experimental-specifier-resolution=node",
     "build": "gatsby build",
-    "develop": "gatsby develop --host 0:0:0:0",
+    "develop": "gatsby develop",
     "format": "prettier --write '**/*.tsx'",
     "prettier": "prettier",
     "prettier:check": "prettier \"**/*.{ts,tsx,js,scss}\" --check",

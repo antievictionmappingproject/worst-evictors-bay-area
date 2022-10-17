@@ -1,4 +1,4 @@
-const BASE = "https://evictorbook.com/api/owner";
+const BASE = "https://sf.evictorbook.com/api/owner";
 /** ts for some reason keeps wanting an async function (even though no
  * await ??) so... */
 async function getSlice(
