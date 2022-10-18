@@ -1,9 +1,9 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
+import {documentToPlainTextString} from '@contentful/rich-text-plain-text-renderer'
 
-import renderContent from "../utils/contentful-render";
-import Layout from "../components/layout";
+import renderContent from '../utils/contentful-render'
+import Layout from '../components/layout'
 
 type InfoPageProps = {
   title: string;
@@ -40,7 +40,7 @@ export const InfoPage: React.FC<InfoPageProps> = ({
       </div>
     </div>
   </Layout>
-);
+)
 
 const AboutPage = () => (
   <StaticQuery
@@ -58,9 +58,9 @@ const AboutPage = () => (
       }
     `}
     render={(data) => {
-      return <InfoPage {...data.contentfulAboutPage} />;
+      return <InfoPage {...data.contentfulAboutPage} />
     }}
   />
-);
+)
 
-export default AboutPage;
+export default AboutPage

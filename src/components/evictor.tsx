@@ -1,33 +1,33 @@
-import React from "react";
-import { Link } from "gatsby";
-import renderContent from "../utils/contentful-render";
+import React from 'react'
+import {Link} from 'gatsby'
+import renderContent from '../utils/contentful-render'
 
-import { OutboundLink } from "../components/outbound-link";
-import type { EvictorProps } from "../queries/list";
-import "../styles/evictors-list.scss";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { FormatBusinessAddress, FormatDate } from "../utils/string";
+import {OutboundLink} from '../components/outbound-link'
+import type {EvictorProps} from '../queries/list'
+import '../styles/evictors-list.scss'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import {FormatBusinessAddress} from '../utils/string'
 
-const EvictorProfile: React.FC<EvictorProps> = ({ content }) => {
-  const { details, evictions, networkDetails, portfolio } = content.ebData;
+const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
+  const {details, evictions, networkDetails, portfolio} = content.ebData
 
   const totalUnits = portfolio.property_portfolio.reduce(
     (prev, curr) => prev + curr.units,
     0
-  );
+  )
 
-  const activeSince = details.creation_date.toString().slice(0, 4);
+  const activeSince = details.creation_date.toString().slice(0, 4)
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
-      typeof prev[curr.type] === "undefined"
+      typeof prev[curr.type] === 'undefined'
         ? (prev[curr.type] = 1)
-        : (prev[curr.type] = prev[curr.type] + 1);
-      return prev;
+        : (prev[curr.type] = prev[curr.type] + 1)
+      return prev
     }, {} as { [key: string]: number })
   )
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
+    .slice(0, 3)
 
   return (
     <section
@@ -51,14 +51,14 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => {
                   <h2>{content.totalEvictions} households sued for eviction</h2>
                   <p>
                     Including <br />
-                    {evictionsByCategory.map((category, i) => {
-                      const [type, number] = category;
-                      const filings = number === 1 ? "filing" : "filings";
+                    {evictionsByCategory.map((category) => {
+                      const [type, number] = category
+                      const filings = number === 1 ? 'filing' : 'filings'
                       return (
                         <li>
                           {number} {filings} under <em>{type}</em>
                         </li>
-                      );
+                      )
                     })}
                   </p>
                 </>
@@ -129,7 +129,7 @@ const EvictorProfile: React.FC<EvictorProps> = ({ content }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default EvictorProfile;
+export default EvictorProfile

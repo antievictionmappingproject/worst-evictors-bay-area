@@ -1,9 +1,9 @@
 import {
   createRemoteFileNode,
   CreateRemoteFileNodeArgs,
-} from "gatsby-source-filesystem"
-import fetchEvictorData from "./fetchEvictorData"
-import type { EntryCollection } from "contentful"
+} from 'gatsby-source-filesystem'
+import fetchEvictorData from './fetchEvictorData'
+import type {EntryCollection} from 'contentful'
 
 // meh
 type Merge<A, B> = {
@@ -11,7 +11,7 @@ type Merge<A, B> = {
 }
 type Evictor = Merge<EntryCollection<any>, any>
 
-const NODE_TYPE = "Evictor"
+const NODE_TYPE = 'Evictor'
 /** turns the data fetched in ./fetchEvictorData.ts into
  * GraphQL nodes that the frontend can access
  * wanted to implement caching but it looks like it's kinda hard :'D
@@ -22,7 +22,7 @@ export const sourceNodes = async ({
   createNodeId,
   cache,
 }) => {
-  const { createNode } = actions
+  const {createNode} = actions
 
   const evictors: Evictor[] = await fetchEvictorData()
 
@@ -49,7 +49,7 @@ export const sourceNodes = async ({
 // for image caching and optimization
 export const onCreateNode = async ({
   node,
-  actions: { createNode, createNodeField },
+  actions: {createNode, createNodeField},
   createNodeId,
   cache,
 }) => {
@@ -59,21 +59,21 @@ export const onCreateNode = async ({
       // the url of the remote image to generate a node for
       // contentful api returns URLs of the form '//images.cdn.com...'
       // so we need to stick https in front
-      url: "https:" + node.photo.fields.file.url,
+      url: 'https:' + node.photo.fields.file.url,
       parentNodeId: node.id,
       createNode,
       createNodeId,
       cache,
     } as CreateRemoteFileNodeArgs)
     if (fileNode) {
-      createNodeField({ node, name: "localFile", value: fileNode.id })
+      createNodeField({node, name: 'localFile', value: fileNode.id})
     }
   }
 }
 
 //
-export const createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+export const createSchemaCustomization = ({actions}) => {
+  const {createTypes} = actions
   createTypes(`
     type Evictor implements Node {
       localFile: File @link(from: "fields.localFile")

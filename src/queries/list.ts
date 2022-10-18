@@ -1,5 +1,5 @@
-import { useStaticQuery, graphql } from "gatsby";
-import { ImageDataLike } from "gatsby-plugin-image";
+import {useStaticQuery, graphql} from 'gatsby'
+import {ImageDataLike} from 'gatsby-plugin-image'
 
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
@@ -54,9 +54,9 @@ export default function useIndexQuery() {
         }
       }
     }
-  `);
+  `)
 
-  return data;
+  return data
 }
 
 /** might as well define some proptypes */

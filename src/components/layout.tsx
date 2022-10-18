@@ -1,10 +1,10 @@
-import React from "react"
-import Helmet from "react-helmet"
+import React from 'react'
+import Helmet from 'react-helmet'
 
-import "../styles/menu.scss"
+import '../styles/menu.scss'
 
-import Footer from "./footer"
-import NavMenu from "./menu"
+import Footer from './footer'
+import NavMenu from './menu'
 
 type Props = {
   children: React.ReactNode
@@ -26,7 +26,7 @@ const ScrollArrow = () => (
 )
 
 const GOOGLE_SITE_VERIFICATION_CODE =
-  "-q5dreY6DgZQyoLddmn5nWlr_zAbobvRgbC6SnX90l8"
+  '-q5dreY6DgZQyoLddmn5nWlr_zAbobvRgbC6SnX90l8'
 
 const Layout = ({
   children,
@@ -37,15 +37,15 @@ const Layout = ({
   className,
   hideScrollArrow,
 }: Props) => {
-  const title = customTitle || "NYC's Worst Evictors during COVID"
+  const title = customTitle || 'NYC\'s Worst Evictors during COVID'
   const altTitle =
-    "These NYC landlords are trying to evict tenants during the COVID-19 pandemic. We are fighting back."
+    'These NYC landlords are trying to evict tenants during the COVID-19 pandemic. We are fighting back.'
   const description =
     customDescription ||
-    "Never-before-seen data from NYC Housing Court highlights who stands to benefit the most if and when evictions move forward during COVID-19."
-  const url = customUrl || "https://www.worstevictorsnyc.org"
+    'Never-before-seen data from NYC Housing Court highlights who stands to benefit the most if and when evictions move forward during COVID-19.'
+  const url = customUrl || 'https://www.worstevictorsnyc.org'
   const shareImageURL =
-    customImage || "https://i.imgur.com/NIFo6iC.png"
+    customImage || 'https://i.imgur.com/NIFo6iC.png'
 
   return (
     <div className={className}>
@@ -74,7 +74,7 @@ const Layout = ({
         <meta
           property="og:title"
           content={
-            title !== "NYC's Worst COVID Evictors" ? title : altTitle
+            title !== 'NYC\'s Worst COVID Evictors' ? title : altTitle
           }
         />
         <meta property="og:description" content={description} />
@@ -88,7 +88,7 @@ const Layout = ({
         <meta
           name="twitter:title"
           content={
-            title !== "NYC's Worst COVID Evictors" ? title : altTitle
+            title !== 'NYC\'s Worst COVID Evictors' ? title : altTitle
           }
         />
         <meta name="twitter:description" content={description} />

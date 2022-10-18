@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react'
 
-import "../styles/footer.scss";
-import { FaGithub, FaTwitter, FaFacebook } from "react-icons/fa";
-import { OutboundLink } from "./outbound-link";
-import { IconType } from "react-icons/lib/cjs";
+import '../styles/footer.scss'
+import {FaGithub, FaTwitter, FaFacebook} from 'react-icons/fa'
+import {OutboundLink} from './outbound-link'
+import {IconType} from 'react-icons/lib/cjs'
 
-const rtcLogo = require("../images/RTC_logo.png");
+const rtcLogo = require('../images/RTC_logo.png')
 
 const SocialLink = (props: { href: string; icon: IconType; title: string }) => (
   <OutboundLink href={props.href} title={props.title} className="btn btn-link">
     <props.icon className="icon" />
   </OutboundLink>
-);
+)
 
 const Footer = () => (
   <footer className="Footer">
     <img src={rtcLogo.default} alt="Right to Counsel logo" />
     <span>
       This resource is made &ldquo;by tenants for tenants&rdquo; and is
-      maintained by the{" "}
+      maintained by the{' '}
       <OutboundLink href="https://www.righttocounselnyc.org/">
         Right to Counsel NYC Coalition
       </OutboundLink>
@@ -28,7 +28,7 @@ const Footer = () => (
       <OutboundLink href="https://docs.google.com/forms/d/e/1FAIpQLSesFbaDWKqv3ANxJomqfeOb6hRGzs6KoBA3dSQvIVM1-yRVsQ/viewform?usp=sf_link">
         Click here
       </OutboundLink>
-      {"  "}
+      {'  '}
       to provide feedback about the website.
     </span>
     <div className="Footer_JustFix col-ml-auto">
@@ -54,8 +54,8 @@ const Footer = () => (
           src="https://www.netlify.com/img/global/badges/netlify-light.svg"
         />
       </div>
-      Made with NYC ♥ by the team at{" "}
-      <OutboundLink href="https://justfix.nyc">JustFix</OutboundLink> and the{" "}
+      Made with NYC ♥ by the team at{' '}
+      <OutboundLink href="https://justfix.nyc">JustFix</OutboundLink> and the{' '}
       <span className="nobr">
         <OutboundLink href="https://antievictionmap.com/">
           Anti&#8209;Eviction Mapping Project
@@ -64,6 +64,6 @@ const Footer = () => (
       .
     </div>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

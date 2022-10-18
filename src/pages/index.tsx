@@ -1,16 +1,16 @@
-import React from "react";
-import { Link } from "gatsby";
-import Layout from "../components/layout";
-import BackgroundImage from "gatsby-background-image";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import renderContent from "../utils/contentful-render";
+import React from 'react'
+import {Link} from 'gatsby'
+import Layout from '../components/layout'
+import BackgroundImage from 'gatsby-background-image'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import renderContent from '../utils/contentful-render'
 
-import "../styles/index.scss";
-import useIndexQuery from "../queries/index";
+import '../styles/index.scss'
+import useIndexQuery from '../queries/index'
 
-const rtcLogo = require("../images/RTC_logo.png");
-const justfixLogo = require("../images/JustFix_logo.png");
-const aempLogo = require("../images/AEMP_logo.png");
+const rtcLogo = require('../images/RTC_logo.png')
+const justfixLogo = require('../images/JustFix_logo.png')
+const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
   name: string;
@@ -37,7 +37,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   description,
   showMobileOnly,
 }) => {
-  const visibilityClass = showMobileOnly ? "show-lg" : "hide-lg";
+  const visibilityClass = showMobileOnly ? 'show-lg' : 'hide-lg'
   return (
     <>
       <BackgroundImage
@@ -50,15 +50,15 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         </span>
       )}
     </>
-  );
-};
+  )
+}
 
 const LandingPage = () => {
-  const { allEvictor, contentfulLandingPage } = useIndexQuery();
-  const evictors: EvictorDetails[] = allEvictor.nodes;
+  const {allEvictor, contentfulLandingPage} = useIndexQuery()
+  const evictors: EvictorDetails[] = allEvictor.nodes
   const fallbacks = evictors.filter(
     (evictor) => evictor.localFile?.childImageSharp
-  );
+  )
 
   return (
     <Layout>
@@ -112,10 +112,10 @@ const LandingPage = () => {
                 const image = evictor.localFile?.childImageSharp
                   ? getImage(evictor.localFile)
                   : getImage(
-                      fallbacks[
-                        Math.round(Math.random() * fallbacks.length) - 1
-                      ]?.localFile
-                    );
+                    fallbacks[
+                      Math.round(Math.random() * fallbacks.length) - 1
+                    ]?.localFile
+                  )
                 // plz ignore how ugly that above is, it's temporary
                 // until we get pictures
 
@@ -139,7 +139,7 @@ const LandingPage = () => {
                       </div>
                     </>
                   </Link>
-                );
+                )
               })}
             </div>
           </div>
@@ -194,7 +194,7 @@ const LandingPage = () => {
           </div>
           <div className="column col-4 col-lg-12"></div>
           <div className="column col-8 col-lg-12">
-            {" "}
+            {' '}
             <div className="rich-text-bulleted-list">
               {renderContent(contentfulLandingPage.kyrContent)}
             </div>
@@ -202,7 +202,7 @@ const LandingPage = () => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage

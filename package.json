@@ -9,6 +9,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.tsx'",
+    "lint": "eslint . --fix",
     "prettier": "prettier",
     "prettier:check": "prettier \"**/*.{ts,tsx,js,scss}\" --check",
     "prettier:fix": "prettier \"**/*.{ts,tsx,js,scss}\" --write",

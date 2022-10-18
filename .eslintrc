@@ -25,6 +25,6 @@
     "camelcase": ["error", { "properties": "never" }],
     "comma-spacing": "error",
     "comma-style": "error",
-    "@typescript-eslint/no-explicit-any": false
+    "@typescript-eslint/no-explicit-any": 0
   }
 }

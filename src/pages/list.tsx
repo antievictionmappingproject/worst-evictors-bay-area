@@ -1,12 +1,12 @@
-import Layout from "../components/layout";
-import EvictorProfile from "../components/evictor";
-import useListQuery from "../queries/list";
+import Layout from '../components/layout'
+import EvictorProfile from '../components/evictor'
+import useListQuery from '../queries/list'
 
-import "../styles/evictors-list.scss";
+import '../styles/evictors-list.scss'
 
 const CitywideEvictorsListPage = () => {
-  const data = useListQuery();
-  const evictorsContentList = data.allEvictor.nodes;
+  const data = useListQuery()
+  const evictorsContentList = data.allEvictor.nodes
 
   return (
     <Layout
@@ -29,7 +29,7 @@ const CitywideEvictorsListPage = () => {
         ))}
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default CitywideEvictorsListPage;
+export default CitywideEvictorsListPage

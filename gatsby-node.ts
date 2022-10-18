@@ -1,28 +1,28 @@
-import type { GatsbyNode } from "gatsby"
+import type {GatsbyNode} from 'gatsby'
 
-export const createPages: GatsbyNode["createPages"] = ({
-  graphql,
+export const createPages: GatsbyNode['createPages'] = ({
+  _,
   actions,
 }) => {
-  const { createRedirect } = actions //actions is collection of many actions - https://www.gatsbyjs.org/docs/actions
+  const {createRedirect} = actions //actions is collection of many actions - https://www.gatsbyjs.org/docs/actions
   createRedirect({
-    fromPath: "/evictors-list",
-    toPath: "/evictors-list/citywide",
+    fromPath: '/evictors-list',
+    toPath: '/evictors-list/citywide',
     isPermanent: true,
   })
   createRedirect({
-    fromPath: "/evictors-list/rtc",
-    toPath: "/evictors-list/citywide",
+    fromPath: '/evictors-list/rtc',
+    toPath: '/evictors-list/citywide',
     isPermanent: true,
   })
   createRedirect({
-    fromPath: "/evictors-list/citywide",
-    toPath: "/list",
+    fromPath: '/evictors-list/citywide',
+    toPath: '/list',
     isPermanent: true,
   })
   createRedirect({
-    fromPath: "/rights",
-    toPath: "/#rights",
+    fromPath: '/rights',
+    toPath: '/#rights',
     isPermanent: true,
   })
 }
