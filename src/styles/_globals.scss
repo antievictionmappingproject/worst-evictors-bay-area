@@ -23,12 +23,6 @@ body {
   p {
     max-width: 60ch;
   }
-
-  a:hover,
-  a:focus {
-    color: $primary;
-    background-color: $secondary;
-  }
 }
 
 div.d-flex {
@@ -44,6 +38,44 @@ div.d-flex {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
+  transition: background-color;
+}
+
+.background-cover-photo:before { 
+  background: #ff00004d;
+	display: block;
+	content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+
+.background-cover-photo::after  {
+	background-image: linear-gradient(45deg, red 25%, transparent 25%),
+    linear-gradient(-45deg, red 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, red 75%), 
+    linear-gradient(-45deg, transparent 75%, red 75%);
+	background-size: 2px 2px;
+	background-position: 0 0, 1px 0, 1px -1px, 0px 1px;
+	display: block;
+	content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color ease-in-out 200ms;
+}
+
+.background-cover-photo:hover::after {
+  background-color: #e83a33;
+}
+
+.background-cover-photo-image {
+  filter: grayscale(1);
 }
 
 .column.col-8 > .background-cover-photo {
@@ -104,10 +136,6 @@ div.d-flex {
     &.text-secondary .column.col-4.col-lg-12 {
       border-right: 1px solid $secondary;
     }
-  }
-
-  .column {
-    padding: 0.7rem 1.2rem;
   }
 }
 

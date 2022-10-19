@@ -9,7 +9,8 @@ import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
 
 const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
-  const {details, evictions, networkDetails, portfolio} = content.ebData
+  const {details, evictions, networkDetails, portfolio} =
+    content.ebData
 
   const totalUnits = portfolio.property_portfolio.reduce(
     (prev, curr) => prev + curr.units,
@@ -42,18 +43,24 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
             <span className="text-bold">
               <h1>{content.name}</h1>
               <h2>{content.corporation}</h2>
-              {activeSince ? <em>Active since {activeSince}</em> : undefined}
+              {activeSince ? (
+                <em>Active since {activeSince}</em>
+              ) : undefined}
               <p></p>
               <br />
               <br />
               {content.totalEvictions ? (
                 <>
-                  <h2>{content.totalEvictions} households sued for eviction</h2>
+                  <h2>
+                    {content.totalEvictions} households sued for
+                    eviction
+                  </h2>
                   <p>
                     Including <br />
                     {evictionsByCategory.map((category) => {
                       const [type, number] = category
-                      const filings = number === 1 ? 'filing' : 'filings'
+                      const filings =
+                        number === 1 ? 'filing' : 'filings'
                       return (
                         <li>
                           {number} {filings} under <em>{type}</em>
@@ -66,7 +73,10 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
             </span>
             <p>{totalUnits} units owned total</p>
           </div>
-          <OutboundLink href={content.ebData.ebUrl} className="btn btn-primary">
+          <OutboundLink
+            href={content.ebData.ebUrl}
+            className="btn btn-primary"
+          >
             See if your building is in this portfolio
           </OutboundLink>
         </div>
@@ -76,6 +86,7 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
               <GatsbyImage
                 image={getImage(content.localFile?.childImageSharp)}
                 className="background-cover-photo"
+                imgClassName="background-cover-photo"
                 alt={content.photoCaption}
               />
               <div className="eyebrow text-right">
@@ -86,7 +97,9 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
           )}
           {content.banks?.length ? (
             <p>
-              <span className="text-bold text-uppercase">Funded By</span>
+              <span className="text-bold text-uppercase">
+                Funded By
+              </span>
               <br />
               {content.banks.map((bank: string, i: number) => (
                 <li key={i}>{bank}</li>

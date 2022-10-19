@@ -13,24 +13,24 @@ const justfixLogo = require('../images/JustFix_logo.png')
 const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
-  name: string;
-  localFile: any;
+  name: string
+  localFile: any
   ebData: {
     evictions: {
-      evict_id: number;
-    }[];
-  };
-};
+      evict_id: number
+    }[]
+  }
+}
 
 type ResponsiveImageProps = {
-  fluid: any;
-  description?: string;
+  fluid: any
+  description?: string
   /**
    * If set to `true`, will only show image on on devices smaller than a desktop.
    * If `false`, will only show on desktop.
    */
-  showMobileOnly?: boolean;
-};
+  showMobileOnly?: boolean
+}
 
 const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   fluid,
@@ -104,16 +104,20 @@ const LandingPage = () => {
                 className="column col-3 col-xl-4 col-lg-12 bg-primary text-right fade-in-0"
               >
                 <span aria-hidden>
-                  COVID <br /> Worst <br className="hide-lg" /> Evictors
+                  COVID <br /> Worst <br className="hide-lg" />{' '}
+                  Evictors
                 </span>
-                <span className="text-assistive">COVID Worst Evictor</span>
+                <span className="text-assistive">
+                  COVID Worst Evictor
+                </span>
               </div>
               {evictors.map((evictor: EvictorDetails, i: number) => {
                 const image = evictor.localFile?.childImageSharp
                   ? getImage(evictor.localFile)
                   : getImage(
                     fallbacks[
-                      Math.round(Math.random() * fallbacks.length) - 1
+                      Math.round(Math.random() * fallbacks.length) -
+                          1
                     ]?.localFile
                   )
                 // plz ignore how ugly that above is, it's temporary
@@ -123,19 +127,20 @@ const LandingPage = () => {
                   <Link
                     key={`e-${i}`}
                     to={`/list#${i}`}
-                    className={`column col-3 col-xl-4 col-lg-6 bg-error text-secondary fade-in-${i}`}
+                    className="evictor-container"
                   >
                     <>
                       <div className="container">
                         <GatsbyImage
                           className="background-cover-photo"
+                          imgClassName="background-cover-photo-image"
                           image={image}
                           alt={evictor.name}
                         />
                         <div className="eyebrow">{i + 1}</div>
-                      </div>
-                      <div className="hover-label text-right">
-                        {evictor.name}
+                        <div className="hover-label text-right">
+                          {evictor.name}
+                        </div>
                       </div>
                     </>
                   </Link>
@@ -166,12 +171,17 @@ const LandingPage = () => {
           </div>
           <div className="column col-8 col-lg-12">
             {contentfulLandingPage.mapBackground && (
-              <ResponsiveImage {...contentfulLandingPage.mapBackground} />
+              <ResponsiveImage
+                {...contentfulLandingPage.mapBackground}
+              />
             )}
           </div>
         </div>
 
-        <div id="rights" className="columns bg-primary text-secondary">
+        <div
+          id="rights"
+          className="columns bg-primary text-secondary"
+        >
           <div className="column col-4 col-lg-12 sticky-column-desktop full-height-container-desktop d-flex">
             <div>
               <div className="eyebrow">Know your tenant rights </div>

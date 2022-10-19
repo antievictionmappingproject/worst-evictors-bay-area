@@ -8,6 +8,8 @@
     "run-ts": "node --loader ts-node/esm --experimental-specifier-resolution=node",
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "start": "yarn develop",
+    "dev": "yarn develop",
     "format": "prettier --write '**/*.tsx'",
     "lint": "eslint . --fix",
     "prettier": "prettier",

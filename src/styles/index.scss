@@ -20,6 +20,7 @@ $evictor-border-width: 4px;
     }
 
     .column {
+      
       .subtitle {
         margin-bottom: 0.7rem;
       }
@@ -32,9 +33,8 @@ $evictor-border-width: 4px;
 
       &.evictors .column {
         position: relative;
-        height: 0;
         border: $evictor-border-width solid $primary;
-        padding: 0 0 calc(50% - 2 *#{$evictor-border-width}) 0;
+        padding: 0rem;
 
         @include for-small-desktop-up {
           padding: 0 0 calc(33.3% - 2 *#{$evictor-border-width}) 0;
@@ -53,62 +53,6 @@ $evictor-border-width: 4px;
           }
         }
 
-        &.bg-error {
-          text-decoration: none;
-
-          .container {
-            margin: 1.3rem 0.7rem;
-            @include for-small-desktop-down {
-              margin: 0.7rem 0.2rem;
-            }
-          }
-
-          .evictor-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-          }
-
-          .eyebrow {
-            font-size: 3.2rem;
-            position: absolute;
-
-            @include for-small-desktop-down {
-              font-size: 2rem;
-            }
-          }
-
-          .hover-label {
-            opacity: 0;
-            margin: 0.7rem;
-          }
-
-          // CSS Transitions:
-          .evictor-icon,
-          .eyebrow {
-            transition: all 0.3s linear;
-            opacity: 1;
-          }
-          .hover-label {
-            transition: all 0.3s linear;
-            opacity: 0;
-          }
-
-          &:hover,
-          &:focus {
-            .evictor-icon,
-            .eyebrow {
-              transition: all 0.3s linear;
-              opacity: 0;
-            }
-            @include for-small-desktop-up {
-              .hover-label {
-                transition: all 0.3s linear;
-                opacity: 1;
-              }
-            }
-          }
-        }
       }
     }
 
@@ -121,7 +65,76 @@ $evictor-border-width: 4px;
   }
 
   .eyebrow {
+    font-size: 3.2rem;
+
+    @include for-small-desktop-down {
+      font-size: 2rem;
+    }
+  }
+
+  // CSS Transitions:
+  .evictor-icon,
+  .eyebrow {
+    transition: all 0.3s linear;
+    opacity: 1;
+  }
+  .hover-label {
+    transition: all 0.3s linear;
+    opacity: 0;
+  }
+
+
+  .container {
+    text-decoration: none;
+
+    .evictor-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+
+    .hover-label {
+      opacity: 0;
+      margin: 0.7rem;
+    }
+
+    &:hover,
+    &:focus {
+      .evictor-icon,
+      .eyebrow, .hover-label{
+        transition: all 0.3s linear;
+        opacity: 1;
+      }
+    }
+  }
+
+  .eyebrow {
     margin-bottom: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .evictor-container {
+    aspect-ratio: 1 / 1;
+    min-width: 250px;
+    max-width: 750px;
+    width: 50%;
+    padding: 0.5rem;
+  }
+
+  .container {
+    position: relative;
+    padding: 0rem;
+    width: 100%;
+    height: 100%;
+  };
+  
+  .hover-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 
   // Special styling for images we ONLY show on mobile devices:

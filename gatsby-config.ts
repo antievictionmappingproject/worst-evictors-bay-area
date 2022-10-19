@@ -1,7 +1,8 @@
 import type {GatsbyConfig} from 'gatsby'
+import * as dotenv from 'dotenv'
 
 if (process.env.ENVIROMENT !== 'production') {
-  import 'dotenv/config'
+  dotenv.config()
 }
 
 const contentfulConfig = {
