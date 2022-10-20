@@ -87,14 +87,12 @@ const LandingPage = () => {
           <div className="column col-8 col-lg-12 evictors">
             <div className="columns">
               {evictors.map((evictor: EvictorDetails, i: number) => {
+                const index = Math.round(
+                  Math.random() * Math.max(fallbacks.length - 1, 0)
+                )
                 const image = evictor.localFile?.childImageSharp
-                  ? getImage(evictor.localFile)
-                  : getImage(
-                    fallbacks[
-                      Math.round(Math.random() * fallbacks.length) -
-                          1
-                    ]?.localFile
-                  )
+                  ? getImage(evictor?.localFile)
+                  : getImage(fallbacks[index]?.localFile)
                 // plz ignore how ugly that above is, it's temporary
                 // until we get pictures
 

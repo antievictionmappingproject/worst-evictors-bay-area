@@ -14,6 +14,7 @@ $evictor-border-width: 4px;
   .columns {
     min-height: 100vh;
     opacity: 1;
+    place-content: center;
 
     @include for-small-desktop-down {
       padding: 1.5rem 0;
@@ -112,14 +113,15 @@ $evictor-border-width: 4px;
   .eyebrow {
     margin-bottom: 1.3rem;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
+    transform: translate(0%, 60%);
   }
   
   .evictor-container {
     aspect-ratio: 1 / 1;
-    min-width: 250px;
-    max-width: 750px;
+    min-width: 100px;
+    max-width: 300px;
     width: 50%;
     padding: 0.5rem;
   }
