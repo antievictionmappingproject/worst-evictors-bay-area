@@ -8,8 +8,6 @@ import renderContent from '../utils/contentful-render'
 import '../styles/index.scss'
 import useIndexQuery from '../queries/index'
 
-const rtcLogo = require('../images/RTC_logo.png')
-const justfixLogo = require('../images/JustFix_logo.png')
 const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
@@ -77,17 +75,7 @@ const LandingPage = () => {
             </div>
             <div className="delayed-fade-in">
               <br />
-              <div className="eyebrow">Brought to you by</div>
-              <img
-                className="logo"
-                src={rtcLogo.default}
-                alt="Right to Counsel NYC Coalition"
-              />
-              <img
-                className="logo"
-                src={justfixLogo.default}
-                alt="JustFix NYC"
-              />
+              <div>Brought to you by</div>
               <img
                 className="logo"
                 src={aempLogo.default}
@@ -98,19 +86,6 @@ const LandingPage = () => {
           </div>
           <div className="column col-8 col-lg-12 evictors">
             <div className="columns">
-              <div
-                key="e-intro"
-                id="evictors"
-                className="column col-3 col-xl-4 col-lg-12 bg-primary text-right fade-in-0"
-              >
-                <span aria-hidden>
-                  COVID <br /> Worst <br className="hide-lg" />{' '}
-                  Evictors
-                </span>
-                <span className="text-assistive">
-                  COVID Worst Evictor
-                </span>
-              </div>
               {evictors.map((evictor: EvictorDetails, i: number) => {
                 const image = evictor.localFile?.childImageSharp
                   ? getImage(evictor.localFile)
@@ -153,7 +128,7 @@ const LandingPage = () => {
         <div className="columns bg-secondary text-primary">
           <div className="column col-4 col-lg-12 d-flex">
             <div>
-              <div className="eyebrow">Worst Evictors Map</div>
+              <div>Worst Evictors Map</div>
               <h1>{contentfulLandingPage.mapTitle}</h1>
             </div>
             {contentfulLandingPage.mapBackground && (
@@ -184,7 +159,7 @@ const LandingPage = () => {
         >
           <div className="column col-4 col-lg-12 sticky-column-desktop full-height-container-desktop d-flex">
             <div>
-              <div className="eyebrow">Know your tenant rights </div>
+              <div>Know your tenant rights </div>
               <h1>{contentfulLandingPage.kyrTitle}</h1>
             </div>
             {contentfulLandingPage.kyrImage && (
