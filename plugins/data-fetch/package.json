@@ -2,7 +2,7 @@
   "name": "data-fetch",
   "version": "1.0.0",
   "description": "Custom Gatsby plugin serving as a link between Evictorbook, Contentful, and this site. This `package.json` is required by Gatsby for some reason. :')",
-  "author": "Nathan Kim <nathan.kim@yale.edu",
+  "author": "Nathan Kim <nathan.kim@yale.edu>",
   "main": "fetchEvictorData.ts",
   "keywords": [
     "gatsby-plugin"

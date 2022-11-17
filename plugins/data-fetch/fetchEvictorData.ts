@@ -21,14 +21,16 @@ export default async function fetchEvictorData() {
       // pullQuote + citywideListDescription has way too many fields to query
       // ergonomically, so we'll just grab it as a string
       // this is how the contentful cms presents it too
-      const {ebLink, type, pullQuote, citywideListDescription} = item.fields
+      const {ebLink, type, city, pullQuote, citywideListDescription} =
+        item.fields
       if (!ebLink || !type) return
-      const ebData = await getEBEntry(ebLink, type)
+      const ebData = await getEBEntry(ebLink, type, city)
 
-      const totalEvictions = ebData.portfolio.property_portfolio.reduce(
-        (prev, curr) => prev + curr.num_evictions,
-        0
-      )
+      const totalEvictions =
+        ebData.portfolio.property_portfolio.reduce(
+          (prev, curr) => prev + curr.num_evictions,
+          0
+        )
       return {
         ...item.fields,
         id: item.sys.id,
