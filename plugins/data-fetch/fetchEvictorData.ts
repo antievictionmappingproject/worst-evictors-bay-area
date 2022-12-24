@@ -17,12 +17,18 @@ export default async function fetchEvictorData() {
     .catch(console.error)) as EntryCollection<any>
 
   const evictors = result.items
+    .filter((item) => item.fields.city === 'sf')
     .map(async (item) => {
       // pullQuote + citywideListDescription has way too many fields to query
       // ergonomically, so we'll just grab it as a string
       // this is how the contentful cms presents it too
-      const {ebLink, type, city, pullQuote, citywideListDescription} =
-        item.fields
+      const {
+        ebLink,
+        type,
+        city,
+        pullQuote,
+        citywideListDescription,
+      } = item.fields
       if (!ebLink || !type) return
       const ebData = await getEBEntry(ebLink, type, city)
 

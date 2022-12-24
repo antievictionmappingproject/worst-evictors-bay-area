@@ -8,7 +8,9 @@ async function getSlice(
   slice: string,
   city: string
 ): Promise<any> {
-  const escaped = encodeURI(`https://${city}.${BASE}/${type}/${ebName}/${slice}`)
+  const escaped = encodeURI(
+    `https://${city}.${BASE}/${type}/${ebName}/${slice}`
+  )
 
   return fetch(escaped)
     .then((res) => res.json())
@@ -16,7 +18,7 @@ async function getSlice(
       [slice]: data,
     }))
     .catch((err) => {
-      console.error(`Error at ${ebName}, ${escaped}: ${err}`)
+      throw new Error(`at ${ebName}, ${escaped}: ${err}`)
     })
 }
 
