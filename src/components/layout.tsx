@@ -14,6 +14,8 @@ type Props = {
   customImage?: string
   className?: string
   hideScrollArrow?: boolean
+  hideFooter?: boolean
+  hideNavMenu?: boolean
 }
 
 const ScrollArrow = () => (
@@ -25,9 +27,6 @@ const ScrollArrow = () => (
   </div>
 )
 
-const GOOGLE_SITE_VERIFICATION_CODE =
-  '-q5dreY6DgZQyoLddmn5nWlr_zAbobvRgbC6SnX90l8'
-
 const Layout = ({
   children,
   customTitle,
@@ -36,6 +35,8 @@ const Layout = ({
   customImage,
   className,
   hideScrollArrow,
+  hideFooter,
+  hideNavMenu,
 }: Props) => {
   const title = customTitle || 'NYC\'s Worst Evictors during COVID'
   const altTitle =
@@ -52,10 +53,6 @@ const Layout = ({
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
-        <meta
-          name="google-site-verification"
-          content={GOOGLE_SITE_VERIFICATION_CODE}
-        />
         <meta name="description" content={description} />
         <meta
           name="keywords"
@@ -99,12 +96,12 @@ const Layout = ({
           content="NYC's Worst COVID Evictors"
         />
       </Helmet>
-      <NavMenu />
+      {!hideNavMenu && <NavMenu />}
       <div className="page-content">
         {!hideScrollArrow && <ScrollArrow />}
         {children}
       </div>
-      <Footer />
+      {!hideFooter && <Footer />}
     </div>
   )
 }
