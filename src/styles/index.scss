@@ -9,15 +9,18 @@ $evictor-border-width: 4px;
 // basic reset
 #___gatsby, #gatsby-focus-wrapper, html,
 body, .layout, .page-content, .homepage, .intro {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
 }
 
-/* so that they render at the same time, in the same place */
+/* so that the intro and main content render at the same time
+  in the same place */
+.page-container {
+  display: grid;
+}
 .homepage, .intro {
-  position: absolute;
-  top: 0;
-  left: 0;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 

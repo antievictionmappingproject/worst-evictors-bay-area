@@ -14,8 +14,22 @@ const HomePage = () => {
       hideScrollArrow={!isTransitioned}
       hideNavMenu={!isTransitioned}
     >
-      {!isTransitioned && <Intro setIsTransitioned={setIsTransitioned} />}
-      <Home />
+      <div className="page-container">
+        {!isTransitioned && (
+          <Intro setIsTransitioned={setIsTransitioned} />
+        )}
+        <div
+          style={{
+            gridColumn: '1',
+            gridRow: '1',
+            maxHeight: isTransitioned ? '' : '100vh',
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          <Home />
+        </div>
+      </div>
     </Layout>
   )
 }

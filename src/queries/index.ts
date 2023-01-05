@@ -7,7 +7,7 @@ export default function useIndexQuery() {
           name
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 250, height: 250)
+              gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1)
             }
           }
           ebData {

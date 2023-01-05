@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link} from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import {getImage} from 'gatsby-plugin-image'
 import renderContent from '../utils/contentful-render'
+import EvictorImage from './image'
 
 import useIndexQuery from '../queries/index'
 
@@ -52,9 +53,9 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
 const LandingPage = () => {
   const {allEvictor, contentfulLandingPage} = useIndexQuery()
   const evictors: EvictorDetails[] = allEvictor.nodes
-  const fallbacks = evictors.filter(
+  const fallback = evictors.filter(
     (evictor) => evictor.localFile?.childImageSharp
-  )
+  )[0]
 
   return (
     <div className="homepage">
@@ -84,36 +85,16 @@ const LandingPage = () => {
         <div className="column col-8 col-lg-12 evictors">
           <div className="columns">
             {evictors.map((evictor: EvictorDetails, i: number) => {
-              const index = Math.round(
-                Math.random() * Math.max(fallbacks.length - 1, 0)
-              )
               const image = evictor.localFile?.childImageSharp
                 ? getImage(evictor?.localFile)
-                : getImage(fallbacks[index]?.localFile)
-              // plz ignore how ugly that above is, it's temporary
-              // until we get pictures
+                : getImage(fallback?.localFile)
 
               return (
-                <Link
-                  key={`e-${i}`}
-                  to={`/list#${i}`}
-                  className="evictor-container"
-                >
-                  <>
-                    <div className="container">
-                      <GatsbyImage
-                        className="background-cover-photo"
-                        imgClassName="background-cover-photo-image"
-                        image={image}
-                        alt={evictor.name}
-                      />
-                      <div className="eyebrow">{i + 1}</div>
-                      <div className="hover-label text-right">
-                        {evictor.name}
-                      </div>
-                    </div>
-                  </>
-                </Link>
+                <EvictorImage
+                  i={i}
+                  name={evictor.name}
+                  image={image}
+                />
               )
             })}
           </div>
