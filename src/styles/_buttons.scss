@@ -57,6 +57,7 @@
 
 a.btn.btn-primary,
 button.btn.btn-primary {
+  margin: 1rem;
   @include button-variant($primary-color);
 }
 

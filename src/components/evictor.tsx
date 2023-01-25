@@ -5,8 +5,9 @@ import renderContent from '../utils/contentful-render'
 import {OutboundLink} from '../components/outbound-link'
 import type {EvictorProps} from '../queries/list'
 import '../styles/evictors-list.scss'
-import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import {getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
+import EvictorImage from './image'
 
 const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
   const {details, evictions, networkDetails, portfolio} =
@@ -37,11 +38,23 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
       id={content.rank.toString()}
     >
       <div className="columns text-secondary">
-        <div className="column col-4 col-xl-6 col-lg-12 sticky-column-desktop full-height-container-desktop">
+        <div className="column col-6 col-xl-6 col-lg-12 sticky-column-desktop full-height-container-desktop">
+          {content.localFile?.childImageSharp && (
+            <>
+              <EvictorImage
+                image={getImage(content.localFile)}
+                name={content.photoCaption}
+              />
+              <br />
+            </>
+          )}
           <div className="full-height-container-desktop">
-            <div className="eyebrow rank">{content.rank}.</div>
-            <span className="text-bold">
-              <h1>{content.name}</h1>
+            <span>
+              <h1>
+                {content.rank}
+                {'. '}
+                {content.name}
+              </h1>
               <h2>{content.corporation}</h2>
               {activeSince ? (
                 <em>Active since {activeSince}</em>
@@ -73,28 +86,8 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
             </span>
             <p>{totalUnits} units owned total</p>
           </div>
-          <OutboundLink
-            href={content.ebData.ebUrl}
-            className="btn btn-primary"
-          >
-            See if your building is in this portfolio
-          </OutboundLink>
         </div>
-        <div className="column col-8 col-xl-6 col-lg-12">
-          {content.localFile?.childImageSharp && (
-            <>
-              <GatsbyImage
-                image={getImage(content.localFile?.childImageSharp)}
-                className="background-cover-photo"
-                imgClassName="background-cover-photo"
-                alt={content.photoCaption}
-              />
-              <div className="eyebrow text-right">
-                <p>Photo: {content.photoCaption}</p>
-              </div>
-              <br />
-            </>
-          )}
+        <div className="column col-6 col-xl-6 col-lg-12">
           {content.banks?.length ? (
             <p>
               <span className="text-bold text-uppercase">
@@ -136,6 +129,18 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
           {content.citywideListDescription &&
             renderContent(content.citywideListDescription)}
           <br />
+        </div>
+      </div>
+      <div className="columns text-secondary">
+        <div className="column col-6 col-xl-6 col-lg-12 btn-container">
+          <OutboundLink
+            href={content.ebData.ebUrl}
+            className="btn btn-primary"
+          >
+            See if your building is in this portfolio
+          </OutboundLink>
+        </div>
+        <div className="column col-6 col-xl-6 col-lg-12 btn-container">
           <Link to="/#evictors" className="btn btn-primary">
             Back to worst evictors list
           </Link>

@@ -23,10 +23,13 @@ $body-font: "Fira Code", Arial, Helvetica, sans-serif;
 $title-font: "Fira Code", Arial, Helvetica, sans-serif;
 $eyebrow-font: "Fira Code", "Courier New", Courier, monospace;
 
+:root {
+  font-size: 14pt;
+}
+
 .page-content {
   font-family: $body-font;
-  // DEFAULT BODY FONT SPECS:
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.44rem;
   letter-spacing: 0.01rem;
 

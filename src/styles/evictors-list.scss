@@ -10,8 +10,8 @@
       .columns:first-child {
         min-height: 100vh;
       }
-      .column.col-8 {
-        padding: 1.2rem 1.2rem 0.7rem 1.2rem;
+      .column.col-6 {
+        padding: 2rem 4rem;
       }
       .rank {
         margin-top: 1rem;
@@ -24,6 +24,7 @@
       }
       h1 {
         margin-bottom: 0.4rem;
+        font-weight: bold;
       }
       h3 {
         font-size: 1.2rem;
@@ -41,24 +42,24 @@
       p {
         margin-bottom: 0.8rem;
       }
+      .btn-container {
+        padding-top: 0 !important;
+        display: flex;
+        place-content: center;
+      };
       .btn {
-        width: 100%;
-        max-width: 325px;
+        width: fit-content;
         margin-bottom: 1.35rem;
         @include for-small-desktop-down {
           max-width: calc(100% - #{$menu-button-width});
         }
       }
       // Photo captions:
-      .eyebrow.text-right {
+      .caption {
         margin-top: 0.4rem;
         display: flex;
         justify-content: flex-end;
-        p {
-          font-size: 0.7rem;
-          line-height: 0.8rem;
-          max-width: 570px;
-        }
+        text-transform: uppercase;
       }
     }
   }

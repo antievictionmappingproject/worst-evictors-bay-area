@@ -13,19 +13,9 @@ type Props = {
   customUrl?: string
   customImage?: string
   className?: string
-  hideScrollArrow?: boolean
   hideFooter?: boolean
   hideNavMenu?: boolean
 }
-
-const ScrollArrow = () => (
-  <div
-    aria-hidden
-    className="scroll-arrow bounce-up-and-down text-secondary"
-  >
-    <span>↓</span> <span className="hide-lg">↓</span>
-  </div>
-)
 
 const Layout = ({
   children,
@@ -34,16 +24,16 @@ const Layout = ({
   customUrl,
   customImage,
   className,
-  hideScrollArrow,
   hideFooter,
   hideNavMenu,
 }: Props) => {
-  const title = customTitle || 'NYC\'s Worst Evictors during COVID'
+  const title =
+    customTitle || 'The Worst Evictors of San Francisco and Oakland'
   const altTitle =
-    'These NYC landlords are trying to evict tenants during the COVID-19 pandemic. We are fighting back.'
+    'These landlords force tenants out of their homes. We\'re fighting back.'
   const description =
     customDescription ||
-    'Never-before-seen data from NYC Housing Court highlights who stands to benefit the most if and when evictions move forward during COVID-19.'
+    'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serail evictions.'
   const url = customUrl || 'https://www.worstevictorsnyc.org'
   const shareImageURL =
     customImage || 'https://i.imgur.com/NIFo6iC.png'
@@ -56,24 +46,14 @@ const Layout = ({
         <meta name="description" content={description} />
         <meta
           name="keywords"
-          content="nyc, worst, evictions, evictors, lawsuits, cases, rtc, right, to, counsel, tenant, organizing, landlord, map, covid, covid-19, housing court, eviction filings"
+          content="oakland, san francisco, sf, worst, evictions, evictors, lawsuits, cases, rtc, right, to, counsel, tenant, organizing, landlord, map, covid, covid-19, housing court, eviction filings"
         />
         <meta
           name="author"
-          content="Right to Counsel Coalition, JustFix.nyc, and the Anti-Eviction Mapping Project"
+          content="The Anti-Eviction Mapping Project and the San Francisco Anti-Displacement Coalition."
         />
-
-        <meta property="fb:app_id" content="247990609143668" />
-        <meta
-          property="og:site_name"
-          content="NYC's Worst COVID Evictors"
-        />
-        <meta
-          property="og:title"
-          content={
-            title !== 'NYC\'s Worst COVID Evictors' ? title : altTitle
-          }
-        />
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={shareImageURL} />
@@ -82,25 +62,17 @@ const Layout = ({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@RTCNYC" />
         <meta name="twitter:creator" content="@RTCNYC" />
-        <meta
-          name="twitter:title"
-          content={
-            title !== 'NYC\'s Worst COVID Evictors' ? title : altTitle
-          }
-        />
+        <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:url" content={url} />
         <meta name="twitter:image" content={shareImageURL} />
         <meta
           name="twitter:image:alt"
-          content="NYC's Worst COVID Evictors"
+          content="The Worst Evictors of San Francisco and Oakland"
         />
       </Helmet>
       {!hideNavMenu && <NavMenu />}
-      <div className="page-content">
-        {!hideScrollArrow && <ScrollArrow />}
-        {children}
-      </div>
+      <div className="page-content">{children}</div>
       {!hideFooter && <Footer />}
     </div>
   )

@@ -7,10 +7,12 @@
   background-color: $primary;
   border-top: 1px solid $secondary;
   color: $secondary;
-  padding: 0.7rem;
-  display: flex;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  
 
   // This makes sure our Footer appears above our fixed "scroll-arrow" component:
   position: relative;

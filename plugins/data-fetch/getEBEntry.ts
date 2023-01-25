@@ -11,15 +11,13 @@ async function getSlice(
   const escaped = encodeURI(
     `https://${city}.${BASE}/${type}/${ebName}/${slice}`
   )
-
-  return fetch(escaped)
-    .then((res) => res.json())
-    .then((data) => ({
-      [slice]: data,
-    }))
+  const text = await fetch(escaped)
+    .then((res) => res.text())
     .catch((err) => {
-      throw new Error(`at ${ebName}, ${escaped}: ${err}`)
+      throw new Error(`${escaped}: ${text}`)
     })
+
+  return {[slice]: JSON.parse(text)}
 }
 
 export default async function getEBEntry(

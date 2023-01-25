@@ -13,6 +13,8 @@ body {
     color: $secondary;
     background-color: transparent;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #faf8f0c4;
 
     &.btn,
     &.column {
@@ -21,7 +23,7 @@ body {
   }
 
   p {
-    max-width: 60ch;
+    max-width: 56ch;
   }
 }
 
@@ -32,10 +34,23 @@ div.d-flex {
   }
 }
 
+.evictor-image-container {
+  width: 100%;
+  display: flex;
+  place-content: center;
+}
+
+.evictor-image-column {
+  width: 450px;
+}
+
 .photo-wrapper {
-  max-height: 280px;
-  max-width: 280px;
+  margin: 0 auto;
+  height: 450px;
+  width: 450px;
+  max-width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .background-cover-photo {

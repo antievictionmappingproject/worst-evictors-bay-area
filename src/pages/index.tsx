@@ -11,7 +11,6 @@ const HomePage = () => {
     <Layout
       className="layout"
       hideFooter={!isTransitioned}
-      hideScrollArrow={!isTransitioned}
       hideNavMenu={!isTransitioned}
     >
       <div className="page-container">

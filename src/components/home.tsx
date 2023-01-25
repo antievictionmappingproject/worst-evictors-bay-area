@@ -90,11 +90,17 @@ const LandingPage = () => {
                 : getImage(fallback?.localFile)
 
               return (
-                <EvictorImage
-                  i={i}
-                  name={evictor.name}
-                  image={image}
-                />
+                <Link
+                  key={`e-${i}`}
+                  to={`/list#${i}`}
+                  className="evictor-container"
+                >
+                  <EvictorImage
+                    rank={i}
+                    name={evictor.name}
+                    image={image}
+                  />
+                </Link>
               )
             })}
           </div>

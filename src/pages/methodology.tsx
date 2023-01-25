@@ -18,10 +18,14 @@ const AboutPage = () => (
       }
     `}
     render={(data) => {
-      console.log(data)
-      const {title, subtitle, description} = data.contentfulMethodologyPage
+      const {title, subtitle, description} =
+        data.contentfulMethodologyPage
       return (
-        <InfoPage title={title} subtitle={subtitle} description={description} />
+        <InfoPage
+          title={title}
+          subtitle={subtitle}
+          description={description}
+        />
       )
     }}
   />
