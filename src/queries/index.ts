@@ -15,25 +15,13 @@ export default function useIndexQuery() {
               evict_id
             }
           }
+          rank
         }
       }
       contentfulLandingPage {
-        mapTitle
-        mapButton
-        kyrTitle
-        kyrDescription {
-          raw
-        }
-        kyrContent {
-          raw
-        }
-        mapDescription {
-          raw
-        }
-        openingTitle {
-          raw
-        }
-        openingSubtitle {
+        openingTitle
+        openingSubtitle
+        openingDescription {
           raw
         }
       }

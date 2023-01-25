@@ -23,6 +23,9 @@ body, .layout, .page-content, .homepage, .intro {
   grid-row: 1;
 }
 
+.intro-text {
+  margin: 2rem;
+} 
 
 // INTRO SEQUENCE
 .intro {
@@ -46,7 +49,13 @@ body, .layout, .page-content, .homepage, .intro {
 
 // LANDING PAGE:
 .homepage {
+  h1 {
+    font-weight: bold;
+  }
   z-index: 0;
+  .columns-end {
+    justify-content: end !important;
+  }
   .columns {
     min-height: 100vh;
     opacity: 1;
@@ -102,7 +111,7 @@ body, .layout, .page-content, .homepage, .intro {
   }
 
   .eyebrow {
-    font-size: 3.2rem;
+    font-size: 2rem;
 
     @include for-small-desktop-down {
       font-size: 2rem;
@@ -121,7 +130,7 @@ body, .layout, .page-content, .homepage, .intro {
   }
 
 
-  .container {
+  .evictor-image-container {
     text-decoration: none;
 
     .evictor-icon {
@@ -132,6 +141,7 @@ body, .layout, .page-content, .homepage, .intro {
 
 
     .hover-label {
+      font-size: 0.8rem;
       opacity: 0;
       margin: 0.7rem;
     }
@@ -151,15 +161,13 @@ body, .layout, .page-content, .homepage, .intro {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(0%, 60%);
+    transform: translate(0%, 20%);
   }
   
   .evictor-container {
-    aspect-ratio: 1 / 1;
     min-width: 100px;
     max-width: 300px;
-    width: 50%;
-    padding: 0.5rem;
+    width: fit-content;
   }
 
   .container {

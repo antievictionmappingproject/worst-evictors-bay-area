@@ -4,8 +4,17 @@ import {GatsbyImage} from 'gatsby-plugin-image'
 function EvictorImage(props) {
   return (
     <div className="evictor-image-container">
-      <div className="evictor-image-column">
-        <div className="photo-wrapper">
+      <div
+        className="evictor-image-column"
+        style={{width: `${props.width}px`}}
+      >
+        <div
+          className="photo-wrapper"
+          style={{
+            width: `${props.width}px`,
+            height: `${props.width}px`,
+          }}
+        >
           <GatsbyImage
             className="background-cover-photo"
             imgClassName="background-cover-photo-image"
@@ -15,16 +24,18 @@ function EvictorImage(props) {
           <div className="photo-pattern" />
           <div className="photo-filter" />
         </div>
-        <div className="caption">
-          {props.rank && (
-            <div className="eyebrow">{props.rank + 1}</div>
-          )}
-          {props.name && (
-            <div className="caption hover-label text-right">
-              Photo: {props.name}
-            </div>
-          )}
-        </div>{' '}
+        {!props.hideEyebrow && (
+          <>
+            {typeof props.rank !== 'undefined' && (
+              <div className="eyebrow">{props.rank + 1}</div>
+            )}
+            {props.name && (
+              <div className="caption hover-label text-right">
+                {props.name}
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import 'dotenv/config'
 import {createClient} from 'contentful'
 import type {EntryCollection} from 'contentful'
 import getEBEntry from './getEBEntry'
+import {writeFile} from 'fs/promises'
 
 export default async function fetchEvictorData() {
   const client = createClient({
@@ -50,9 +51,9 @@ export default async function fetchEvictorData() {
     })
     .filter((evictor) => evictor) // 'undefined' is falsy
 
-  const resolved = (await Promise.all(evictors))
-    .sort((a, b) => b.totalEvictions - a.totalEvictions)
-    .map((evictor, i) => ({...evictor, rank: i + 1}))
+  const resolved = (await Promise.all(evictors)).sort(
+    (a, b) => a.rank - b.rank
+  )
 
   return resolved
 }

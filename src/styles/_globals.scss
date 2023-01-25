@@ -34,20 +34,18 @@ div.d-flex {
   }
 }
 
+.evictor-image-column{
+  position: relative;
+}
+
 .evictor-image-container {
   width: 100%;
   display: flex;
   place-content: center;
 }
 
-.evictor-image-column {
-  width: 450px;
-}
-
 .photo-wrapper {
   margin: 0 auto;
-  height: 450px;
-  width: 450px;
   max-width: 100%;
   overflow: hidden;
   position: relative;

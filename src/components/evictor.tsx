@@ -42,8 +42,10 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
           {content.localFile?.childImageSharp && (
             <>
               <EvictorImage
+                width={450}
                 image={getImage(content.localFile)}
                 name={content.photoCaption}
+                hideEyebrow
               />
               <br />
             </>
