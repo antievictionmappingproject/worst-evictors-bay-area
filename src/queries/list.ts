@@ -39,10 +39,8 @@ export default function useIndexQuery() {
               total_owners
             }
             portfolio {
-              property_portfolio {
-                units
-                addr
-              }
+              units
+              addr
             }
             ebUrl
           }
@@ -62,40 +60,38 @@ export default function useIndexQuery() {
 /** might as well define some proptypes */
 export type EvictorProps = {
   content: {
-    name: string;
-    corporation: string;
-    localFile: { childImageSharp: ImageDataLike };
-    citywideListDescription: { raw: string };
-    banks: null | string[];
+    name: string
+    corporation: string
+    localFile: { childImageSharp: ImageDataLike }
+    citywideListDescription: { raw: string }
+    banks: null | string[]
     ebData: {
       details: {
-        creation_date: string;
-        name: string;
-        be_specific_details: { llc_type_of_business: string };
-        office_addresses: string[];
-      };
+        creation_date: string
+        name: string
+        be_specific_details: { llc_type_of_business: string }
+        office_addresses: string[]
+      }
       evictions: {
-        type: string;
-      }[];
+        type: string
+      }[]
       networkDetails: {
-        total_addrs: number;
-        total_bes: number;
-        total_owners: number;
-      };
+        total_addrs: number
+        total_bes: number
+        total_owners: number
+      }
       portfolio: {
-        property_portfolio: {
-          units: number;
-          addr: string;
-          num_evictions: number;
-        }[];
-      };
-      ebUrl: string;
-    };
-    totalEvictions: string;
+        units: number
+        addr: string
+        num_evictions: number
+      }[]
+      ebUrl: string
+    }
+    totalEvictions: string
     pullQuote: {
-      raw: string;
-    };
-    photoCaption: string;
-    rank: number;
-  };
-};
+      raw: string
+    }
+    photoCaption: string
+    rank: number
+  }
+}

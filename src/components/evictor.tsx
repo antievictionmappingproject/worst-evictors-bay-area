@@ -13,7 +13,7 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
   const {details, evictions, networkDetails, portfolio} =
     content.ebData
 
-  const totalUnits = portfolio.property_portfolio.reduce(
+  const totalUnits = portfolio.reduce(
     (prev, curr) => prev + curr.units,
     0
   )

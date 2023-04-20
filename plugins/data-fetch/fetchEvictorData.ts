@@ -18,40 +18,41 @@ export default async function fetchEvictorData() {
     .catch(console.error)) as EntryCollection<any>
 
   const evictors = result.items
-    .filter((item) => item.fields.city === 'sf')
+    .filter((item) => item.fields.city === 'oakland')
     .map(async (item) => {
-      // pullQuote + citywideListDescription has way too many fields to query
-      // ergonomically, so we'll just grab it as a string
-      // this is how the contentful cms presents it too
-      const {
-        ebLink,
-        type,
-        name,
-        city,
-        pullQuote,
-        citywideListDescription,
-      } = item.fields
-      if (!ebLink || !type) return
-      const ebData = await getEBEntry(ebLink, type, city).catch(
-        (err) => {
-          console.error(`Error on ${name}: ${err}`)
-        }
-      )
-
-      const totalEvictions =
-        ebData.portfolio.property_portfolio.reduce(
-          (prev: number, curr) => prev + curr.num_evictions,
-          0
+      try {
+        // pullQuote + citywideListDescription has way too many fields to query
+        // ergonomically, so we'll just grab it as a string
+        // this is how the contentful cms presents it too
+        const {
+          ebLink,
+          type,
+          name,
+          city,
+          pullQuote,
+          citywideListDescription,
+        } = item.fields
+        if (!ebLink || !type) return
+        const ebData = await getEBEntry(ebLink, type, city).catch(
+          (err) => {
+            console.error(`Error on ${name}, ${ebLink}: ${err}`)
+          }
         )
-      return {
-        ...item.fields,
-        id: item.sys.id,
-        ebData,
-        totalEvictions,
-        pullQuote: {raw: JSON.stringify(pullQuote)},
-        citywideListDescription: {
-          raw: JSON.stringify(citywideListDescription),
-        },
+
+        const totalEvictions = ebData.evictions.length
+
+        return {
+          ...item.fields,
+          id: item.sys.id,
+          ebData,
+          totalEvictions,
+          pullQuote: {raw: JSON.stringify(pullQuote)},
+          citywideListDescription: {
+            raw: JSON.stringify(citywideListDescription),
+          },
+        }
+      } catch (e) {
+        console.error(`${e}: ${item.fields.name}`)
       }
     })
     .filter((evictor) => evictor) // 'undefined' is falsy
