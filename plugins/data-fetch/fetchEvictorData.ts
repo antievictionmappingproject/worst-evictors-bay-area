@@ -26,16 +26,21 @@ export default async function fetchEvictorData() {
       const {
         ebLink,
         type,
+        name,
         city,
         pullQuote,
         citywideListDescription,
       } = item.fields
       if (!ebLink || !type) return
-      const ebData = await getEBEntry(ebLink, type, city)
+      const ebData = await getEBEntry(ebLink, type, city).catch(
+        (err) => {
+          console.error(`Error on ${name}: ${err}`)
+        }
+      )
 
       const totalEvictions =
         ebData.portfolio.property_portfolio.reduce(
-          (prev, curr) => prev + curr.num_evictions,
+          (prev: number, curr) => prev + curr.num_evictions,
           0
         )
       return {

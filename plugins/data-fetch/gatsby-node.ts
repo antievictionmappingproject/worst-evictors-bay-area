@@ -75,7 +75,7 @@ export const onCreateNode = async ({
 export const createSchemaCustomization = ({actions}) => {
   const {createTypes} = actions
   createTypes(`
-    type Evictor implements Node {
+    type ${NODE_TYPE} implements Node {
       localFile: File @link(from: "fields.localFile")
     }
   `)

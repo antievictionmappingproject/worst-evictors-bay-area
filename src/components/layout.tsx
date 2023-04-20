@@ -29,12 +29,10 @@ const Layout = ({
 }: Props) => {
   const title =
     customTitle || 'The Worst Evictors of San Francisco and Oakland'
-  const altTitle =
-    'These landlords force tenants out of their homes. We\'re fighting back.'
   const description =
     customDescription ||
-    'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serail evictions.'
-  const url = customUrl || 'https://www.worstevictorsnyc.org'
+    'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serial evictions.'
+  const url = customUrl || 'https://www.worstevictorsbayarea.org'
   const shareImageURL =
     customImage || 'https://i.imgur.com/NIFo6iC.png'
 
@@ -60,8 +58,8 @@ const Layout = ({
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@RTCNYC" />
-        <meta name="twitter:creator" content="@RTCNYC" />
+        <meta name="twitter:site" content="@antievictionmap" />
+        <meta name="twitter:creator" content="@antievictionmap" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:url" content={url} />

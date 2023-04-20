@@ -13,7 +13,7 @@ const contentfulConfig = {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'NYC\'s Worst Evictors',
+    title: 'The Worst Evictors of San Francisco and Oakland',
   },
   plugins: [
     'data-fetch', // our custom fetch plugin to integrate evictorbook and contentful
@@ -30,8 +30,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'NYC\'s Worst Evictors during COVID-19',
-        short_name: 'Worst COVID Evictors',
+        name: 'The Worst Evictors of San Francisco and Oakland',
+        short_name: 'The Worst Evictors',
         start_url: '/',
         background_color: '#242323',
         theme_color: '#242323',
@@ -42,7 +42,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://www.worstevictorsnyc.org/',
+        siteUrl: 'https://www.worstevictorsbayarea.org',
       },
     },
     {

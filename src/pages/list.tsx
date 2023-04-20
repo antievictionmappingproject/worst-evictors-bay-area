@@ -10,7 +10,7 @@ const CitywideEvictorsListPage = () => {
 
   return (
     <Layout
-      customTitle="Top 20 List | NYC's Worst COVID Evictors"
+      customTitle="The Worst Evictors of San Francisco and Oakland"
       customDescription={data.contentfulCitywideListPage.title}
       customUrl="https://www.worstevictorsnyc.org/list"
       className="list-page"
