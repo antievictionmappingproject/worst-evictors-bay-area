@@ -14,10 +14,10 @@ async function getSlice(
   const text = await fetch(escaped)
     .then((res) => res.text())
     .catch((err) => {
-      throw new Error(`${escaped}: ${text}`)
+      throw new Error(`${escaped}: ${err}`)
     })
 
-  return {[slice]: JSON.parse(text)}
+  return {[slice]: JSON.parse(text).records}
 }
 
 export default async function getEBEntry(
