@@ -1,7 +1,11 @@
 @import "_vars.scss";
 
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: $primary;
+  margin: 0;
 }
 
 .page-content,
@@ -29,9 +33,6 @@ body {
 
 div.d-flex {
   flex-direction: column;
-  div:first-child {
-    flex-grow: 1;
-  }
 }
 
 .evictor-image-column{

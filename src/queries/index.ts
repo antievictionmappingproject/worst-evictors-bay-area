@@ -5,6 +5,8 @@ export default function useIndexQuery() {
       allEvictor {
         nodes {
           name
+          city
+          nonprofitOrLowIncome
           localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1)

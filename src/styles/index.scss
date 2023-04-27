@@ -45,14 +45,109 @@ body, .layout, .page-content, .homepage, .intro {
   transition: opacity ease-out 400ms;
   cursor: pointer;
   z-index: 1;
+  .click-prompt {
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    gap: 2rem;
+    span {
+      font-size: 2rem;
+    }
+  }
 }
 
 // LANDING PAGE:
 .homepage {
-  h1 {
-    font-weight: bold;
-  }
   z-index: 0;
+  .header {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    div {
+      flex-grow: 1;
+    }
+  }
+  .title {
+    display: flex;
+    flex-direction: row;
+    h1 {
+      font-weight: bold;
+      margin: 1rem 0;
+      margin-right: 2rem;
+    }
+  }
+  .description {
+    display: flex;
+    justify-content: end;
+    text-align: right;
+    margin: 0 2rem;
+  }
+  .links {
+    display: flex;
+    flex-direction: row; 
+    gap: 2rem;
+    a {
+      background: $red;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0 0.5rem;
+    }
+    img {
+      color: white;
+      margin: 0 0.5rem 0 0;
+    }
+  }
+  .evictor-names-list {
+    .images {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      max-width: 1000px;
+    }
+    .city-name {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 1rem;
+      img {
+        height: 2rem;
+      }
+      h2 {
+        font-size: 2rem;
+        margin: 0;
+      };
+      padding: 1rem;
+      border-top: solid 1px white;
+      border-bottom: solid 1px white;
+    }
+    h3 {
+      font-family: $body-font;
+      background: $red;
+      width: fit-content;
+    }
+    ol {
+      margin: 1rem 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: evictor-counter;
+      .counter {
+        background: $red;;
+        margin-right: 1rem;
+      }
+    }
+    .type-list {
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .text {
+      width: fit-content;
+    }
+  }
+
   .columns-end {
     justify-content: end !important;
   }
@@ -60,16 +155,11 @@ body, .layout, .page-content, .homepage, .intro {
     min-height: 100vh;
     opacity: 1;
     place-content: center;
-
-@include for-small-desktop-down {
+    @include for-small-desktop-down {
       padding: 1.5rem 0;
     }
 
     .column {
-      
-      .subtitle {
-        margin-bottom: 0.7rem;
-      }
 
       .btn {
         @include for-small-desktop-down {
