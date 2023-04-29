@@ -1,5 +1,4 @@
 import React from 'react'
-
 import '../styles/footer.scss'
 import {FaGithub, FaTwitter, FaFacebook} from 'react-icons/fa'
 import {OutboundLink} from './outbound-link'

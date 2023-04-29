@@ -1,15 +1,11 @@
 import React from 'react'
-import {Link} from 'gatsby'
 import {getImage} from 'gatsby-plugin-image'
-import renderContent from '../utils/contentful-render'
-
+import Header from './Header'
 import EvictorImage from './image'
-import building from '../images/building.svg'
-import down from '../images/down.svg'
 import pin from '../images/pin.svg'
-
 import useIndexQuery from '../queries/index'
-
+import {formatLink} from '../utils/string'
+import {Link} from 'gatsby'
 const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
@@ -25,7 +21,7 @@ type EvictorDetails = {
 }
 
 const LandingPage = () => {
-  const {allEvictor, contentfulLandingPage} = useIndexQuery()
+  const {allEvictor} = useIndexQuery()
   const evictors: EvictorDetails[] = allEvictor.nodes
   /* temp measure */
   const fallback = evictors.filter(
@@ -34,34 +30,8 @@ const LandingPage = () => {
 
   return (
     <div className="homepage">
+      <Header isDescription />
       <div>
-        <div className="header">
-          <div className="title-links">
-            <div className="title">
-              <h1 className="immediate-fade-in">
-                {contentfulLandingPage.openingTitle}
-              </h1>
-              <img src={building} />
-            </div>
-            <div className="links">
-              <a href="#san-francisco">
-                <img src={down} />
-                San Francisco
-              </a>
-              <a href="#oakland">
-                <img src={down} />
-                Oakland
-              </a>
-              <a href="#resources">
-                <img src={down} />
-                Resources
-              </a>
-            </div>
-          </div>
-          <div className="description delayed-fade-in">
-            {renderContent(contentfulLandingPage.openingDescription)}
-          </div>
-        </div>
         <div className="evictor-names-list">
           {Object.entries({
             sf: 'San Francisco',
@@ -79,8 +49,7 @@ const LandingPage = () => {
                 {[false, true].map((isNonprofit) => {
                   const typeEvictors = cityEvictors.filter(
                     (evictor) =>
-                      (evictor.nonprofitOrLowIncome !== null) ===
-                      isNonprofit
+                      evictor.nonprofitOrLowIncome === isNonprofit
                   )
                   return (
                     <div className="type-list">
@@ -96,11 +65,13 @@ const LandingPage = () => {
                               return (
                                 <li key={i}>
                                   <span className="counter">
-                                    {i.toString().length > 1
+                                    {(i + 1).toString().length > 1
                                       ? i + 1
                                       : '0' + (i + 1).toString()}
                                   </span>
-                                  <Link to={`/list#${i + 1}`}>
+                                  <Link
+                                    to={`/list#${formatLink(e.name)}`}
+                                  >
                                     {e.name}
                                   </Link>
                                 </li>
@@ -116,8 +87,7 @@ const LandingPage = () => {
                             : getImage(fallback?.localFile)
                           return (
                             <Link
-                              key={`e-${i}`}
-                              to={`/list#${i + 1}`}
+                              to={`/list#${formatLink(e.name)}`}
                               className="evictor-container"
                             >
                               <EvictorImage

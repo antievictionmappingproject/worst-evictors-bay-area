@@ -6,13 +6,6 @@
 
 $evictor-border-width: 4px;
 
-// basic reset
-#___gatsby, #gatsby-focus-wrapper, html,
-body, .layout, .page-content, .homepage, .intro {
-  min-height: 100%;
-  min-width: 100%;
-}
-
 /* so that the intro and main content render at the same time
   in the same place */
 .page-container {
@@ -60,51 +53,13 @@ body, .layout, .page-content, .homepage, .intro {
 // LANDING PAGE:
 .homepage {
   z-index: 0;
-  .header {
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    div {
-      flex-grow: 1;
-    }
-  }
-  .title {
-    display: flex;
-    flex-direction: row;
-    h1 {
-      font-weight: bold;
-      margin: 1rem 0;
-      margin-right: 2rem;
-    }
-  }
-  .description {
-    display: flex;
-    justify-content: end;
-    text-align: right;
-    margin: 0 2rem;
-  }
-  .links {
-    display: flex;
-    flex-direction: row; 
-    gap: 2rem;
-    a {
-      background: $red;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 0 0.5rem;
-    }
-    img {
-      color: white;
-      margin: 0 0.5rem 0 0;
-    }
-  }
   .evictor-names-list {
     .images {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      max-width: 1000px;
+      justify-content: flex-end;
+      max-width: 750px;
     }
     .city-name {
       display: flex;
@@ -132,7 +87,12 @@ body, .layout, .page-content, .homepage, .intro {
       padding: 0;
       list-style: none;
       counter-reset: evictor-counter;
+      /* I know, I know this is ugly... */
+      li {
+        display: flex;
+      }
       .counter {
+        height: fit-content;
         background: $red;;
         margin-right: 1rem;
       }
@@ -145,57 +105,10 @@ body, .layout, .page-content, .homepage, .intro {
     }
     .text {
       width: fit-content;
-    }
-  }
-
-  .columns-end {
-    justify-content: end !important;
-  }
-  .columns {
-    min-height: 100vh;
-    opacity: 1;
-    place-content: center;
-    @include for-small-desktop-down {
-      padding: 1.5rem 0;
-    }
-
-    .column {
-
-      .btn {
-        @include for-small-desktop-down {
-          max-width: calc(100% - #{$menu-button-width});
-        }
-      }
-
-      &.evictors .column {
-        position: relative;
-        border: $evictor-border-width solid $primary;
-        padding: 0rem;
-
-        @include for-small-desktop-up {
-          padding: 0 0 calc(33.3% - 2 *#{$evictor-border-width}) 0;
-        }
-
-        @include for-desktop-up {
-          padding: 0 0 calc(25% - 2 *#{$evictor-border-width}) 0;
-        }
-
-        &.bg-primary.text-right {
-          font-size: 1.8rem;
-          span {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-          }
-        }
-
-      }
-    }
-
-    &:not(:first-child) .column {
-      @include for-small-desktop-up {
-        padding-top: 3.2rem;
-        padding-bottom: 3.2rem;
+      min-width: 50vh;
+      font-size: 18pt;
+      a {
+        text-decoration: none;
       }
     }
   }

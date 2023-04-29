@@ -1,29 +1,10 @@
 // GLOBAL RULES/OVERRIDES:
 @import "_vars.scss";
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
-
-@font-face {
-  font-family: 'Fira Code';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/firacode-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(../fonts/firacode-700.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-$body-font: "Fira Code", Arial, Helvetica, sans-serif;
+$body-font: "IBM Plex Mono", "Courier New", Courier, monospace;
 $title-font: "Chakra Petch", Arial, Helvetica, sans-serif;
-$eyebrow-font: "Fira Code", "Courier New", Courier, monospace;
+$eyebrow-font: "IBM Plex Mono", "Courier New", Courier, monospace;
 
 :root {
   font-size: 14pt;

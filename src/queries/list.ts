@@ -7,9 +7,11 @@ export default function useIndexQuery() {
       contentfulCitywideListPage {
         title
       }
-      allEvictor {
+      allEvictor(sort: { rank: ASC }) {
         nodes {
           name
+          city
+          nonprofitOrLowIncome
           corporation
           photoCaption
           localFile {
@@ -59,39 +61,40 @@ export default function useIndexQuery() {
 
 /** might as well define some proptypes */
 export type EvictorProps = {
-  content: {
-    name: string
-    corporation: string
-    localFile: { childImageSharp: ImageDataLike }
-    citywideListDescription: { raw: string }
-    banks: null | string[]
-    ebData: {
-      details: {
-        creation_date: string
-        name: string
-        be_specific_details: { llc_type_of_business: string }
-        office_addresses: string[]
-      }
-      evictions: {
-        type: string
-      }[]
-      networkDetails: {
-        total_addrs: number
-        total_bes: number
-        total_owners: number
-      }
-      portfolio: {
-        units: number
-        addr: string
-        num_evictions: number
-      }[]
-      ebUrl: string
+  name: string
+  corporation: string
+  city: string
+  tags?: string[]
+  nonprofitOrLowIncome: boolean
+  localFile: { childImageSharp: ImageDataLike }
+  citywideListDescription: { raw: string }
+  banks: null | string[]
+  ebData: {
+    details: {
+      creation_date: string
+      name: string
+      be_specific_details: { llc_type_of_business: string }
+      office_addresses: string[]
     }
-    totalEvictions: string
-    pullQuote: {
-      raw: string
+    evictions: {
+      type: string
+    }[]
+    networkDetails: {
+      total_addrs: number
+      total_bes: number
+      total_owners: number
     }
-    photoCaption: string
-    rank: number
+    portfolio: {
+      units: number
+      addr: string
+      num_evictions: number
+    }[]
+    ebUrl: string
   }
+  totalEvictions: string
+  pullQuote: {
+    raw: string
+  }
+  photoCaption: string
+  rank: number
 }

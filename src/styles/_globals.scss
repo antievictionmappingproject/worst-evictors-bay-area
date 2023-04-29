@@ -3,6 +3,14 @@
 * {
   box-sizing: border-box;
 }
+
+// basic reset
+#___gatsby, #gatsby-focus-wrapper, html,
+body, .layout, .page-content, .homepage, .intro {
+  min-height: 100%;
+  min-width: 100%;
+}
+
 body {
   background-color: $primary;
   margin: 0;
@@ -15,8 +23,6 @@ body {
 
   a {
     color: $secondary;
-    background-color: transparent;
-    text-decoration: underline;
     text-decoration-thickness: 1px;
     text-decoration-color: #faf8f0c4;
 

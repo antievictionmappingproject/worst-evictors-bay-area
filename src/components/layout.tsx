@@ -1,8 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import '../styles/menu.scss'
-
 import Footer from './footer'
 import NavMenu from './menu'
 

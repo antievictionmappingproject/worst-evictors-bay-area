@@ -2,7 +2,6 @@ import 'dotenv/config'
 import {createClient} from 'contentful'
 import type {EntryCollection} from 'contentful'
 import getEBEntry from './getEBEntry'
-import {writeFile} from 'fs/promises'
 
 export default async function fetchEvictorData() {
   const client = createClient({
@@ -18,7 +17,6 @@ export default async function fetchEvictorData() {
     .catch(console.error)) as EntryCollection<any>
 
   const evictors = result.items
-    .filter((item) => item.fields.city === 'oakland')
     .map(async (item) => {
       try {
         // pullQuote + citywideListDescription has way too many fields to query
@@ -28,16 +26,26 @@ export default async function fetchEvictorData() {
           ebLink,
           type,
           name,
-          city,
           pullQuote,
           citywideListDescription,
         } = item.fields
         if (!ebLink || !type) return
-        const ebData = await getEBEntry(ebLink, type, city).catch(
-          (err) => {
-            console.error(`Error on ${name}, ${ebLink}: ${err}`)
-          }
-        )
+        const ebData = await getEBEntry(ebLink, type).catch((err) => {
+          console.error(`Error on ${name}, ${ebLink}: ${err}`)
+        })
+
+        /* Validation for common missing data types
+         * Added on Contentful, but contentful does not perform validation for existing entries
+         * */
+        if (typeof item.fields.nonprofitOrLowIncome === 'undefined') {
+          console.warn(`${name} is missing nonprofit status`)
+        }
+        if (!item.fields.photo) {
+          console.warn(`${name} is missing photo`)
+        }
+        if (!pullQuote) {
+          console.warn(`${name} is missing pull quote`)
+        }
 
         const totalEvictions = ebData.evictions.length
 

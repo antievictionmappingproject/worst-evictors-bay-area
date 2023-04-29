@@ -1,16 +1,15 @@
-const BASE = 'evictorbook.com/api/owner'
+const domain =
+  process.env.EB_DOMAIN || 'https://oakland.evictorbook.com/'
+const BASE = `${domain}/api/owner`
 
 /** ts for some reason keeps wanting an async function (even though no
  * await ??) so... */
 async function getSlice(
   ebName: string,
   type: string,
-  slice: string,
-  city: string
+  slice: string
 ): Promise<any> {
-  const escaped = encodeURI(
-    `https://${city}.${BASE}/${type}/${ebName}/${slice}`
-  )
+  const escaped = encodeURI(`${BASE}/${type}/${ebName}/${slice}`)
   const text = await fetch(escaped)
     .then((res) => res.text())
     .catch((err) => {
@@ -22,8 +21,7 @@ async function getSlice(
 
 export default async function getEBEntry(
   ebName: string,
-  type: string,
-  city: string
+  type: string
 ) {
   const slices = [
     'details',
@@ -34,10 +32,10 @@ export default async function getEBEntry(
   ]
 
   const escaped = encodeURI(
-    `https://${city}.evictorbook.com/owner?search=${ebName}&be=${type}`
+    `${domain}/owner?search=${ebName}&be=${type}`
   )
   const result = await Promise.all(
-    slices.map((slice) => getSlice(ebName, type, slice, city))
+    slices.map((slice) => getSlice(ebName, type, slice))
   )
 
   // array of objects with single (unique) property into single object

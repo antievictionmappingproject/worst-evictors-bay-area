@@ -2,7 +2,7 @@ import {useStaticQuery, graphql} from 'gatsby'
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
     query {
-      allEvictor {
+      allEvictor(sort: { rank: ASC }) {
         nodes {
           name
           city

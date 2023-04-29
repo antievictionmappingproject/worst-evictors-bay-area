@@ -2,65 +2,116 @@
 
 // PAGE CSS:
 
-.list-page {
-  section {
-    border-bottom: 1px solid $secondary;
+// Photo captions:
+.caption {
+  margin-top: 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+  text-transform: uppercase;
+}
 
-    &.evictor-profile {
-      .columns:first-child {
-        min-height: 100vh;
-      }
-      .column.col-6 {
-        padding: 2rem 4rem;
-      }
-      .rank {
-        margin-top: 1rem;
-        font-size: 1.8rem;
-      }
-      .background-cover-photo {
-        position: relative;
-        height: 0;
-        padding: 0 0 100% 0;
-      }
-      h1 {
-        margin-bottom: 0.4rem;
-        font-weight: bold;
-      }
-      h3 {
-        font-size: 1.2rem;
-        line-height: 1.44rem;
-        letter-spacing: 0.01rem;
-        margin-bottom: 0;
-      }
-      li {
-        list-style: none;
-        &::before {
-          content: "•";
-          margin-right: 0.75rem;
-        }
-      }
-      p {
-        margin-bottom: 0.8rem;
-      }
-      .btn-container {
-        padding-top: 0 !important;
-        display: flex;
-        place-content: center;
-      };
-      .btn {
-        width: fit-content;
-        margin-bottom: 1.35rem;
-        @include for-small-desktop-down {
-          max-width: calc(100% - #{$menu-button-width});
-        }
-      }
-      // Photo captions:
-      .caption {
-        margin-top: 0.4rem;
-        display: flex;
-        justify-content: flex-end;
-        text-transform: uppercase;
+.header-container {
+  height: fit-content;
+  position: sticky;
+  top: 0;
+  border-bottom: solid 1px white;
+  z-index: 1;
+  width: 100%;
+  h1 {
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+    margin-right: 0.5rem !important;
+  }
+  .header {
+    width: 100%;
+    padding: 0.5rem;
+    .title {
+      place-items: center;
+      img {
+        height: 1.5rem;
       }
     }
   }
+  .title-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .links {
+    place-items: center;
+    justify-content: end;
+  }
 }
+
+.city-section {
+  position: relative;
+}
+
+/* needed because sticky header makes section navigation strange */
+.link-target {
+  position: absolute;
+  top: -60px;
+}
+
+.city-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  img {
+    height: 1.5rem;
+  }
+  span {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
+
+.col-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: space-around;
+  margin: 3rem 0;
+  gap: 3rem;
+  .left, .right {
+    max-width: min(100%, 60ch);
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    padding: 2rem;
+  }
+
+  .evictor-image-container {
+    z-index: 0;
+    position: relative;
+  }
+
+    h1 {
+      background: $red;
+      width: fit-content;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+    }
+    .summary {
+      margin-top: 4rem;
+    }
+
+  .right {
+    .stat-name {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    li {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.spacer {
+  height: 5vh;
+}
+

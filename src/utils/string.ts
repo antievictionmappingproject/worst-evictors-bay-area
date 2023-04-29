@@ -19,15 +19,26 @@ export const FormatPublicFundingSources = (sources: string[]) => {
 
 export const FormatBusinessAddress = (addr: string) => {
   const addressPartsAsArray = addr.split(' ')
-  const formattedAddress = addressPartsAsArray.reduce((address, part) => {
-    if (/[a-zA-Z]/.test(part.charAt(0)) && part !== 'NY' && part !== 'CT') {
-      return (
-        address +
-        ' ' +
-        part.charAt(0).toUpperCase() +
-        part.toLowerCase().slice(1)
-      )
-    } else return address + ' ' + part.toUpperCase()
-  }, '')
+  const formattedAddress = addressPartsAsArray.reduce(
+    (address, part) => {
+      if (
+        /[a-zA-Z]/.test(part.charAt(0)) &&
+        part !== 'NY' &&
+        part !== 'CT'
+      ) {
+        return (
+          address +
+          ' ' +
+          part.charAt(0).toUpperCase() +
+          part.toLowerCase().slice(1)
+        )
+      } else return address + ' ' + part.toUpperCase()
+    },
+    ''
+  )
   return formattedAddress
+}
+
+export const formatLink = (name: string) => {
+  return name.toLowerCase().replaceAll(' ', '-').replaceAll(',', '')
 }

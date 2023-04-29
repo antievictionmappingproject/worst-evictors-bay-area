@@ -18,14 +18,11 @@ const config: GatsbyConfig = {
   plugins: [
     'data-fetch', // our custom fetch plugin to integrate evictorbook and contentful
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-offline',
     'gatsby-plugin-sass',
     'gatsby-plugin-typescript',
-    'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-emotion',
     'gatsby-plugin-client-side-redirect',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -39,6 +36,7 @@ const config: GatsbyConfig = {
         icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {

@@ -1,15 +1,17 @@
 import React from 'react'
-import {Link} from 'gatsby'
 import renderContent from '../utils/contentful-render'
-
 import {OutboundLink} from '../components/outbound-link'
 import type {EvictorProps} from '../queries/list'
 import '../styles/evictors-list.scss'
 import {getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
 import EvictorImage from './image'
+import pin from '../images/pin.svg'
 
-const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
+const EvictorProfile: React.FC<{
+  content: EvictorProps
+  city: string
+}> = ({content, city}) => {
   const {details, evictions, networkDetails, portfolio} =
     content.ebData
 
@@ -18,7 +20,7 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
     0
   )
 
-  const activeSince = details.creation_date.toString().slice(0, 4)
+  const activeSince = details[0].creation_date.toString().slice(0, 4)
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
@@ -33,121 +35,126 @@ const EvictorProfile: React.FC<EvictorProps> = ({content}) => {
 
   return (
     <section
-      className="bg-primary evictor-profile"
-      key={content.rank}
-      id={content.rank.toString()}
+      className="evictor-profile"
+      id={content.name.toLowerCase().replaceAll(' ', '-')}
     >
-      <div className="columns text-secondary">
-        <div className="column col-6 col-xl-6 col-lg-12 sticky-column-desktop full-height-container-desktop">
-          {content.localFile?.childImageSharp && (
-            <>
-              <EvictorImage
-                width={450}
-                image={getImage(content.localFile)}
-                name={content.photoCaption}
-                hideEyebrow
-              />
-              <br />
-            </>
-          )}
-          <div className="full-height-container-desktop">
-            <span>
-              <h1>
-                {content.rank}
-                {'. '}
-                {content.name}
-              </h1>
-              <h2>{content.corporation}</h2>
-              {activeSince ? (
-                <em>Active since {activeSince}</em>
-              ) : undefined}
-              <p></p>
-              <br />
-              <br />
-              {content.totalEvictions ? (
-                <>
-                  <h2>
-                    {content.totalEvictions} households sued for
-                    eviction
-                  </h2>
-                  <p>
-                    Including <br />
-                    {evictionsByCategory.map((category) => {
-                      const [type, number] = category
-                      const filings =
-                        number === 1 ? 'filing' : 'filings'
-                      return (
-                        <li>
-                          {number} {filings} under <em>{type}</em>
-                        </li>
-                      )
-                    })}
-                  </p>
-                </>
-              ) : undefined}
-            </span>
-            <p>{totalUnits} units owned total</p>
+      <div className="col-container">
+        <div className="left">
+          <div className="left-width-constrainer">
+            {content.localFile?.childImageSharp && (
+              <>
+                <EvictorImage
+                  width={450}
+                  image={getImage(content.localFile)}
+                  name={content.photoCaption}
+                  hideEyebrow
+                />
+                <br />
+                {content.citywideListDescription &&
+                  renderContent(content.citywideListDescription)}
+              </>
+            )}
           </div>
         </div>
-        <div className="column col-6 col-xl-6 col-lg-12">
-          {content.banks?.length ? (
-            <p>
-              <span className="text-bold text-uppercase">
-                Funded By
+        <div className="right">
+          <div className="right-width-constrainer">
+            <h1>{content.name}</h1>
+            <h2>{content.corporation}</h2>
+            <div className="city-name">
+              <img src={pin} />
+              <span>
+                {city}{' '}
+                {content.nonprofitOrLowIncome
+                  ? 'nonprofit and low-income housing evictor'
+                  : 'corporate evictor'}
               </span>
-              <br />
-              {content.banks.map((bank: string, i: number) => (
-                <li key={i}>{bank}</li>
-              ))}
-            </p>
-          ) : undefined}
-          {details.office_addresses.length ? (
-            <p>
-              <span className="text-bold text-uppercase">
-                Primary business address
+            </div>
+            {content.pullQuote && (
+              <>
+                <br />
+                {renderContent(content.pullQuote)}
+              </>
+            )}
+            <br />
+            <div className="summary">
+              <span>
+                {content.totalEvictions ? (
+                  <>
+                    <h2>
+                      {content.totalEvictions} households sued for
+                      eviction
+                    </h2>
+                    <p>
+                      Including <br />
+                      {evictionsByCategory.map((category) => {
+                        const [type, number] = category
+                        const filings =
+                          number === 1 ? 'filing' : 'filings'
+                        return (
+                          <li>
+                            {number} {filings} under <em>{type}</em>
+                          </li>
+                        )
+                      })}
+                    </p>
+                  </>
+                ) : undefined}
               </span>
-              <br />
-              {FormatBusinessAddress(details.office_addresses[0])}
-              <br />
-            </p>
-          ) : undefined}
-          {networkDetails.total_addrs && (
-            <p>
-              <span className="text-bold text-uppercase">
-                In an ownership network with
-              </span>
-              <li>{networkDetails.total_addrs} properties</li>
-              <li>{networkDetails.total_bes} businesses</li>
-              <li>{networkDetails.total_owners} other owners</li>
-            </p>
-          )}
-          {content.pullQuote && (
-            <>
-              <br />
-              {renderContent(content.pullQuote)}
-            </>
-          )}
-          <br />
-          {content.citywideListDescription &&
-            renderContent(content.citywideListDescription)}
-          <br />
+              <p>{totalUnits} units owned total</p>
+            </div>
+            {content.tags?.length && (
+              <div className="tags">{content.tags.join(', ')}</div>
+            )}
+
+            {content.banks?.length ? (
+              <p>
+                <span className="stat-name">Funded By</span>
+                <br />
+                {content.banks.map((bank: string, i: number) => (
+                  <li key={i}>{bank}</li>
+                ))}
+              </p>
+            ) : undefined}
+            {details[0].office_addresses.length ? (
+              <p>
+                <span className="stat-name">
+                  Primary business address
+                </span>
+                <br />
+                {FormatBusinessAddress(
+                  details[0].office_addresses[0]
+                )}
+                <br />
+              </p>
+            ) : undefined}
+            {activeSince ? (
+              <span>Active since {activeSince}</span>
+            ) : undefined}
+            {networkDetails.total_addrs && (
+              <p>
+                <span className="text-bold text-uppercase">
+                  In an ownership network with
+                </span>
+                <li>{networkDetails.total_addrs} properties</li>
+                <li>{networkDetails.total_bes} businesses</li>
+                <li>{networkDetails.total_owners} other owners</li>
+              </p>
+            )}
+            <br />
+          </div>
+          <div>
+            <div>
+              <OutboundLink
+                href={content.ebData.ebUrl}
+                className="btn btn-primary"
+              >
+                See if your building is in this portfolio
+              </OutboundLink>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="columns text-secondary">
-        <div className="column col-6 col-xl-6 col-lg-12 btn-container">
-          <OutboundLink
-            href={content.ebData.ebUrl}
-            className="btn btn-primary"
-          >
-            See if your building is in this portfolio
-          </OutboundLink>
-        </div>
-        <div className="column col-6 col-xl-6 col-lg-12 btn-container">
-          <Link to="/#evictors" className="btn btn-primary">
-            Back to worst evictors list
-          </Link>
-        </div>
-      </div>
+      <div className="spacer" />
     </section>
   )
 }
