@@ -5,7 +5,6 @@ import EvictorImage from './image'
 import pin from '../images/pin.svg'
 import useIndexQuery from '../queries/index'
 import {formatLink} from '../utils/string'
-import {Link} from 'gatsby'
 const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
@@ -69,11 +68,11 @@ const LandingPage = () => {
                                       ? i + 1
                                       : '0' + (i + 1).toString()}
                                   </span>
-                                  <Link
-                                    to={`/list#${formatLink(e.name)}`}
+                                  <a
+                                    href={`/list#${formatLink(e.name)}`}
                                   >
                                     {e.name}
-                                  </Link>
+                                  </a>
                                 </li>
                               )
                             }
@@ -86,8 +85,8 @@ const LandingPage = () => {
                             ? getImage(e?.localFile)
                             : getImage(fallback?.localFile)
                           return (
-                            <Link
-                              to={`/list#${formatLink(e.name)}`}
+                            <a
+                              href={`/list#${formatLink(e.name)}`}
                               className="evictor-container"
                             >
                               <EvictorImage
@@ -96,7 +95,7 @@ const LandingPage = () => {
                                 name={e.name}
                                 image={image}
                               />
-                            </Link>
+                            </a>
                           )
                         })}
                       </div>

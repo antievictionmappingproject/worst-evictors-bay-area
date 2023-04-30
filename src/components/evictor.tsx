@@ -37,8 +37,10 @@ const EvictorProfile: React.FC<{
   return (
     <section
       className="evictor-profile"
-      id={formatLink(content.name)}
     >
+    <div 
+      id={formatLink(content.name)}
+      />
       <div className="col-container">
         <div className="left">
           <div className="left-width-constrainer">
@@ -62,51 +64,55 @@ const EvictorProfile: React.FC<{
                   hideEyebrow
                 />
                 <br />
-            {content.tags?.length && (
-              <div className="tags">{content.tags.join(', ')}</div>
-            )}
+                {content.tags?.length && (
+                  <div className="tags">
+                    {content.tags.join(', ')}
+                  </div>
+                )}
 
-            {content.banks?.length ? (
-              <p>
-                <span className="stat-name">Funded By</span>
-                <br />
-                {content.banks.map((bank: string, i: number) => (
-                  <li key={i}>{bank}</li>
-                ))}
-              </p>
-            ) : undefined}
-            {details[0].office_addresses.length ? (
-              <p>
-                <span className="stat-name">
-                  Primary business address
-                </span>
-                <br />
-                {FormatBusinessAddress(
-                  details[0].office_addresses[0]
+                {content.banks?.length ? (
+                  <p>
+                    <span className="stat-name">Funded By</span>
+                    <br />
+                    {content.banks.map((bank: string, i: number) => (
+                      <li key={i}>{bank}</li>
+                    ))}
+                  </p>
+                ) : undefined}
+                {details[0].office_addresses.length ? (
+                  <p>
+                    <span className="stat-name">
+                      Primary business address
+                    </span>
+                    <br />
+                    {FormatBusinessAddress(
+                      details[0].office_addresses[0]
+                    )}
+                    <br />
+                  </p>
+                ) : undefined}
+                {activeSince ? (
+                  <span>Active since {activeSince}</span>
+                ) : undefined}
+                {networkDetails.total_addrs && (
+                  <p>
+                    <span className="text-bold text-uppercase">
+                      In an ownership network with
+                    </span>
+                    <li>{networkDetails.total_addrs} properties</li>
+                    <li>{networkDetails.total_bes} businesses</li>
+                    <li>
+                      {networkDetails.total_owners} other owners
+                    </li>
+                  </p>
                 )}
                 <br />
-              </p>
-            ) : undefined}
-            {activeSince ? (
-              <span>Active since {activeSince}</span>
-            ) : undefined}
-            {networkDetails.total_addrs && (
-              <p>
-                <span className="text-bold text-uppercase">
-                  In an ownership network with
-                </span>
-                <li>{networkDetails.total_addrs} properties</li>
-                <li>{networkDetails.total_bes} businesses</li>
-                <li>{networkDetails.total_owners} other owners</li>
-              </p>
-            )}
-            <br />
-              <OutboundLink
-                href={content.ebData.ebUrl}
-                className="btn btn-primary"
-              >
-                See if your building is in this portfolio
-              </OutboundLink>
+                <OutboundLink
+                  href={content.ebData.ebUrl}
+                  className="btn btn-primary"
+                >
+                  See if your building is in this portfolio
+                </OutboundLink>
               </>
             )}
           </div>
@@ -145,10 +151,10 @@ const EvictorProfile: React.FC<{
                 {renderContent(content.pullQuote)}
               </>
             )}
-                {content.citywideListDescription &&
-                  renderContent(content.citywideListDescription)}
+            {content.citywideListDescription &&
+              renderContent(content.citywideListDescription)}
+          </div>
         </div>
-      </div>
       </div>
       <div className="spacer" />
     </section>
