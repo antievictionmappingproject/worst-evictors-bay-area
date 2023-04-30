@@ -68,8 +68,9 @@ const Layout = ({
         />
       </Helmet>
       {!hideNavMenu && <NavMenu />}
-      <div className="page-content">{children}</div>
+      <div className="page-content">{children}
       {!hideFooter && <Footer />}
+      </div>
     </div>
   )
 }

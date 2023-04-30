@@ -16,7 +16,11 @@ export default function useIndexQuery() {
           photoCaption
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 250, height: 250)
+              gatsbyImageData(
+                width: 250
+                height: 250
+                layout: CONSTRAINED
+              )
             }
           }
           citywideListDescription {

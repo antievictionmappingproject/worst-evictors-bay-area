@@ -31,31 +31,22 @@ body {
       text-decoration: none;
     }
   }
-
-  p {
-    max-width: 56ch;
-  }
 }
 
 div.d-flex {
   flex-direction: column;
 }
 
-.evictor-image-column{
+.evictor-image-column {
   position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .evictor-image-container {
   width: 100%;
   display: flex;
   place-content: center;
-}
-
-.photo-wrapper {
-  margin: 0 auto;
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
 }
 
 .background-cover-photo {

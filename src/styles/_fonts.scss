@@ -7,7 +7,7 @@ $title-font: "Chakra Petch", Arial, Helvetica, sans-serif;
 $eyebrow-font: "IBM Plex Mono", "Courier New", Courier, monospace;
 
 :root {
-  font-size: 14pt;
+  font-size: min(max(2.25vh, 14pt), 16pt);
 }
 
 .page-content {
@@ -26,10 +26,11 @@ $eyebrow-font: "IBM Plex Mono", "Courier New", Courier, monospace;
   }
 
   h1 {
-    font-size: 3.2rem;
-    line-height: 2.9rem;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
     letter-spacing: 0.03rem;
   }
+
   h2 {
     font-size: 1.8rem;
     line-height: 1.8rem;

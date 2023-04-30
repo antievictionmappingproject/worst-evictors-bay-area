@@ -1,4 +1,4 @@
-import {useStaticQuery, graphql} from 'gatsby'
+import { useStaticQuery, graphql } from "gatsby"
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
     query {
@@ -9,7 +9,11 @@ export default function useIndexQuery() {
           nonprofitOrLowIncome
           localFile {
             childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED, aspectRatio: 1)
+              gatsbyImageData(
+                width: 250
+                height: 250
+                layout: CONSTRAINED
+              )
             }
           }
           ebData {

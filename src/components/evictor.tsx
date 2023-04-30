@@ -7,6 +7,7 @@ import {getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
 import EvictorImage from './image'
 import pin from '../images/pin.svg'
+import {formatLink} from '../utils/string'
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
@@ -36,28 +37,11 @@ const EvictorProfile: React.FC<{
   return (
     <section
       className="evictor-profile"
-      id={content.name.toLowerCase().replaceAll(' ', '-')}
+      id={formatLink(content.name)}
     >
       <div className="col-container">
         <div className="left">
           <div className="left-width-constrainer">
-            {content.localFile?.childImageSharp && (
-              <>
-                <EvictorImage
-                  width={450}
-                  image={getImage(content.localFile)}
-                  name={content.photoCaption}
-                  hideEyebrow
-                />
-                <br />
-                {content.citywideListDescription &&
-                  renderContent(content.citywideListDescription)}
-              </>
-            )}
-          </div>
-        </div>
-        <div className="right">
-          <div className="right-width-constrainer">
             <h1>{content.name}</h1>
             <h2>{content.corporation}</h2>
             <div className="city-name">
@@ -69,39 +53,15 @@ const EvictorProfile: React.FC<{
                   : 'corporate evictor'}
               </span>
             </div>
-            {content.pullQuote && (
+            {content.localFile?.childImageSharp && (
               <>
+                <EvictorImage
+                  width={450}
+                  image={getImage(content.localFile)}
+                  name={content.photoCaption}
+                  hideEyebrow
+                />
                 <br />
-                {renderContent(content.pullQuote)}
-              </>
-            )}
-            <br />
-            <div className="summary">
-              <span>
-                {content.totalEvictions ? (
-                  <>
-                    <h2>
-                      {content.totalEvictions} households sued for
-                      eviction
-                    </h2>
-                    <p>
-                      Including <br />
-                      {evictionsByCategory.map((category) => {
-                        const [type, number] = category
-                        const filings =
-                          number === 1 ? 'filing' : 'filings'
-                        return (
-                          <li>
-                            {number} {filings} under <em>{type}</em>
-                          </li>
-                        )
-                      })}
-                    </p>
-                  </>
-                ) : undefined}
-              </span>
-              <p>{totalUnits} units owned total</p>
-            </div>
             {content.tags?.length && (
               <div className="tags">{content.tags.join(', ')}</div>
             )}
@@ -141,18 +101,54 @@ const EvictorProfile: React.FC<{
               </p>
             )}
             <br />
-          </div>
-          <div>
-            <div>
               <OutboundLink
                 href={content.ebData.ebUrl}
                 className="btn btn-primary"
               >
                 See if your building is in this portfolio
               </OutboundLink>
-            </div>
+              </>
+            )}
           </div>
         </div>
+        <div className="right">
+          <div className="right-width-constrainer">
+            <div className="summary">
+              <span>
+                {content.totalEvictions ? (
+                  <>
+                    <h2>
+                      {content.totalEvictions} households sued for
+                      eviction
+                    </h2>
+                    <p>
+                      Including <br />
+                      {evictionsByCategory.map((category) => {
+                        const [type, number] = category
+                        const filings =
+                          number === 1 ? 'filing' : 'filings'
+                        return (
+                          <li>
+                            {number} {filings} under <em>{type}</em>
+                          </li>
+                        )
+                      })}
+                    </p>
+                  </>
+                ) : undefined}
+              </span>
+              <p>{totalUnits} units owned total</p>
+            </div>
+            {content.pullQuote && (
+              <>
+                <br />
+                {renderContent(content.pullQuote)}
+              </>
+            )}
+                {content.citywideListDescription &&
+                  renderContent(content.citywideListDescription)}
+        </div>
+      </div>
       </div>
       <div className="spacer" />
     </section>

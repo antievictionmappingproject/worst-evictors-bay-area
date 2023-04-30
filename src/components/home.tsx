@@ -41,7 +41,7 @@ const LandingPage = () => {
               (evictor) => evictor.city === abbrev
             )
             return (
-              <div className="city-section">
+              <div className="city-section" id={formatLink(city)}>
                 <div className="city-name">
                   <img src={pin} />
                   <h2>{city}</h2>
@@ -106,16 +106,6 @@ const LandingPage = () => {
               </div>
             )
           })}
-        </div>
-        <div className="delayed-fade-in">
-          <br />
-          <div>Brought to you by</div>
-          <img
-            className="logo"
-            src={aempLogo.default}
-            alt="The Anti-Eviction Mapping Project"
-          />
-          <br />
         </div>
       </div>
     </div>

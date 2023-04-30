@@ -10,35 +10,48 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  div {
-    flex-grow: 1;
+  .description {
+    flex: 1 1 50ch;
+  }
+  @media (max-width: 700px) {
+    img {
+      display: none;
+    }
   }
 }
 
 .title {
   display: flex;
   flex-direction: row;
-  a {
-    text-decoration: none;
-  }
+  flex-wrap: wrap;
+  text-decoration: none;
+  place-items: center;
+  text-align: center;
   h1 {
     font-weight: bold;
     margin: 1rem 0;
     margin-right: 2rem;
   }
 }
+
 .description {
   display: flex;
-  justify-content: end;
-  text-align: right;
   margin: 0 2rem;
+  max-width: 80ch;
+}
+
+.description p {
+  max-width: unset !important;
 }
 
 .links {
   display: flex;
   flex-direction: row; 
-  gap: 2rem;
+  flex-wrap: wrap;
+  place-content: center;
+  gap: 5vw;
   a {
     background: $red;
     font-weight: bold;

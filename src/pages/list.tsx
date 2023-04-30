@@ -4,6 +4,7 @@ import EvictorProfile from '../components/evictor'
 import type {EvictorProps} from '../queries/list'
 import useListQuery from '../queries/list'
 import Header from '../components/Header'
+import Footer from '../components/footer'
 
 import '../styles/evictors-list.scss'
 
@@ -16,10 +17,13 @@ const CitywideEvictorsListPage = () => {
       customTitle="The Worst Evictors of San Francisco and Oakland"
       customDescription={data.contentfulCitywideListPage.title}
       customUrl="https://www.worstevictorsnyc.org/list"
+      className="page"
+      hideFooter
     >
       <div className="header-container">
         <Header isDescription={false} />
       </div>
+      <div className="scroll-container">
       {Object.entries({
         sf: 'San Francisco',
         oakland: 'Oakland',
@@ -28,11 +32,10 @@ const CitywideEvictorsListPage = () => {
           (evictor) => evictor.city === abbrev
         )
         return (
-          <div className="city-section">
-            <div
-              id={city.toLowerCase().replace(' ', '-')}
-              className="link-target"
-            />
+          <div
+            className="city-section"
+            id={city.toLowerCase().replace(' ', '-')}
+          >
             {[false, true].map((isNonprofit) => {
               const typeEvictors = cityEvictors.filter(
                 (evictor) =>
@@ -45,6 +48,8 @@ const CitywideEvictorsListPage = () => {
           </div>
         )
       })}
+      <Footer />
+      </div>
     </Layout>
   )
 }

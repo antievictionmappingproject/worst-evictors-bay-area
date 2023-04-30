@@ -10,9 +10,20 @@
   text-transform: uppercase;
 }
 
+.page-content {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  max-height: 100vh;
+  @media (min-width: 700px){
+    .scroll-container {
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+}
+
 .header-container {
   height: fit-content;
-  position: sticky;
   top: 0;
   border-bottom: solid 1px white;
   z-index: 1;
@@ -27,24 +38,25 @@
     padding: 0.5rem;
     .title {
       place-items: center;
+      h1 {
+        text-align: center;
+      }
       img {
         height: 1.5rem;
       }
     }
   }
   .title-links {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
   .links {
     place-items: center;
-    justify-content: end;
+    place-content: center;
   }
-}
-
-.city-section {
-  position: relative;
 }
 
 /* needed because sticky header makes section navigation strange */
@@ -65,24 +77,35 @@
     font-size: 1.5rem;
     margin: 0;
   }
+  margin: 1rem 0;
+}
+
+
+.evictor-profile {
+  /* Since a .link-target is inside .evictor-profile, 
+  and .link-target has position: absolute;
+   */
+  position: relative;
 }
 
 .col-container {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: space-around;
-  margin: 3rem 0;
   gap: 3rem;
   .left, .right {
-    max-width: min(100%, 60ch);
+    flex: 1 1 40ch;
     position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     place-items: center;
     padding: 2rem;
+    .left-width-constrainer, .right-width-constrainer {
+      max-width: min(100%, 70ch);
+    }
   }
 
   .evictor-image-container {
@@ -90,24 +113,20 @@
     position: relative;
   }
 
-    h1 {
-      background: $red;
-      width: fit-content;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-    }
-    .summary {
-      margin-top: 4rem;
-    }
+  h1 {
+    background: $red;
+    max-width: fit-content;
+    hyphens: auto;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
 
-  .right {
-    .stat-name {
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    li {
-      margin-left: 1rem;
-    }
+  .stat-name {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  li {
+    margin-left: 1rem;
   }
 }
 

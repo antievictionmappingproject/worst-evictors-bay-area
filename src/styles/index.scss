@@ -22,18 +22,22 @@ $evictor-border-width: 4px;
 
 // INTRO SEQUENCE
 .intro {
-  padding: 0 4rem;
+  padding: min(4rem, 10vw);
   display: flex;
   flex-direction: column;
   place-content: center;
   background-color: $primary;
-  gap: 10%;
+  gap: min(10%, 4rem);
   h1 {
     font-weight: bold;
-    font-size: 6rem;
+    font-size: 4rem;
+    line-height: 4rem;
+    margin: 0.5rem 0;
   }
   h2 {
-    font-size: 3rem;
+    font-size: 2rem;
+    line-height: 2rem;
+    margin: 0.5rem 0;
   }
   transition: opacity ease-out 400ms;
   cursor: pointer;
@@ -44,9 +48,14 @@ $evictor-border-width: 4px;
     flex-direction: row;
     place-items: center;
     gap: 2rem;
-    span {
-      font-size: 2rem;
-    }
+  }
+  span, p {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+  p {
+    font-size: min(1.5rem, min(5vh, 5vw));
+    line-height: min(1.7rem, min(7vh, 7vw));
   }
 }
 
@@ -55,10 +64,12 @@ $evictor-border-width: 4px;
   z-index: 0;
   .evictor-names-list {
     .images {
+      flex: 1 1 500px;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-end;
+      width: fit-content;
       max-width: 750px;
     }
     .city-name {
@@ -76,11 +87,6 @@ $evictor-border-width: 4px;
       padding: 1rem;
       border-top: solid 1px white;
       border-bottom: solid 1px white;
-    }
-    h3 {
-      font-family: $body-font;
-      background: $red;
-      width: fit-content;
     }
     ol {
       margin: 1rem 0;
@@ -102,11 +108,18 @@ $evictor-border-width: 4px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .text {
       width: fit-content;
-      min-width: 50vh;
       font-size: 18pt;
+      h3 {
+        font-family: $body-font;
+        background: $red;
+        width: fit-content;
+        padding: 0.3rem;
+        margin: 0.5rem 0;
+      }
       a {
         text-decoration: none;
       }
