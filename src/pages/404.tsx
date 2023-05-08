@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../components/layout'
-import {OutboundLink} from '../components/outbound-link'
+import Layout from '../components/Layout'
+import {OutboundLink} from '../components/OutboundLink'
 
 const NotFoundPage = () => (
   <Layout>

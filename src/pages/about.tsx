@@ -3,7 +3,7 @@ import {StaticQuery, graphql} from 'gatsby'
 import {documentToPlainTextString} from '@contentful/rich-text-plain-text-renderer'
 
 import renderContent from '../utils/contentful-render'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 type InfoPageProps = {
   title: string;

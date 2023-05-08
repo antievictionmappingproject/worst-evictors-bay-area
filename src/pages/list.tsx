@@ -1,10 +1,10 @@
 import React from 'react'
-import Layout from '../components/layout'
-import EvictorProfile from '../components/evictor'
+import Layout from '../components/Layout'
+import EvictorProfile from '../components/Evictor'
 import type {EvictorProps} from '../queries/list'
 import useListQuery from '../queries/list'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 
 import '../styles/evictors-list.scss'
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import renderContent from '../utils/contentful-render'
-import {OutboundLink} from '../components/outbound-link'
+import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
 import '../styles/evictors-list.scss'
 import {getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
-import EvictorImage from './image'
+import EvictorImage from './EvictorImage'
 import pin from '../images/pin.svg'
 import {formatLink} from '../utils/string'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import Footer from './footer'
-import NavMenu from './menu'
+import Footer from './Footer'
+import NavMenu from './Menu'
 
 type Props = {
   children: React.ReactNode

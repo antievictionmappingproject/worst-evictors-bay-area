@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/footer.scss'
-import {FaGithub, FaTwitter, FaFacebook} from 'react-icons/fa'
-import {OutboundLink} from './outbound-link'
+import {FaGithub, FaTwitter} from 'react-icons/fa'
+import {OutboundLink} from './OutboundLink'
 import {IconType} from 'react-icons/lib/cjs'
 
 const SocialLink = (props: {
