@@ -4,6 +4,8 @@ import {documentToPlainTextString} from '@contentful/rich-text-plain-text-render
 
 import renderContent from '../utils/contentful-render'
 import Layout from '../components/Layout'
+import '../styles/infopage.scss'
+import Header from '../components/Header'
 
 type InfoPageProps = {
   title: string;
@@ -17,28 +19,34 @@ type InfoPageProps = {
 
 export const InfoPage: React.FC<InfoPageProps> = ({
   title,
-  subtitle,
+  subtitle, 
   description,
 }) => (
   <Layout
-    customTitle={`${title} | NYC's Worst COVID Evictors`}
-    customDescription={
-      subtitle ? documentToPlainTextString(JSON.parse(subtitle.raw)) : undefined
-    }
+    customTitle={title}
   >
-    <div className="columns bg-primary text-secondary">
-      <div className="column col-4 col-lg-12 bg-primary sticky-column-desktop">
+  <div className="page">
+    <div className="container">
+      <div>
+      <div className="header-container">
+      <Header isDescription={false} hideCity/>
+      </div>
         <div>
           <h1>{title}</h1>
         </div>
+        {subtitle &&
+        
         <div>{subtitle && renderContent(subtitle)}</div>
+        }
       </div>
-      <div className="column col-8 col-lg-12">
-        <div className="rich-text-bulleted-list">
+      <div>
+        <div>
           {renderContent(description)}
         </div>
       </div>
     </div>
+
+  </div>
   </Layout>
 )
 
@@ -48,9 +56,6 @@ const AboutPage = () => (
       query {
         contentfulAboutPage {
           title
-          subtitle {
-            raw
-          }
           description {
             raw
           }

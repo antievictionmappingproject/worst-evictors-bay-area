@@ -6,7 +6,7 @@ import useListQuery from '../queries/list'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import '../styles/evictors-list.scss'
+import '../styles/list.scss'
 
 const CitywideEvictorsListPage = () => {
   const data = useListQuery()

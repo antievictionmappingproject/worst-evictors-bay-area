@@ -98,6 +98,7 @@ $evictor-border-width: 4px;
         display: flex;
       }
       .counter {
+        font-family: "IBM Plex Mono", monospace;
         height: fit-content;
         background: $red;;
         margin-right: 1rem;
@@ -105,13 +106,14 @@ $evictor-border-width: 4px;
     }
     .type-list {
       padding: 1rem;
+      flex: 1 1 40ch;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       flex-wrap: wrap;
     }
     .text {
-      width: fit-content;
+      flex: 1 1 40ch;
       font-size: 18pt;
       h3 {
         font-family: $body-font;

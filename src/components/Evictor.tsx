@@ -2,12 +2,13 @@ import React from 'react'
 import renderContent from '../utils/contentful-render'
 import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
-import '../styles/evictors-list.scss'
 import {getImage} from 'gatsby-plugin-image'
 import {FormatBusinessAddress} from '../utils/string'
 import EvictorImage from './EvictorImage'
 import pin from '../images/pin.svg'
 import {formatLink} from '../utils/string'
+
+import '../styles/list.scss'
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
@@ -15,6 +16,7 @@ const EvictorProfile: React.FC<{
 }> = ({content, city}) => {
   const {details, evictions, networkDetails, portfolio} =
     content.ebData
+  console.log({[content.name]: content})
 
   const totalUnits = portfolio.reduce(
     (prev, curr) => prev + curr.units,
@@ -25,6 +27,7 @@ const EvictorProfile: React.FC<{
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
+      if(curr.type === null) return prev
       typeof prev[curr.type] === 'undefined'
         ? (prev[curr.type] = 1)
         : (prev[curr.type] = prev[curr.type] + 1)
@@ -121,7 +124,7 @@ const EvictorProfile: React.FC<{
           <div className="right-width-constrainer">
             <div className="summary">
               <span>
-                {content.totalEvictions ? (
+                {content.totalEvictions > 5 ? (
                   <>
                     <h2>
                       {content.totalEvictions} households sued for
@@ -143,7 +146,9 @@ const EvictorProfile: React.FC<{
                   </>
                 ) : undefined}
               </span>
+              {totalUnits > 5 && content.totalEvictions > 5 && 
               <p>{totalUnits} units owned total</p>
+              }
             </div>
             {content.pullQuote && (
               <>

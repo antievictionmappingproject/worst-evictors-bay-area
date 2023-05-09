@@ -2,9 +2,9 @@
 @import "_vars.scss";
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
-$body-font: "IBM Plex Mono", "Courier New", Courier, monospace;
 $title-font: "Chakra Petch", Arial, Helvetica, sans-serif;
-$eyebrow-font: "IBM Plex Mono", "Courier New", Courier, monospace;
+$eyebrow-font: $title-font;
+$body-font: $title-font;
 
 :root {
   font-size: min(max(2.25vh, 14pt), 16pt);

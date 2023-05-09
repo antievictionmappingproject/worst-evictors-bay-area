@@ -48,16 +48,21 @@ const LandingPage = () => {
                 {[false, true].map((isNonprofit) => {
                   const typeEvictors = cityEvictors.filter(
                     (evictor) =>
-                      evictor.nonprofitOrLowIncome === isNonprofit
+                      city === "Oakland" || (evictor.nonprofitOrLowIncome === isNonprofit)
                   )
+                  if(isNonprofit && city === "Oakland"){
+                    return null
+                  }
                   return (
                     <div className="type-list">
                       <div className="text">
+                      {city === 'San Francisco' &&
                         <h3>
                           {isNonprofit
                             ? 'nonprofit + low-income housing evictors'
                             : 'corporate evictors'}
                         </h3>
+                      }
                         <ol>
                           {typeEvictors.map(
                             (e: EvictorDetails, i: number) => {

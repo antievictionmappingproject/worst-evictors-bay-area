@@ -2,7 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Footer from './Footer'
-import NavMenu from './Menu'
 
 type Props = {
   children: React.ReactNode
@@ -12,7 +11,6 @@ type Props = {
   customImage?: string
   className?: string
   hideFooter?: boolean
-  hideNavMenu?: boolean
 }
 
 const Layout = ({
@@ -23,7 +21,6 @@ const Layout = ({
   customImage,
   className,
   hideFooter,
-  hideNavMenu,
 }: Props) => {
   const title =
     customTitle || 'The Worst Evictors of San Francisco and Oakland'
@@ -67,7 +64,6 @@ const Layout = ({
           content="The Worst Evictors of San Francisco and Oakland"
         />
       </Helmet>
-      {!hideNavMenu && <NavMenu />}
       <div className="page-content">{children}
       {!hideFooter && <Footer />}
       </div>

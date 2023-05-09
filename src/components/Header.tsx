@@ -6,7 +6,7 @@ import down from '../images/down.svg'
 import {Link} from 'gatsby'
 import '../styles/header.scss'
 
-export default function Header({isDescription}) {
+export default function Header({isDescription, hideCity}) {
   const {contentfulLandingPage} = useIndexQuery()
   return (
     <div className="header">
@@ -16,6 +16,13 @@ export default function Header({isDescription}) {
           <img src={building} />
         </Link>
         <div className="links">
+        {hideCity ?
+          <Link to="/">
+            <img src={down} />
+            Home
+          </Link>
+          :
+          <>
           <Link to="#san-francisco">
             <img src={down} />
             San Francisco
@@ -24,9 +31,15 @@ export default function Header({isDescription}) {
             <img src={down} />
             Oakland
           </Link>
-          <Link to="#resources">
+          </>
+      }
+          <Link to="/about">
             <img src={down} />
-            Resources
+            About
+          </Link>
+          <Link to="/methods">
+            <img src={down} />
+            Methods
           </Link>
         </div>
       </div>

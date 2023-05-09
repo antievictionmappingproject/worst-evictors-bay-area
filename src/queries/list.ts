@@ -1,5 +1,5 @@
-import {useStaticQuery, graphql} from 'gatsby'
-import {ImageDataLike} from 'gatsby-plugin-image'
+import { useStaticQuery, graphql } from "gatsby"
+import { ImageDataLike } from "gatsby-plugin-image"
 
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
@@ -95,7 +95,7 @@ export type EvictorProps = {
     }[]
     ebUrl: string
   }
-  totalEvictions: string
+  totalEvictions: number
   pullQuote: {
     raw: string
   }
