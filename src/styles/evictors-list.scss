@@ -104,7 +104,8 @@
     place-items: center;
     padding: 2rem;
     .left-width-constrainer, .right-width-constrainer {
-      max-width: min(100%, 70ch);
+      flex: 1 1 40ch;
+      width: min(100%, 60ch);
     }
   }
 
