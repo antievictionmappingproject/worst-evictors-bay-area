@@ -5,6 +5,7 @@ export default function useIndexQuery() {
       allEvictor(sort: { rank: ASC }) {
         nodes {
           name
+          corporation
           city
           nonprofitOrLowIncome
           localFile {

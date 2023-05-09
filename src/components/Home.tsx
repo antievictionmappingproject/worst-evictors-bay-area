@@ -10,6 +10,7 @@ const aempLogo = require("../images/AEMP_logo.png")
 type EvictorDetails = {
   name: string
   city: string
+  corporation: string
   nonprofitOrLowIncome: boolean
   localFile: any
   ebData: {
@@ -81,6 +82,8 @@ const LandingPage = () => {
                                   >
                                     {e.name}
                                   </a>
+                                  <span className="spacer" />
+                                  <em>{e.corporation}</em>
                                 </li>
                               )
                             }

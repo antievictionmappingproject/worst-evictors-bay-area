@@ -97,11 +97,18 @@ $evictor-border-width: 4px;
       counter-reset: evictor-counter;
       /* I know, I know this is ugly... */
       li {
-        display: flex;
+        margin: 0.5rem 0;
+        display: grid;
+        grid-template-columns: 2rem auto;
+        a {
+          font-weight: bold;
+        }
       }
       .counter {
         font-family: "IBM Plex Mono", monospace;
+        font-weight: bold;
         height: fit-content;
+        width: fit-content;
         background: $red;
         margin-right: 1rem;
       }
