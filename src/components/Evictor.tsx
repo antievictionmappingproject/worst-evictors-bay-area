@@ -1,22 +1,22 @@
-import React from 'react'
-import renderContent from '../utils/contentful-render'
-import {OutboundLink} from './OutboundLink'
-import type {EvictorProps} from '../queries/list'
-import {getImage} from 'gatsby-plugin-image'
-import {FormatBusinessAddress} from '../utils/string'
-import EvictorImage from './EvictorImage'
-import pin from '../images/pin.svg'
-import {formatLink} from '../utils/string'
+import React from "react"
+import renderContent from "../utils/contentful-render"
+import { OutboundLink } from "./OutboundLink"
+import type { EvictorProps } from "../queries/list"
+import { getImage } from "gatsby-plugin-image"
+import { FormatBusinessAddress } from "../utils/string"
+import EvictorImage from "./EvictorImage"
+import pin from "../images/pin.svg"
+import { formatLink } from "../utils/string"
 
-import '../styles/list.scss'
+import "../styles/list.scss"
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
-}> = ({content, city}) => {
-  const {details, evictions, networkDetails, portfolio} =
+}> = ({ content, city }) => {
+  const { details, evictions, networkDetails, portfolio } =
     content.ebData
-  console.log({[content.name]: content})
+  console.log({ [content.name]: content })
 
   const totalUnits = portfolio.reduce(
     (prev, curr) => prev + curr.units,
@@ -27,8 +27,8 @@ const EvictorProfile: React.FC<{
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
-      if(curr.type === null) return prev
-      typeof prev[curr.type] === 'undefined'
+      if (curr.type === null) return prev
+      typeof prev[curr.type] === "undefined"
         ? (prev[curr.type] = 1)
         : (prev[curr.type] = prev[curr.type] + 1)
       return prev
@@ -38,12 +38,8 @@ const EvictorProfile: React.FC<{
     .slice(0, 3)
 
   return (
-    <section
-      className="evictor-profile"
-    >
-    <div 
-      id={formatLink(content.name)}
-      />
+    <section className="evictor-profile">
+      <div id={formatLink(content.name)} />
       <div className="col-container">
         <div className="left">
           <div className="left-width-constrainer">
@@ -52,10 +48,10 @@ const EvictorProfile: React.FC<{
             <div className="city-name">
               <img src={pin} />
               <span>
-                {city}{' '}
+                {city}{" "}
                 {content.nonprofitOrLowIncome
-                  ? 'nonprofit and low-income housing evictor'
-                  : 'corporate evictor'}
+                  ? "nonprofit and low-income housing evictor"
+                  : "corporate evictor"}
               </span>
             </div>
             {content.localFile?.childImageSharp && (
@@ -69,7 +65,7 @@ const EvictorProfile: React.FC<{
                 <br />
                 {content.tags?.length && (
                   <div className="tags">
-                    {content.tags.join(', ')}
+                    {content.tags.join(", ")}
                   </div>
                 )}
 
@@ -135,7 +131,7 @@ const EvictorProfile: React.FC<{
                       {evictionsByCategory.map((category) => {
                         const [type, number] = category
                         const filings =
-                          number === 1 ? 'filing' : 'filings'
+                          number === 1 ? "filing" : "filings"
                         return (
                           <li>
                             {number} {filings} under <em>{type}</em>
@@ -146,9 +142,9 @@ const EvictorProfile: React.FC<{
                   </>
                 ) : undefined}
               </span>
-              {totalUnits > 5 && content.totalEvictions > 5 && 
-              <p>{totalUnits} units owned total</p>
-              }
+              {totalUnits > 5 && content.totalEvictions > 5 && (
+                <p>{totalUnits} units owned total</p>
+              )}
             </div>
             {content.pullQuote && (
               <>

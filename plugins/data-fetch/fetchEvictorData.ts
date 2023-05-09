@@ -1,19 +1,19 @@
-import 'dotenv/config'
-import {createClient} from 'contentful'
-import type {EntryCollection} from 'contentful'
-import getEBEntry from './getEBEntry'
+import "dotenv/config"
+import { createClient } from "contentful"
+import type { EntryCollection } from "contentful"
+import getEBEntry from "./getEBEntry"
 
 export default async function fetchEvictorData() {
   const client = createClient({
     space: process.env.SPACE_ID,
-    environment: 'master',
+    environment: "master",
     accessToken: process.env.ACCESS_TOKEN,
   })
 
   // changed content_type id from sfEvictors to just evictors on the
   // online GUI but it's not updating for the API response LOL
   const result = (await client
-    .getEntries({content_type: 'sfEvictors'})
+    .getEntries({ content_type: "sfEvictors" })
     .catch(console.error)) as EntryCollection<any>
 
   const evictors = result.items
@@ -37,7 +37,7 @@ export default async function fetchEvictorData() {
         /* Validation for common missing data types
          * Added on Contentful, but contentful does not perform validation for existing entries
          * */
-        if (typeof item.fields.nonprofitOrLowIncome === 'undefined') {
+        if (typeof item.fields.nonprofitOrLowIncome === "undefined") {
           console.warn(`${name} is missing nonprofit status`)
         }
         if (!item.fields.photo) {
@@ -54,7 +54,7 @@ export default async function fetchEvictorData() {
           id: item.sys.id,
           ebData,
           totalEvictions,
-          pullQuote: {raw: JSON.stringify(pullQuote)},
+          pullQuote: { raw: JSON.stringify(pullQuote) },
           citywideListDescription: {
             raw: JSON.stringify(citywideListDescription),
           },

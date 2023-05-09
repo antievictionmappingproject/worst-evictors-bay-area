@@ -14,7 +14,7 @@
   display: grid;
   grid-template-rows: 1fr auto;
   max-height: 100vh;
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     .scroll-container {
       overflow-y: scroll;
       scroll-behavior: smooth;
@@ -80,7 +80,6 @@
   margin: 1rem 0;
 }
 
-
 .evictor-profile {
   /* Since a .link-target is inside .evictor-profile, 
   and .link-target has position: absolute;
@@ -95,7 +94,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 3rem;
-  .left, .right {
+  .left,
+  .right {
     flex: 1 1 40ch;
     position: relative;
     flex-grow: 1;
@@ -103,7 +103,8 @@
     flex-direction: column;
     place-items: center;
     padding: 2rem;
-    .left-width-constrainer, .right-width-constrainer {
+    .left-width-constrainer,
+    .right-width-constrainer {
       flex: 1 1 40ch;
       width: min(100%, 60ch);
     }
@@ -134,4 +135,3 @@
 .spacer {
   height: 5vh;
 }
-
