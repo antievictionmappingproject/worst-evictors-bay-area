@@ -72,7 +72,7 @@ $evictor-border-width: 4px;
       flex-wrap: wrap;
       justify-content: center;
       width: fit-content;
-      max-width: 750px;
+      max-width: 751px;
     }
     .city-name {
       display: flex;
@@ -100,7 +100,8 @@ $evictor-border-width: 4px;
         margin: 0.5rem 0;
         display: grid;
         grid-template-columns: 2rem auto;
-        a {
+        transition: background-color 200ms;
+        .name {
           font-weight: bold;
         }
       }
@@ -122,7 +123,6 @@ $evictor-border-width: 4px;
       flex-wrap: wrap;
     }
     .text {
-      flex: 1 1 40ch;
       font-size: 18pt;
       h3 {
         font-family: $body-font;

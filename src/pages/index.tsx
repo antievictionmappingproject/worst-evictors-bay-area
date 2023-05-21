@@ -8,11 +8,7 @@ const HomePage = () => {
   const [isTransitioned, setIsTransitioned] = useState(false)
 
   return (
-    <Layout
-      className="layout"
-      hideFooter={!isTransitioned}
-      hideNavMenu={!isTransitioned}
-    >
+    <Layout className="layout" hideFooter={!isTransitioned}>
       <div className="page-container">
         {!isTransitioned && (
           <Intro setIsTransitioned={setIsTransitioned} />

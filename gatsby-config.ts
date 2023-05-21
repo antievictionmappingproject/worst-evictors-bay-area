@@ -23,7 +23,6 @@ const config: GatsbyConfig = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-client-side-redirect',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -37,12 +36,6 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-offline',
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://www.worstevictorsbayarea.org',
-      },
-    },
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,

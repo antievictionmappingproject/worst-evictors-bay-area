@@ -58,14 +58,3 @@ $body-font: $title-font;
     font-size: 1.2rem;
   }
 }
-
-.page-content,
-.navbar {
-  .btn.btn-primary,
-  .btn.btn-secondary {
-    font-size: 0.7rem;
-    font-family: $eyebrow-font;
-    text-transform: uppercase;
-    letter-spacing: 0.03rem;
-  }
-}

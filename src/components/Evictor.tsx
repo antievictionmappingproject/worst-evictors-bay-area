@@ -16,7 +16,6 @@ const EvictorProfile: React.FC<{
 }> = ({content, city}) => {
   const {details, evictions, networkDetails, portfolio} =
     content.ebData
-  console.log({[content.name]: content})
 
   const totalUnits = portfolio.reduce(
     (prev, curr) => prev + curr.units,
@@ -38,8 +37,11 @@ const EvictorProfile: React.FC<{
     .slice(0, 3)
 
   return (
-    <section className="evictor-profile">
-      <div id={formatLink(content.name)} />
+    <section
+      className="evictor-profile"
+      id={formatLink(content.name)}
+      key={formatLink(content.name)}
+    >
       <div className="col-container">
         <div className="left">
           <div className="left-width-constrainer">
@@ -57,7 +59,6 @@ const EvictorProfile: React.FC<{
             {content.localFile?.childImageSharp && (
               <>
                 <EvictorImage
-                  width={450}
                   image={getImage(content.localFile)}
                   name={content.photoCaption}
                   hideEyebrow
@@ -110,7 +111,7 @@ const EvictorProfile: React.FC<{
                   href={content.ebData.ebUrl}
                   className="btn btn-primary"
                 >
-                  See if your building is in this portfolio
+                  See a map of this landlord’s portfolio
                 </OutboundLink>
               </>
             )}
@@ -128,12 +129,12 @@ const EvictorProfile: React.FC<{
                     </h2>
                     <p>
                       Including <br />
-                      {evictionsByCategory.map((category) => {
+                      {evictionsByCategory.map((category, i) => {
                         const [type, number] = category
                         const filings =
                           number === 1 ? 'filing' : 'filings'
                         return (
-                          <li>
+                          <li key={i}>
                             {number} {filings} under <em>{type}</em>
                           </li>
                         )

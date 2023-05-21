@@ -17,7 +17,7 @@
   @media (min-width: 700px) {
     .scroll-container {
       overflow-y: scroll;
-      scroll-behavior: smooth;
+     // scroll-behavior: smooth;
     }
   }
 }
@@ -93,20 +93,23 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 3rem;
   .left,
   .right {
-    flex: 1 1 40ch;
+    flex: 1 1 50ch;
+    max-width: 500px;
     position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     place-items: center;
-    padding: 2rem;
+    margin: 0 1.5rem;
     .left-width-constrainer,
     .right-width-constrainer {
-      flex: 1 1 40ch;
-      width: min(100%, 60ch);
+      /*
+      flex: 1 1 50ch;
+      width: 100%;
+      max-width: 50ch;
+      */
     }
   }
 
@@ -133,5 +136,5 @@
 }
 
 .spacer {
-  height: 5vh;
+  height: 10rem;
 }

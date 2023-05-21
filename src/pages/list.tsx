@@ -16,7 +16,6 @@ const CitywideEvictorsListPage = () => {
     <Layout
       customTitle="The Worst Evictors of San Francisco and Oakland"
       customDescription={data.contentfulCitywideListPage.title}
-      customUrl="https://www.worstevictorsnyc.org/list"
       className="page"
       hideFooter
     >
@@ -27,7 +26,7 @@ const CitywideEvictorsListPage = () => {
         {Object.entries({
           sf: 'San Francisco',
           oakland: 'Oakland',
-        }).map(([abbrev, city]) => {
+        }).map(([abbrev, city], i) => {
           const cityEvictors = evictors.filter(
             (evictor) => evictor.city === abbrev
           )
@@ -35,15 +34,26 @@ const CitywideEvictorsListPage = () => {
             <div
               className="city-section"
               id={city.toLowerCase().replace(' ', '-')}
+              key={i}
             >
-              {[false, true].map((isNonprofit) => {
+              {[false, true].map((isNonprofit, i) => {
                 const typeEvictors = cityEvictors.filter(
                   (evictor) =>
                     evictor.nonprofitOrLowIncome === isNonprofit
                 )
-                return typeEvictors.map((e) => {
-                  return <EvictorProfile content={e} city={city} />
-                })
+                return (
+                  <div key={i}>
+                    {typeEvictors.map((e, i) => {
+                      return (
+                        <EvictorProfile
+                          content={e}
+                          city={city}
+                          key={i}
+                        />
+                      )
+                    })}
+                  </div>
+                )
               })}
             </div>
           )
@@ -53,11 +63,5 @@ const CitywideEvictorsListPage = () => {
     </Layout>
   )
 }
-
-/*
-  {evictorsContentList.map((content: any, i: number) => (
-    <EvictorProfile content={content} key={i} />
-  ))}
-*/
 
 export default CitywideEvictorsListPage

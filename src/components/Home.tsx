@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {getImage} from 'gatsby-plugin-image'
 import Header from './Header'
 import EvictorImage from './EvictorImage'
@@ -68,23 +68,38 @@ const LandingPage = () => {
                         <ol>
                           {typeEvictors.map(
                             (e: EvictorDetails, i: number) => {
+                              const [isHover, setIsHover] =
+                                useState(false)
                               return (
-                                <li key={i}>
-                                  <span className="counter">
-                                    {(i + 1).toString().length > 1
-                                      ? i + 1
-                                      : '0' + (i + 1).toString()}
-                                  </span>
-                                  <a
-                                    href={`/list#${formatLink(
-                                      e.name
-                                    )}`}
+                                <a
+                                  href={`/list#${formatLink(e.name)}`}
+                                >
+                                  <li
+                                    key={i}
+                                    onMouseOut={() => {
+                                      setIsHover(false)
+                                    }}
+                                    onMouseOver={() =>
+                                      setIsHover(true)
+                                    }
+                                    style={{
+                                      background: isHover
+                                        ? 'red'
+                                        : '',
+                                    }}
                                   >
-                                    {e.name}
-                                  </a>
-                                  <span className="spacer" />
-                                  <em>{e.corporation}</em>
-                                </li>
+                                    <span className="counter">
+                                      {(i + 1).toString().length > 1
+                                        ? i + 1
+                                        : '0' + (i + 1).toString()}
+                                    </span>
+                                    <span className="name">
+                                      {e.name}
+                                    </span>
+                                    <span className="spacer" />
+                                    <em>{e.corporation}</em>
+                                  </li>
+                                </a>
                               )
                             }
                           )}
