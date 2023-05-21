@@ -1,10 +1,10 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
 
-import renderContent from "../utils/contentful-render"
-import Layout from "../components/Layout"
-import "../styles/infopage.scss"
-import Header from "../components/Header"
+import renderContent from '../utils/contentful-render'
+import Layout from '../components/Layout'
+import '../styles/infopage.scss'
+import Header from '../components/Header'
 
 type InfoPageProps = {
   title: string

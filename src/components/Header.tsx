@@ -1,13 +1,13 @@
-import React from "react"
-import renderContent from "../utils/contentful-render"
-import useIndexQuery from "../queries/index"
-import building from "../images/building.svg"
-import down from "../images/down.svg"
-import { Link } from "gatsby"
-import "../styles/header.scss"
+import React from 'react'
+import renderContent from '../utils/contentful-render'
+import useIndexQuery from '../queries/index'
+import building from '../images/building.svg'
+import down from '../images/down.svg'
+import {Link} from 'gatsby'
+import '../styles/header.scss'
 
-export default function Header({ isDescription, hideCity }) {
-  const { contentfulLandingPage } = useIndexQuery()
+export default function Header({isDescription, hideCity}) {
+  const {contentfulLandingPage} = useIndexQuery()
   return (
     <div className="header">
       <div className="title-links">

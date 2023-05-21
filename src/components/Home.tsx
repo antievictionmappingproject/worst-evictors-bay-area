@@ -1,11 +1,11 @@
-import React from "react"
-import { getImage } from "gatsby-plugin-image"
-import Header from "./Header"
-import EvictorImage from "./EvictorImage"
-import pin from "../images/pin.svg"
-import useIndexQuery from "../queries/index"
-import { formatLink } from "../utils/string"
-const aempLogo = require("../images/AEMP_logo.png")
+import React from 'react'
+import {getImage} from 'gatsby-plugin-image'
+import Header from './Header'
+import EvictorImage from './EvictorImage'
+import pin from '../images/pin.svg'
+import useIndexQuery from '../queries/index'
+import {formatLink} from '../utils/string'
+const aempLogo = require('../images/AEMP_logo.png')
 
 type EvictorDetails = {
   name: string
@@ -21,7 +21,7 @@ type EvictorDetails = {
 }
 
 const LandingPage = () => {
-  const { allEvictor } = useIndexQuery()
+  const {allEvictor} = useIndexQuery()
   const evictors: EvictorDetails[] = allEvictor.nodes
   /* temp measure */
   const fallback = evictors.filter(
@@ -34,8 +34,8 @@ const LandingPage = () => {
       <div>
         <div className="evictor-names-list">
           {Object.entries({
-            sf: "San Francisco",
-            oakland: "Oakland",
+            sf: 'San Francisco',
+            oakland: 'Oakland',
           }).map(([abbrev, city]) => {
             const cityEvictors = evictors.filter(
               (evictor) => evictor.city === abbrev
@@ -49,20 +49,20 @@ const LandingPage = () => {
                 {[false, true].map((isNonprofit) => {
                   const typeEvictors = cityEvictors.filter(
                     (evictor) =>
-                      city === "Oakland" ||
+                      city === 'Oakland' ||
                       evictor.nonprofitOrLowIncome === isNonprofit
                   )
-                  if (isNonprofit && city === "Oakland") {
+                  if (isNonprofit && city === 'Oakland') {
                     return null
                   }
                   return (
                     <div className="type-list">
                       <div className="text">
-                        {city === "San Francisco" && (
+                        {city === 'San Francisco' && (
                           <h3>
                             {isNonprofit
-                              ? "nonprofit + low-income housing evictors"
-                              : "corporate evictors"}
+                              ? 'nonprofit + low-income housing evictors'
+                              : 'corporate evictors'}
                           </h3>
                         )}
                         <ol>
@@ -73,7 +73,7 @@ const LandingPage = () => {
                                   <span className="counter">
                                     {(i + 1).toString().length > 1
                                       ? i + 1
-                                      : "0" + (i + 1).toString()}
+                                      : '0' + (i + 1).toString()}
                                   </span>
                                   <a
                                     href={`/list#${formatLink(

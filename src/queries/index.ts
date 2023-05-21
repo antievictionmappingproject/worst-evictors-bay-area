@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+import {useStaticQuery, graphql} from 'gatsby'
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
     query {

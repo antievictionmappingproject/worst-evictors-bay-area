@@ -1,7 +1,7 @@
-import React from "react"
-import Helmet from "react-helmet"
+import React from 'react'
+import Helmet from 'react-helmet'
 
-import Footer from "./Footer"
+import Footer from './Footer'
 
 type Props = {
   children: React.ReactNode
@@ -23,13 +23,13 @@ const Layout = ({
   hideFooter,
 }: Props) => {
   const title =
-    customTitle || "The Worst Evictors of San Francisco and Oakland"
+    customTitle || 'The Worst Evictors of San Francisco and Oakland'
   const description =
     customDescription ||
-    "Data from the Anti-Eviction Mapping Project's (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serial evictions."
-  const url = customUrl || "https://www.worstevictorsbayarea.org"
+    'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serial evictions.'
+  const url = customUrl || 'https://www.worstevictorsbayarea.org'
   const shareImageURL =
-    customImage || "https://i.imgur.com/NIFo6iC.png"
+    customImage || 'https://i.imgur.com/NIFo6iC.png'
 
   return (
     <div className={className}>

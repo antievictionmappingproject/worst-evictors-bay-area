@@ -1,12 +1,12 @@
-import React from "react"
-import Layout from "../components/Layout"
-import EvictorProfile from "../components/Evictor"
-import type { EvictorProps } from "../queries/list"
-import useListQuery from "../queries/list"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import React from 'react'
+import Layout from '../components/Layout'
+import EvictorProfile from '../components/Evictor'
+import type {EvictorProps} from '../queries/list'
+import useListQuery from '../queries/list'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-import "../styles/list.scss"
+import '../styles/list.scss'
 
 const CitywideEvictorsListPage = () => {
   const data = useListQuery()
@@ -25,8 +25,8 @@ const CitywideEvictorsListPage = () => {
       </div>
       <div className="scroll-container">
         {Object.entries({
-          sf: "San Francisco",
-          oakland: "Oakland",
+          sf: 'San Francisco',
+          oakland: 'Oakland',
         }).map(([abbrev, city]) => {
           const cityEvictors = evictors.filter(
             (evictor) => evictor.city === abbrev
@@ -34,7 +34,7 @@ const CitywideEvictorsListPage = () => {
           return (
             <div
               className="city-section"
-              id={city.toLowerCase().replace(" ", "-")}
+              id={city.toLowerCase().replace(' ', '-')}
             >
               {[false, true].map((isNonprofit) => {
                 const typeEvictors = cityEvictors.filter(
