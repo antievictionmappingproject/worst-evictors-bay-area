@@ -67,12 +67,13 @@ $evictor-border-width: 4px;
   .evictor-names-list {
     .images {
       flex: 1 1 500px;
+      height: fit-content;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
       width: fit-content;
-      max-width: 751px;
+      max-width: 750px;
     }
     .city-name {
       display: flex;

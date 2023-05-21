@@ -85,6 +85,9 @@
   and .link-target has position: absolute;
    */
   position: relative;
+  .spacer {
+    height: 10rem;
+  }
 }
 
 .col-container {
@@ -135,6 +138,3 @@
   }
 }
 
-.spacer {
-  height: 10rem;
-}
