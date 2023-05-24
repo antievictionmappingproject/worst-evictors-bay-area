@@ -12,54 +12,60 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  .description {
+  .description, .title-container {
     flex: 1 1 50ch;
   }
-  @media (max-width: 700px) {
-    img {
-      display: none;
+  .description {
+    margin: 0 2rem;
+    display: flex;
+    place-content: center;
+    p {
+      max-width: 60ch;
+    }
+  }
+  .title-container {
+    display: flex;
+    place-content: center;
+    place-items: center;
+    margin-bottom: 1rem;
+    .title {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-decoration: none;
+      place-content: center;
+      text-align: center;
+      margin: 1rem 0;
+      h1 {
+        font-weight: bold;
+        margin: 0 1rem 0 0;
+      }
+    }
+    .title-links {
+      gap: 0 2rem;
+    }
+    .links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      place-content: center;
+      gap: 1rem;
+      @media (max-width: 1400px) {
+        img {
+          display: none;
+        }
+      }
+      a {
+        background: $red;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0 0.5rem;
+      }
+      img {
+        color: white;
+        margin: 0 0.5rem 0 0;
+      }
     }
   }
 }
 
-.title {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  text-decoration: none;
-  place-items: center;
-  text-align: center;
-  h1 {
-    font-weight: bold;
-    margin: 1rem 0;
-    margin-right: 2rem;
-  }
-}
-
-.description {
-  display: flex;
-  margin: 0 2rem;
-  max-width: 80ch;
-}
-
-.description p {
-  max-width: unset !important;
-}
-
-.links {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  place-content: center;
-  gap: 3vw;
-  a {
-    background: $red;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0 0.5rem;
-  }
-  img {
-    color: white;
-    margin: 0 0.5rem 0 0;
-  }
-}

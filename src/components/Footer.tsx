@@ -19,11 +19,11 @@ const SocialLink = (props: {
 )
 
 const Footer = () => (
-  <footer className="Footer">
+  <footer className="footer">
     <span>
       This resource is made &ldquo;by tenants for tenants&rdquo; and
       is maintained by the{' '}
-      <OutboundLink href="https://www.righttocounselnyc.org/">
+      <OutboundLink href="https://antievictionmap.com">
         Anti-Eviction Mapping Project
       </OutboundLink>
       .
@@ -35,8 +35,8 @@ const Footer = () => (
       {'  '}
       to provide feedback about the website.
     </span>
-    <div className="Footer_JustFix">
-      <div>
+    <div className="footer-aemp">
+      <div className="icons">
         <SocialLink
           href="https://github.com/antievictionmappingproject/worst-evictors-bay-area"
           title="Fork us on GitHub"
@@ -52,8 +52,11 @@ const Footer = () => (
       <OutboundLink href="https://antievictionmap.com/">
         Anti&#8209;Eviction Mapping Project
       </OutboundLink>{' '}
-      in partnership with the San Francisco Anti-Displacement
-      Coalition. Many, many thanks to{' '}
+      in partnership with the{' '}
+      <OutboundLink href="https://sfadc.org/">
+        San Francisco Anti-Displacement Coalition.
+      </OutboundLink>{' '}
+      Many, many thanks to{' '}
       <OutboundLink href="https://www.justfix.org">
         JustFixNYC
       </OutboundLink>{' '}

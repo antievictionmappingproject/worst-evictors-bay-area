@@ -17,7 +17,7 @@
   @media (min-width: 700px) {
     .scroll-container {
       overflow-y: scroll;
-     // scroll-behavior: smooth;
+      /* no idea why scroll-behavior: smooth messes up navigation */
     }
   }
 }
@@ -36,8 +36,12 @@
   .header {
     width: 100%;
     padding: 0.5rem;
+    .title-container {
+      margin: 0 !important;
+    }
     .title {
       place-items: center;
+      margin: 0 !important;
       h1 {
         text-align: center;
       }
@@ -99,7 +103,7 @@
   .left,
   .right {
     flex: 1 1 50ch;
-    max-width: 500px;
+    max-width: 600px;
     position: relative;
     flex-grow: 1;
     display: flex;

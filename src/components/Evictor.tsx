@@ -147,12 +147,7 @@ const EvictorProfile: React.FC<{
                 <p>{totalUnits} units owned total</p>
               )}
             </div>
-            {content.pullQuote && (
-              <>
-                <br />
-                {renderContent(content.pullQuote)}
-              </>
-            )}
+            {content.pullQuote && renderContent(content.pullQuote)}
             {content.citywideListDescription &&
               renderContent(content.citywideListDescription)}
           </div>

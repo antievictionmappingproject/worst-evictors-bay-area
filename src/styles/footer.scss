@@ -3,7 +3,7 @@
 
 // This footer class is based on the Eviction-Free NYC CSS:
 // https://github.com/JustFixNYC/eviction-free-nyc/blob/master/src/styles/Footer.scss
-.Footer {
+.footer {
   background-color: $primary;
   border-top: 1px solid $secondary;
   color: $secondary;
@@ -12,15 +12,6 @@
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-
-  // This makes sure our Footer appears above our fixed "scroll-arrow" component:
-  position: relative;
-  z-index: 750;
-
-  // This adds space for the MENU button on desktop:
-  @include for-small-desktop-up {
-    padding-right: calc(3rem + #{$menu-button-width});
-  }
 
   .btn.btn-link {
     color: $secondary;
@@ -38,15 +29,16 @@
     margin-right: 32px;
   }
 
-  .Footer_JustFix {
+  .footer-aemp {
     text-align: right;
-
-    img {
-      max-width: 125px;
-      position: relative;
-      top: 8px;
-      margin-left: 4px;
-      margin-right: 0;
+    .icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      .icon {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
     }
   }
 
@@ -63,7 +55,7 @@
       margin-top: 16px;
     }
 
-    .Footer_JustFix {
+    .footer-aemp {
       text-align: center;
 
       img {
