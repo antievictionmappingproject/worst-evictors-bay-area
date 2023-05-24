@@ -38,9 +38,9 @@ export default function Header({isDescription, hideCity}) {
               <img src={down} />
               About
             </Link>
-            <Link to="/methods">
+            <Link to="/tenant-resources">
               <img src={down} />
-              Methods
+              Tenant Resources
             </Link>
           </div>
         </div>
