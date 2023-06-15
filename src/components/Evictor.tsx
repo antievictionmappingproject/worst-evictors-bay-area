@@ -23,6 +23,7 @@ const EvictorProfile: React.FC<{
   )
 
   const activeSince = details[0].creation_date.toString().slice(0, 4)
+  const totalSince2019 = evictions.filter(eviction => eviction.evict_date.slice(0, 4) === "2019").length
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
@@ -36,7 +37,6 @@ const EvictorProfile: React.FC<{
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
 
-    console.log(content)
   return (
     <section
       className="evictor-profile"
@@ -135,6 +135,11 @@ const EvictorProfile: React.FC<{
                       {content.totalEvictions} households sued for
                       eviction
                     </h2>
+                    {totalSince2019 > 5 &&
+                    <em>
+                      Of these, {totalSince2019} have been made since 2019.
+                    </em>
+                    }
                     <p>
                       Including <br />
                       {evictionsByCategory.map((category, i) => {

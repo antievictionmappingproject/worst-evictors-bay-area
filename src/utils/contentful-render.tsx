@@ -8,7 +8,6 @@ const contentfulOptions = {
   },
   renderNode: {
     [INLINES.HYPERLINK]: ({data}, children) => {
-      console.log(children)
       if((data.uri).includes("youtube.com/embed") || (data.uri).includes("soundcloud.com/player")) {
         return <iframe title="Unique Title 002" src={data.uri}
           width="100%" height="360" 

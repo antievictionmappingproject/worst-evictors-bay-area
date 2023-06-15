@@ -35,6 +35,7 @@ export default function useIndexQuery() {
             }
             evictions {
               type
+              evict_date
             }
             networkDetails {
               total_addrs
@@ -79,6 +80,7 @@ export type EvictorProps = {
     }
     evictions: {
       type: string
+      evict_date: string
     }[]
     networkDetails: {
       total_addrs: number
