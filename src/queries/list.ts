@@ -14,6 +14,7 @@ export default function useIndexQuery() {
           nonprofitOrLowIncome
           corporation
           photoCaption
+          tags
           localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED)

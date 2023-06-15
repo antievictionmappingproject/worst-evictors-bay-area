@@ -6,22 +6,27 @@ const BASE = `${domain}/api/owner`
  * await ??) so... */
 async function getSlice(
   ebName: string,
-  type: string,
   slice: string
 ): Promise<any> {
-  const escaped = encodeURI(`${BASE}/${type}/${ebName}/${slice}`)
+  const escaped = encodeURI(`${BASE}/${ebName}/${slice}`)
   const text = await fetch(escaped)
     .then((res) => res.text())
     .catch((err) => {
       throw new Error(`${escaped}: ${err}`)
     })
 
-  return {[slice]: JSON.parse(text).records}
+  let result
+  try {
+    result = JSON.parse(text).records
+  } catch (err) {
+    throw new Error(`${escaped}: ${err} ${text}`)
+  }
+
+  return {[slice]: result}
 }
 
 export default async function getEBEntry(
-  ebName: string,
-  type: string
+  ebName: string
 ) {
   const slices = [
     'details',
@@ -31,9 +36,9 @@ export default async function getEBEntry(
     'portfolio',
   ]
 
-  const escaped = encodeURI(`${domain}/owner/${ebName}/${type}`)
+  const escaped = encodeURI(`${domain}/owner/${ebName}`)
   const result = await Promise.all(
-    slices.map((slice) => getSlice(ebName, type, slice))
+    slices.map((slice) => getSlice(ebName, slice))
   )
 
   // array of objects with single (unique) property into single object

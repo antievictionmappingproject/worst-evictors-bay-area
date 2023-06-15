@@ -30,7 +30,7 @@ export default async function fetchEvictorData() {
           citywideListDescription,
         } = item.fields
         if (!ebLink || !type) return
-        const ebData = await getEBEntry(ebLink, type).catch((err) => {
+        const ebData = await getEBEntry(ebLink).catch((err) => {
           console.error(`Error on ${name}, ${ebLink}: ${err}`)
         })
 

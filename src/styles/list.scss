@@ -69,21 +69,6 @@
   top: -60px;
 }
 
-.city-name {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  img {
-    height: 1.5rem;
-  }
-  span {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  margin: 1rem 0;
-}
-
 .evictor-profile {
   /* Since a .link-target is inside .evictor-profile, 
   and .link-target has position: absolute;
@@ -91,6 +76,27 @@
   position: relative;
   .spacer {
     height: 10rem;
+  }
+  .city-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    img {
+      height: 1.5rem;
+    }
+    span {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    margin: 1rem 0;
+  }
+  .tags {
+    margin: 1rem 0;
+    .tag {
+      font-style: italic;
+      font-size: 1.5rem;
+    }
   }
 }
 

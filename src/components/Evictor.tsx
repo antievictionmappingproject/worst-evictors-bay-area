@@ -36,6 +36,7 @@ const EvictorProfile: React.FC<{
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
 
+    console.log(content)
   return (
     <section
       className="evictor-profile"
@@ -56,6 +57,13 @@ const EvictorProfile: React.FC<{
                   : 'corporate evictor'}
               </span>
             </div>
+            {content.tags &&
+              <div className="tags">
+              {content.tags.map(
+                (tag, index) => <span className="tag">
+                  {tag}{index === content.tags.length - 1 ? '' : ' ⋅ '}</span>)}
+              </div>
+            }
             {content.localFile?.childImageSharp && (
               <>
                 <EvictorImage
@@ -150,6 +158,10 @@ const EvictorProfile: React.FC<{
             {content.pullQuote && renderContent(content.pullQuote)}
             {content.citywideListDescription &&
               renderContent(content.citywideListDescription)}
+            {content.tags?.includes("Defeated Evictor") &&
+              <em>This evictor is categorized as a Defeated Evictor because of
+                inactivity following major tenant organizing campaigns.</em>
+            }
           </div>
         </div>
       </div>
