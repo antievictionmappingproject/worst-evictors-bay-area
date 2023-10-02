@@ -3,7 +3,11 @@ import renderContent from '../utils/contentful-render'
 import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
 import {getImage} from 'gatsby-plugin-image'
-import {FormatBusinessAddress, titleCase} from '../utils/string'
+import {
+  FormatBusinessAddress,
+  formatNumber,
+  titleCase,
+} from '../utils/string'
 import EvictorImage from './EvictorImage'
 import pin from '../images/pin.svg'
 import {formatLink} from '../utils/string'
@@ -145,8 +149,8 @@ const EvictorProfile: React.FC<{
                 {content.totalEvictions > 5 ? (
                   <>
                     <h2>
-                      {content.totalEvictions} households sued for
-                      eviction
+                      {formatNumber(content.totalEvictions)}{' '}
+                      households sued for eviction
                     </h2>
                     {totalSince2019 > 5 && (
                       <em>
@@ -172,7 +176,12 @@ const EvictorProfile: React.FC<{
               </span>
               {content.totalUnits > 5 &&
                 content.totalEvictions > 5 && (
-                <h2>{content.totalUnits} units owned total</h2>
+                <>
+                  <h2>
+                    {formatNumber(content.totalUnits)} units tracked
+                      by Evictorbook
+                  </h2>
+                </>
               )}
             </div>
             {content.pullQuote && renderContent(content.pullQuote)}

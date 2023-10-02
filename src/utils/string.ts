@@ -49,6 +49,10 @@ export const formatLink = (name: string) => {
 
 export const exceptionWords = ['LLC', 'LP', 'NA']
 
+export const formatNumber = (number: number) => {
+  return new Intl.NumberFormat('en-us').format(number)
+}
+
 export const titleCase = (name: string) => {
   return name
     .split(' ')
