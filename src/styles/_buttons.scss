@@ -56,8 +56,10 @@
 
 a.btn.btn-primary,
 button.btn.btn-primary {
-  margin: 1rem;
   @include button-variant($primary-color);
+  padding: 0.8rem 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
 }
 
 a.btn.btn-secondary,

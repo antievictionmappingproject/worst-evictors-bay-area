@@ -3,7 +3,7 @@ import renderContent from '../utils/contentful-render'
 import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
 import {getImage} from 'gatsby-plugin-image'
-import {FormatBusinessAddress} from '../utils/string'
+import {FormatBusinessAddress, titleCase} from '../utils/string'
 import EvictorImage from './EvictorImage'
 import pin from '../images/pin.svg'
 import {formatLink} from '../utils/string'
@@ -14,16 +14,13 @@ const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
 }> = ({content, city}) => {
-  const {details, evictions, networkDetails, portfolio} =
-    content.ebData
+  const {networkDetails, details} = content.ebData[0]
+  const evictions = content.evictions || []
+  const activeSince = content.activeSince
 
-  const totalUnits = portfolio.reduce(
-    (prev, curr) => prev + curr.units,
-    0
-  )
-
-  const activeSince = details[0].creation_date.toString().slice(0, 4)
-  const totalSince2019 = evictions.filter(eviction => eviction.evict_date.slice(0, 4) === "2019").length
+  const totalSince2019 = evictions.filter(
+    (eviction) => eviction.evict_date.slice(0, 4) === '2019'
+  ).length
 
   const evictionsByCategory = Object.entries(
     evictions.reduce((prev, curr) => {
@@ -57,13 +54,16 @@ const EvictorProfile: React.FC<{
                   : 'corporate evictor'}
               </span>
             </div>
-            {content.tags &&
+            {content.tags && (
               <div className="tags">
-              {content.tags.map(
-                (tag, index) => <span className="tag">
-                  {tag}{index === content.tags.length - 1 ? '' : ' ⋅ '}</span>)}
+                {content.tags.map((tag, index) => (
+                  <span className="tag">
+                    {tag}
+                    {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                  </span>
+                ))}
               </div>
-            }
+            )}
             {content.localFile?.childImageSharp && (
               <>
                 <EvictorImage
@@ -102,25 +102,38 @@ const EvictorProfile: React.FC<{
                 {activeSince ? (
                   <span>Active since {activeSince}</span>
                 ) : undefined}
-                {networkDetails.total_addrs && (
+                {networkDetails[0].total_addrs && (
                   <p>
                     <span className="text-bold text-uppercase">
                       In an ownership network with
                     </span>
-                    <li>{networkDetails.total_addrs} properties</li>
-                    <li>{networkDetails.total_bes} businesses</li>
+                    {networkDetails[0].total_addrs > 1 && (
+                      <li>
+                        {networkDetails[0].total_addrs} properties
+                      </li>
+                    )}
+                    <li>{networkDetails[0].total_bes} businesses</li>
                     <li>
-                      {networkDetails.total_owners} other owners
+                      {networkDetails[0].total_owners} other owners
                     </li>
                   </p>
                 )}
                 <br />
-                <OutboundLink
-                  href={content.ebData.ebUrl}
-                  className="btn btn-primary"
-                >
-                  See a map of this landlord’s portfolio
-                </OutboundLink>
+                {content.ebData.length > 1 && (
+                  <span>
+                    This evictor is associated with multiple ownership
+                    networks:
+                  </span>
+                )}
+                {content.ebData.map((evictor) => (
+                  <OutboundLink
+                    href={evictor.ebUrl}
+                    className="btn btn-primary"
+                  >
+                    See {titleCase(evictor.details[0].name)}
+                    's portfolio
+                  </OutboundLink>
+                ))}
               </>
             )}
           </div>
@@ -135,12 +148,13 @@ const EvictorProfile: React.FC<{
                       {content.totalEvictions} households sued for
                       eviction
                     </h2>
-                    {totalSince2019 > 5 &&
-                    <em>
-                      Of these, {totalSince2019} have been made since 2019.
-                    </em>
-                    }
-                    <p>
+                    {totalSince2019 > 5 && (
+                      <em>
+                        Of these, {totalSince2019} have been made
+                        since 2019.
+                      </em>
+                    )}
+                    <p style={{padding: '0 2rem'}}>
                       Including <br />
                       {evictionsByCategory.map((category, i) => {
                         const [type, number] = category
@@ -156,17 +170,21 @@ const EvictorProfile: React.FC<{
                   </>
                 ) : undefined}
               </span>
-              {totalUnits > 5 && content.totalEvictions > 5 && (
-                <p>{totalUnits} units owned total</p>
+              {content.totalUnits > 5 &&
+                content.totalEvictions > 5 && (
+                <h2>{content.totalUnits} units owned total</h2>
               )}
             </div>
             {content.pullQuote && renderContent(content.pullQuote)}
             {content.citywideListDescription &&
               renderContent(content.citywideListDescription)}
-            {content.tags?.includes("Defeated Evictor") &&
-              <em>This evictor is categorized as a Defeated Evictor because of
-                inactivity following major tenant organizing campaigns.</em>
-            }
+            {content.tags?.includes('Former Evictor') && (
+              <em>
+                This evictor is categorized as a Former Evictor
+                because of inactivity in recent years, often following
+                major tenant organizing campaigns.
+              </em>
+            )}
           </div>
         </div>
       </div>

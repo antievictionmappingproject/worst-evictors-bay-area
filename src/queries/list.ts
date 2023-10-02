@@ -15,6 +15,10 @@ export default function useIndexQuery() {
           corporation
           photoCaption
           tags
+          evictions {
+            type
+            evict_date
+          }
           localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED)
@@ -33,22 +37,16 @@ export default function useIndexQuery() {
               }
               office_addresses
             }
-            evictions {
-              type
-              evict_date
-            }
             networkDetails {
               total_addrs
               total_bes
               total_owners
             }
-            portfolio {
-              units
-              addr
-            }
             ebUrl
           }
+          activeSince
           totalEvictions
+          totalUnits
           pullQuote {
             raw
           }
@@ -67,6 +65,10 @@ export type EvictorProps = {
   corporation: string
   city: string
   tags?: string[]
+  evictions: {
+    type: string
+    evict_date: string
+  }[]
   nonprofitOrLowIncome: boolean
   localFile: { childImageSharp: ImageDataLike }
   citywideListDescription: { raw: string }
@@ -78,23 +80,16 @@ export type EvictorProps = {
       be_specific_details: { llc_type_of_business: string }
       office_addresses: string[]
     }
-    evictions: {
-      type: string
-      evict_date: string
-    }[]
     networkDetails: {
       total_addrs: number
       total_bes: number
       total_owners: number
     }
-    portfolio: {
-      units: number
-      addr: string
-      num_evictions: number
-    }[]
     ebUrl: string
-  }
+  }[]
+  activeSince: number
   totalEvictions: number
+  totalUnits: number
   pullQuote: {
     raw: string
   }

@@ -46,3 +46,21 @@ export const formatLink = (name: string) => {
     .replaceAll(',', '')
     .replaceAll('\'', '')
 }
+
+export const exceptionWords = ['LLC', 'LP', 'NA']
+
+export const titleCase = (name: string) => {
+  return name
+    .split(' ')
+    .map((word) =>
+      exceptionWords.includes(word)
+        ? word.toUpperCase()
+        : word
+          .split('')
+          .map((str, index) =>
+            index === 0 ? str.toUpperCase() : str.toLowerCase()
+          )
+          .join('')
+    )
+    .join(' ')
+}

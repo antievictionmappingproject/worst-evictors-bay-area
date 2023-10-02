@@ -1,13 +1,9 @@
-const domain =
-  process.env.EB_DOMAIN || 'https://oakland.evictorbook.com/'
+const domain = process.env.EB_DOMAIN || 'https://evictorbook.com/'
 const BASE = `${domain}/api/owner`
 
 /** ts for some reason keeps wanting an async function (even though no
  * await ??) so... */
-async function getSlice(
-  ebName: string,
-  slice: string
-): Promise<any> {
+async function getSlice(ebName: string, slice: string): Promise<any> {
   const escaped = encodeURI(`${BASE}/${ebName}/${slice}`)
   const text = await fetch(escaped)
     .then((res) => res.text())
@@ -25,9 +21,7 @@ async function getSlice(
   return {[slice]: result}
 }
 
-export default async function getEBEntry(
-  ebName: string
-) {
+export default async function getEBEntry(ebName: string) {
   const slices = [
     'details',
     'evictions',
