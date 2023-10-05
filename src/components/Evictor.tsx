@@ -154,7 +154,7 @@ const EvictorProfile: React.FC<{
                     </h2>
                     {totalSince2019 > 5 && (
                       <em>
-                        Of these, {totalSince2019} have been made
+                        Of these, {totalSince2019} have been executed
                         since 2019.
                       </em>
                     )}
