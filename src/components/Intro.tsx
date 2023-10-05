@@ -34,7 +34,7 @@ const Intro: React.FC<IntroProps> = ({setIsTransitioned}) => {
       </div>
       <p>
         Brought to you by the Anti-Eviction Mapping Project and the
-        San Francisco Anti-Displacement Coalition, with much thanks to
+        San Francisco Anti-Displacement Coalition, with many thanks to
         JustFix.nyc
       </p>
     </div>
