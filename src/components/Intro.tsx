@@ -26,8 +26,8 @@ const Intro: React.FC<IntroProps> = ({setIsTransitioned}) => {
   return (
     <div className="intro" style={{opacity: isVisible ? 1 : 0}}>
       <div>
-        <h2>San Francisco and Oakland's</h2>
-        <h1>Worst Evictors</h1>
+        <h1>The Worst Evictors</h1>
+        <h2>of San Francisco and Oakland</h2>
       </div>
       <div className="click-prompt">
         <span>click anywhere to enter</span>
@@ -41,7 +41,8 @@ const Intro: React.FC<IntroProps> = ({setIsTransitioned}) => {
         and the{' '}
         <OutboundLink href="https://sfadc.org/">
           San Francisco Anti-Displacement Coalition
-        </OutboundLink>, with many thanks to{' '}
+        </OutboundLink>
+        , with many thanks to{' '}
         <OutboundLink href="https://www.justfix.org">
           JustFixNYC
         </OutboundLink>{' '}

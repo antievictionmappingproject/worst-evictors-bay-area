@@ -28,8 +28,7 @@ const Layout = ({
     customDescription ||
     'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serial evictions.'
   const url = customUrl || 'https://www.worstevictorsbayarea.org'
-  const shareImageURL =
-    customImage || 'https://i.imgur.com/NIFo6iC.png'
+  const shareImageURL = customImage || '/shareImage.png'
 
   return (
     <div className={className}>

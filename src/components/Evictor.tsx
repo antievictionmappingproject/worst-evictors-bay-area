@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import renderContent from '../utils/contentful-render'
 import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
@@ -21,6 +21,8 @@ const EvictorProfile: React.FC<{
   const {networkDetails, details} = content.ebData[0]
   const evictions = content.evictions || []
   const activeSince = content.activeSince
+
+  const [showFormer, setShowFormer] = useState(false)
 
   const totalSince2019 = evictions.filter(
     (eviction) => eviction.evict_date.slice(0, 4) === '2019'
@@ -60,12 +62,35 @@ const EvictorProfile: React.FC<{
             </div>
             {content.tags && (
               <div className="tags">
-                {content.tags.map((tag, index) => (
-                  <span className="tag">
-                    {tag}
-                    {index === content.tags.length - 1 ? '' : ' ⋅ '}
-                  </span>
-                ))}
+                {content.tags.map((tag, index) => {
+                  return tag === 'Former Evictor' ? (
+                    <span
+                      className="tag"
+                      onClick={() => setShowFormer((val) => !val)}
+                      style={{
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {tag}
+                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                    </span>
+                  ) : (
+                    <span className="tag">
+                      {tag}
+                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                    </span>
+                  )
+                })}
+                {showFormer && (
+                  <p>
+                    <em>
+                      This evictor is categorized as a Former Evictor
+                      because of inactivity in recent years, often
+                      following major tenant organizing campaigns.
+                    </em>
+                  </p>
+                )}
               </div>
             )}
             {content.localFile?.childImageSharp && (
@@ -75,13 +100,6 @@ const EvictorProfile: React.FC<{
                   name={content.photoCaption}
                   hideEyebrow
                 />
-                <br />
-                {content.tags?.length && (
-                  <div className="tags">
-                    {content.tags.join(', ')}
-                  </div>
-                )}
-
                 {content.banks?.length ? (
                   <p>
                     <span className="stat-name">Funded By</span>
@@ -187,13 +205,6 @@ const EvictorProfile: React.FC<{
             {content.pullQuote && renderContent(content.pullQuote)}
             {content.citywideListDescription &&
               renderContent(content.citywideListDescription)}
-            {content.tags?.includes('Former Evictor') && (
-              <em>
-                This evictor is categorized as a Former Evictor
-                because of inactivity in recent years, often following
-                major tenant organizing campaigns.
-              </em>
-            )}
           </div>
         </div>
       </div>
