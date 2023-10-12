@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Footer from './Footer'
+import shareImage from '../images/shareImage.png'
 
 type Props = {
   children: React.ReactNode
@@ -28,8 +29,7 @@ const Layout = ({
     customDescription ||
     'Data from the Anti-Eviction Mapping Project\'s (AEMP) Evictorbook tool and research gathered by AEMP researchers finds these landlords guilty of serial evictions.'
   const url = customUrl || 'https://www.worstevictorsbayarea.org'
-  const shareImageURL =
-    customImage || 'https://i.imgur.com/NIFo6iC.png'
+  const shareImageURL = customImage || '/shareImage.png'
 
   return (
     <div className={className}>
@@ -49,7 +49,7 @@ const Layout = ({
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
-        <meta property="og:image" content={shareImageURL} />
+        <meta property="og:image" content={shareImage} />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -58,7 +58,7 @@ const Layout = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:url" content={url} />
-        <meta name="twitter:image" content={shareImageURL} />
+        <meta name="twitter:image" content={shareImage} />
         <meta
           name="twitter:image:alt"
           content="The Worst Evictors of San Francisco and Oakland"
