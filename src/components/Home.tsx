@@ -53,43 +53,40 @@ const LandingPage = () => {
                           </h3>
                         )}
                         <ol>
-                          {typeEvictors.map(
-                            (e: EvictorDetails, i: number) => {
-                              const [isHover, setIsHover] =
-                                useState(false)
-                              return (
-                                <a
-                                  href={`/list#${formatLink(e.name)}`}
+                          {typeEvictors.map((e, i: number) => {
+                            const [isHover, setIsHover] =
+                              useState(false)
+                            return (
+                              <a href={`/list#${formatLink(e.name)}`}>
+                                <li
+                                  key={i}
+                                  onMouseOut={() => {
+                                    setIsHover(false)
+                                  }}
+                                  onMouseOver={() => setIsHover(true)}
+                                  style={{
+                                    background: isHover ? "red" : "",
+                                  }}
                                 >
-                                  <li
-                                    key={i}
-                                    onMouseOut={() => {
-                                      setIsHover(false)
-                                    }}
-                                    onMouseOver={() =>
-                                      setIsHover(true)
-                                    }
-                                    style={{
-                                      background: isHover
-                                        ? "red"
-                                        : "",
-                                    }}
-                                  >
-                                    <span className="counter">
-                                      {(i + 1).toString().length > 1
-                                        ? i + 1
-                                        : "0" + (i + 1).toString()}
-                                    </span>
-                                    <span className="name">
-                                      {e.name}
-                                    </span>
-                                    <span className="spacer" />
+                                  <span className="counter">
+                                    {(i + 1).toString().length > 1
+                                      ? i + 1
+                                      : "0" + (i + 1).toString()}
+                                  </span>
+                                  <span className="name">
+                                    {e.name}
+                                  </span>
+                                  <span className="spacer" />
+                                  <div className="description">
+                                    {e.tags && (
+                                      <em>{e.tags[0]} ⋅ </em>
+                                    )}
                                     <em>{e.corporation}</em>
-                                  </li>
-                                </a>
-                              )
-                            }
-                          )}
+                                  </div>
+                                </li>
+                              </a>
+                            )
+                          })}
                         </ol>
                       </div>
                       <div className="images">
