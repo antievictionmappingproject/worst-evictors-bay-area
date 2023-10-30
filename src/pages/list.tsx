@@ -7,10 +7,13 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 import '../styles/list.scss'
+import {sortEvictors} from '../utils/misc'
 
 const CitywideEvictorsListPage = () => {
   const data = useListQuery()
-  const evictors: EvictorProps[] = data.allEvictor.nodes
+  const evictors = sortEvictors(
+    data.allEvictor.nodes
+  ) as EvictorProps[]
 
   return (
     <Layout
@@ -30,31 +33,28 @@ const CitywideEvictorsListPage = () => {
           const cityEvictors = evictors.filter(
             (evictor) => evictor.city === abbrev
           )
+          const sortedByNonProfit =
+            city === 'Oakland'
+              ? cityEvictors
+              : cityEvictors.sort(
+                (a, b) =>
+                  Number(a.nonprofitOrLowIncome) -
+                    Number(b.nonprofitOrLowIncome)
+              )
           return (
             <div
               className="city-section"
               id={city.toLowerCase().replace(' ', '-')}
               key={i}
             >
-              {[false, true].map((isNonprofit, i) => {
-                const typeEvictors = cityEvictors.filter(
-                  (evictor) =>
-                    evictor.nonprofitOrLowIncome === isNonprofit
-                )
-                return (
-                  <div key={i}>
-                    {typeEvictors.map((e, i) => {
-                      return (
-                        <EvictorProfile
-                          content={e}
-                          city={city}
-                          key={i}
-                        />
-                      )
-                    })}
-                  </div>
-                )
-              })}
+              <div>
+                {sortedByNonProfit.map((e, i) => {
+                  return (
+                    <EvictorProfile content={e} city={city} key={i} />
+                  )
+                })}
+              </div>
+              )
             </div>
           )
         })}

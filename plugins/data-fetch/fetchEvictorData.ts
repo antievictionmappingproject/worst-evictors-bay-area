@@ -114,9 +114,5 @@ export default async function fetchEvictorData() {
     })
     .filter((evictor) => evictor) // 'undefined' is falsy
 
-  const resolved = (await Promise.all(evictors)).sort(
-    (a, b) => a.rank - b.rank
-  )
-
-  return resolved
+  return await Promise.all(evictors)
 }

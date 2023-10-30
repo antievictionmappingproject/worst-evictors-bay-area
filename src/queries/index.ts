@@ -1,13 +1,17 @@
 import {useStaticQuery, graphql} from 'gatsby'
+
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
     query {
-      allEvictor(sort: { rank: ASC }) {
+      allEvictor {
         nodes {
           name
           corporation
           city
+          rank
+          tags
           nonprofitOrLowIncome
+          rank
           localFile {
             childImageSharp {
               gatsbyImageData(
@@ -35,5 +39,24 @@ export default function useIndexQuery() {
     }
   `)
 
-  return data
+  return data as IndexQuery
+}
+
+export type IndexQuery = {
+  allEvictor: {
+    nodes: {
+      name: string
+      city: string
+      tags: string[]
+      corporation: string
+      rank: number
+      nonprofitOrLowIncome: boolean
+      localFile: any
+      ebData: {
+        evictions: {
+          evict_id: number
+        }[]
+      }
+    }[]
+  }
 }

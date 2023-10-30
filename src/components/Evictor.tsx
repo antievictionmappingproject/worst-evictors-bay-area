@@ -67,6 +67,7 @@ const EvictorProfile: React.FC<{
                     <span
                       className="tag"
                       onClick={() => setShowFormer((val) => !val)}
+                      key={index}
                       style={{
                         textDecoration: 'underline',
                         cursor: 'pointer',
@@ -76,7 +77,7 @@ const EvictorProfile: React.FC<{
                       {index === content.tags.length - 1 ? '' : ' ⋅ '}
                     </span>
                   ) : (
-                    <span className="tag">
+                    <span className="tag" key={index}>
                       {tag}
                       {index === content.tags.length - 1 ? '' : ' ⋅ '}
                     </span>
@@ -147,8 +148,9 @@ const EvictorProfile: React.FC<{
                     networks:
                   </span>
                 )}
-                {content.ebData.map((evictor) => (
+                {content.ebData.map((evictor, i) => (
                   <OutboundLink
+                    key={i}
                     href={evictor.ebUrl}
                     className="btn btn-primary"
                   >

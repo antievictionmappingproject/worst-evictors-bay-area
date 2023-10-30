@@ -7,7 +7,7 @@ export default function useIndexQuery() {
       contentfulCitywideListPage {
         title
       }
-      allEvictor(sort: { rank: ASC }) {
+      allEvictor {
         nodes {
           name
           city
