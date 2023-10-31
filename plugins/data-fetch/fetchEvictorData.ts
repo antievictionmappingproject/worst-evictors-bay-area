@@ -1,19 +1,19 @@
-import 'dotenv/config'
-import {createClient} from 'contentful'
-import type {EntryCollection} from 'contentful'
-import getEBEntry from './getEBEntry'
+import "dotenv/config"
+import { createClient } from "contentful"
+import type { EntryCollection } from "contentful"
+import getEBEntry from "./getEBEntry"
 
 export default async function fetchEvictorData() {
   const client = createClient({
     space: process.env.SPACE_ID,
-    environment: 'master',
+    environment: "master",
     accessToken: process.env.ACCESS_TOKEN,
   })
 
   // changed content_type id from sfEvictors to just evictors on the
   // online GUI but it's not updating for the API response LOL
   const result = (await client
-    .getEntries({content_type: 'sfEvictors'})
+    .getEntries({ content_type: "sfEvictors" })
     .catch(console.error)) as EntryCollection<any>
 
   const evictors = result.items
@@ -22,7 +22,7 @@ export default async function fetchEvictorData() {
         // pullQuote + citywideListDescription has way too many fields to query
         // ergonomically, so we'll just grab it as a string
         // this is how the contentful cms presents it too
-        const {ebEntry, name, pullQuote, citywideListDescription} =
+        const { ebEntry, name, pullQuote, citywideListDescription } =
           item.fields
 
         if (!ebEntry?.length) {
@@ -42,7 +42,7 @@ export default async function fetchEvictorData() {
         /* Validation for common missing data types
          * Added on Contentful, but contentful does not perform validation for existing entries
          * */
-        if (typeof item.fields.nonprofitOrLowIncome === 'undefined') {
+        if (typeof item.fields.nonprofitOrLowIncome === "undefined") {
           console.warn(`${name} is missing nonprofit status`)
         }
         if (!item.fields.photo) {
@@ -84,6 +84,38 @@ export default async function fetchEvictorData() {
           })
         )
 
+        const exclusionPhrases: string[] = ebEntry.map(
+          (str: string) => str.toLowerCase()
+        )
+        // fetch shell companies in network
+        // has to be done after main fetch since we need the network IDs
+        const shellCompanies = (
+          await ebData.reduce(
+            async (shells: Promise<string[]>, business) => {
+              const networkId = business.networkDetails[0].network_id
+              const networkUrl = `${
+                process.env.EB_DOMAIN || "https://evictorbook.com"
+              }/api/network/${networkId}/nodes`
+              const nodes = await fetch(networkUrl).then((res) =>
+                res.json()
+              )
+
+              const newShells = nodes.records
+                .sort((a, b) => b.degree - a.degree)
+                .filter((n) => n.type === "Business")
+                .slice(0, 10)
+                .map((b) => b.name)
+              return [...(await shells), ...newShells]
+            },
+            []
+          )
+        ).filter(
+          (name: string) =>
+            !exclusionPhrases.some((phrase) =>
+              name.toLowerCase().match(phrase)
+            )
+        )
+
         if (!totalEvictions) {
           console.error(
             `Wanted a positive integer for ${name}'s eviction count, but received: ${totalEvictions}`
@@ -102,8 +134,9 @@ export default async function fetchEvictorData() {
           totalEvictions,
           activeSince,
           totalUnits,
+          shellCompanies,
           evictions: Object.values(uniqueEvictions),
-          pullQuote: {raw: JSON.stringify(pullQuote)},
+          pullQuote: { raw: JSON.stringify(pullQuote) },
           citywideListDescription: {
             raw: JSON.stringify(citywideListDescription),
           },

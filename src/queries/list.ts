@@ -1,5 +1,5 @@
-import {useStaticQuery, graphql} from 'gatsby'
-import {ImageDataLike} from 'gatsby-plugin-image'
+import { useStaticQuery, graphql } from "gatsby"
+import { ImageDataLike } from "gatsby-plugin-image"
 
 export default function useIndexQuery() {
   const data = useStaticQuery(graphql`
@@ -14,6 +14,7 @@ export default function useIndexQuery() {
           nonprofitOrLowIncome
           corporation
           photoCaption
+          shellCompanies
           tags
           evictions {
             type
@@ -73,6 +74,7 @@ export type EvictorProps = {
   localFile: { childImageSharp: ImageDataLike }
   citywideListDescription: { raw: string }
   banks: null | string[]
+  shellCompanies: string[]
   ebData: {
     details: {
       creation_date: string

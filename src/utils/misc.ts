@@ -1,6 +1,3 @@
-import {IndexQuery} from '../queries'
-import type {EvictorProps} from '../queries/list'
-
 export async function asyncWait(time: number) {
   return new Promise<void>((resolve) => {
     setTimeout(() => {

@@ -1,44 +1,27 @@
-import React, {useState} from 'react'
-import renderContent from '../utils/contentful-render'
-import {OutboundLink} from './OutboundLink'
-import type {EvictorProps} from '../queries/list'
-import {getImage} from 'gatsby-plugin-image'
+import React, { useState } from "react"
+import renderContent from "../utils/contentful-render"
+import { OutboundLink } from "./OutboundLink"
+import type { EvictorProps } from "../queries/list"
+import { getImage } from "gatsby-plugin-image"
 import {
   FormatBusinessAddress,
   formatNumber,
   titleCase,
-} from '../utils/string'
-import EvictorImage from './EvictorImage'
-import pin from '../images/pin.svg'
-import {formatLink} from '../utils/string'
+} from "../utils/string"
+import EvictorImage from "./EvictorImage"
+import pin from "../images/pin.svg"
+import { formatLink } from "../utils/string"
 
-import '../styles/list.scss'
+import "../styles/list.scss"
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
-}> = ({content, city}) => {
-  const {networkDetails, details} = content.ebData[0]
-  const evictions = content.evictions || []
+}> = ({ content, city }) => {
+  const { networkDetails, details } = content.ebData[0]
   const activeSince = content.activeSince
 
   const [showFormer, setShowFormer] = useState(false)
-
-  const totalSince2019 = evictions.filter(
-    (eviction) => eviction.evict_date.slice(0, 4) === '2019'
-  ).length
-
-  const evictionsByCategory = Object.entries(
-    evictions.reduce((prev, curr) => {
-      if (curr.type === null) return prev
-      typeof prev[curr.type] === 'undefined'
-        ? (prev[curr.type] = 1)
-        : (prev[curr.type] = prev[curr.type] + 1)
-      return prev
-    }, {} as { [key: string]: number })
-  )
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
 
   return (
     <section
@@ -51,35 +34,46 @@ const EvictorProfile: React.FC<{
           <div className="left-width-constrainer">
             <h1>{content.name}</h1>
             <h2>{content.corporation}</h2>
+            {content.shellCompanies?.length && (
+              <p>
+                Also known as{" "}
+                {new Intl.ListFormat("en", {
+                  style: "long",
+                  type: "conjunction",
+                }).format(
+                  content.shellCompanies.slice(0, 4).map(titleCase)
+                )}
+              </p>
+            )}
             <div className="city-name">
               <img src={pin} />
               <span>
-                {city}{' '}
+                {city}{" "}
                 {content.nonprofitOrLowIncome
-                  ? 'nonprofit and low-income housing evictor'
-                  : 'corporate evictor'}
+                  ? "nonprofit and low-income housing evictor"
+                  : "corporate evictor"}
               </span>
             </div>
             {content.tags && (
               <div className="tags">
                 {content.tags.map((tag, index) => {
-                  return tag === 'Former Evictor' ? (
+                  return tag === "Former Evictor" ? (
                     <span
                       className="tag"
                       onClick={() => setShowFormer((val) => !val)}
                       key={index}
                       style={{
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
+                        textDecoration: "underline",
+                        cursor: "pointer",
                       }}
                     >
                       {tag}
-                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                      {index === content.tags.length - 1 ? "" : " ⋅ "}
                     </span>
                   ) : (
                     <span className="tag" key={index}>
                       {tag}
-                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                      {index === content.tags.length - 1 ? "" : " ⋅ "}
                     </span>
                   )
                 })}
@@ -164,46 +158,6 @@ const EvictorProfile: React.FC<{
         </div>
         <div className="right">
           <div className="right-width-constrainer">
-            <div className="summary">
-              <span>
-                {content.totalEvictions > 5 ? (
-                  <>
-                    <h2>
-                      {formatNumber(content.totalEvictions)}{' '}
-                      households sued for eviction
-                    </h2>
-                    {totalSince2019 > 5 && (
-                      <em>
-                        Of these, {totalSince2019} have been executed
-                        since 2019.
-                      </em>
-                    )}
-                    <p style={{padding: '0 2rem'}}>
-                      Including <br />
-                      {evictionsByCategory.map((category, i) => {
-                        const [type, number] = category
-                        const filings =
-                          number === 1 ? 'filing' : 'filings'
-                        return (
-                          <li key={i}>
-                            {number} {filings} under <em>{type}</em>
-                          </li>
-                        )
-                      })}
-                    </p>
-                  </>
-                ) : undefined}
-              </span>
-              {content.totalUnits > 5 &&
-                content.totalEvictions > 5 && (
-                <>
-                  <h2>
-                    {formatNumber(content.totalUnits)} units tracked
-                      by Evictorbook
-                  </h2>
-                </>
-              )}
-            </div>
             {content.pullQuote && renderContent(content.pullQuote)}
             {content.citywideListDescription &&
               renderContent(content.citywideListDescription)}
