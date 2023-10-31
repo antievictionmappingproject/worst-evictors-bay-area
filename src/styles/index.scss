@@ -127,20 +127,25 @@ $evictor-border-width: 4px;
         flex: 1 1 40ch;
       }
     }
-    .text {
+  }
+    .text, .section-header {
       font-size: 18pt;
       h3 {
         font-family: $body-font;
         background: $red;
         width: fit-content;
         padding: 0.3rem;
-        margin: 0.5rem 0;
+        margin: 1rem;
       }
-      a {
-        text-decoration: none;
+      p {
+        max-width: 72ch;
+        margin: 0.5rem;
+        font-size: 1rem;
       }
     }
-  }
+      .text a {
+        text-decoration: none;
+      }
 
   .eyebrow {
     font-size: 2rem;
