@@ -53,12 +53,13 @@ const LandingPage = () => {
                                 ? "nonprofit + low-income housing evictors"
                                 : "corporate evictors"}
                             </h3>
-                            <p>
-                              {isNonprofit &&
-                                renderContent(
+                            {isNonprofit && (
+                              <p>
+                                {renderContent(
                                   contentfulLandingPage.nonprofitEvictorSummary
                                 )}
-                            </p>
+                              </p>
+                            )}
                           </>
                         )}
                       </div>
