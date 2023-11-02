@@ -1,24 +1,24 @@
-import React, { useState } from "react"
-import renderContent from "../utils/contentful-render"
-import { OutboundLink } from "./OutboundLink"
-import type { EvictorProps } from "../queries/list"
-import { getImage } from "gatsby-plugin-image"
+import React, {useState} from 'react'
+import renderContent from '../utils/contentful-render'
+import {OutboundLink} from './OutboundLink'
+import type {EvictorProps} from '../queries/list'
+import {getImage} from 'gatsby-plugin-image'
 import {
   FormatBusinessAddress,
   formatNumber,
   titleCase,
-} from "../utils/string"
-import EvictorImage from "./EvictorImage"
-import pin from "../images/pin.svg"
-import { formatLink } from "../utils/string"
+} from '../utils/string'
+import EvictorImage from './EvictorImage'
+import pin from '../images/pin.svg'
+import {formatLink} from '../utils/string'
 
-import "../styles/list.scss"
+import '../styles/list.scss'
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
-}> = ({ content, city }) => {
-  const { networkDetails, details } = content.ebData[0]
+}> = ({content, city}) => {
+  const {networkDetails, portfolio, details} = content.ebData[0]
   const activeSince = content.activeSince
 
   const [showFormer, setShowFormer] = useState(false)
@@ -36,10 +36,10 @@ const EvictorProfile: React.FC<{
             <h2>{content.corporation}</h2>
             {content.shellCompanies?.length && (
               <p>
-                Also known as{" "}
-                {new Intl.ListFormat("en", {
-                  style: "long",
-                  type: "conjunction",
+                Also known as{' '}
+                {new Intl.ListFormat('en', {
+                  style: 'long',
+                  type: 'conjunction',
                 }).format(
                   content.shellCompanies.slice(0, 4).map(titleCase)
                 )}
@@ -48,32 +48,32 @@ const EvictorProfile: React.FC<{
             <div className="city-name">
               <img src={pin} />
               <span>
-                {city}{" "}
+                {city}{' '}
                 {content.nonprofitOrLowIncome
-                  ? "nonprofit and low-income housing evictor"
-                  : "corporate evictor"}
+                  ? 'nonprofit and low-income housing evictor'
+                  : 'corporate evictor'}
               </span>
             </div>
             {content.tags && (
               <div className="tags">
                 {content.tags.map((tag, index) => {
-                  return tag === "Former Evictor" ? (
+                  return tag === 'Former Evictor' ? (
                     <span
                       className="tag"
                       onClick={() => setShowFormer((val) => !val)}
                       key={index}
                       style={{
-                        textDecoration: "underline",
-                        cursor: "pointer",
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
                       }}
                     >
                       {tag}
-                      {index === content.tags.length - 1 ? "" : " ⋅ "}
+                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
                     </span>
                   ) : (
                     <span className="tag" key={index}>
                       {tag}
-                      {index === content.tags.length - 1 ? "" : " ⋅ "}
+                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
                     </span>
                   )
                 })}
@@ -124,11 +124,6 @@ const EvictorProfile: React.FC<{
                     <span className="text-bold text-uppercase">
                       In an ownership network with
                     </span>
-                    {networkDetails[0].total_addrs > 1 && (
-                      <li>
-                        {networkDetails[0].total_addrs} properties
-                      </li>
-                    )}
                     <li>{networkDetails[0].total_bes} businesses</li>
                     <li>
                       {networkDetails[0].total_owners} other owners
