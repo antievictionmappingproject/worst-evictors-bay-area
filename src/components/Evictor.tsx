@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import renderContent from '../utils/contentful-render'
 import {OutboundLink} from './OutboundLink'
 import type {EvictorProps} from '../queries/list'
 import {getImage} from 'gatsby-plugin-image'
 import {
   FormatBusinessAddress,
-  formatNumber,
   titleCase,
 } from '../utils/string'
 import EvictorImage from './EvictorImage'
@@ -18,10 +17,8 @@ const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
 }> = ({content, city}) => {
-  const {networkDetails, portfolio, details} = content.ebData[0]
+  const {networkDetails, details} = content.ebData[0]
   const activeSince = content.activeSince
-
-  const [showFormer, setShowFormer] = useState(false)
 
   return (
     <section
@@ -57,35 +54,11 @@ const EvictorProfile: React.FC<{
             {content.tags && (
               <div className="tags">
                 {content.tags.map((tag, index) => {
-                  return tag === 'Former Evictor' ? (
-                    <span
-                      className="tag"
-                      onClick={() => setShowFormer((val) => !val)}
-                      key={index}
-                      style={{
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {tag}
-                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
-                    </span>
-                  ) : (
-                    <span className="tag" key={index}>
-                      {tag}
-                      {index === content.tags.length - 1 ? '' : ' ⋅ '}
-                    </span>
-                  )
+                  return <span className="tag" key={index}>
+                    {tag}
+                    {index === content.tags.length - 1 ? '' : ' ⋅ '}
+                  </span>
                 })}
-                {showFormer && (
-                  <p>
-                    <em>
-                      This evictor is categorized as a Former Evictor
-                      because of inactivity in recent years, often
-                      following major tenant organizing campaigns.
-                    </em>
-                  </p>
-                )}
               </div>
             )}
             {content.localFile?.childImageSharp && (
