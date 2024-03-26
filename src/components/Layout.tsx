@@ -49,7 +49,7 @@ const Layout = ({
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
-        <meta property="og:image" content={shareImage} />
+        <meta property="og:image" content={shareImageURL} />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -58,7 +58,7 @@ const Layout = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:url" content={url} />
-        <meta name="twitter:image" content={shareImage} />
+        <meta name="twitter:image" content={shareImageURL} />
         <meta
           name="twitter:image:alt"
           content="The Worst Evictors of San Francisco and Oakland"

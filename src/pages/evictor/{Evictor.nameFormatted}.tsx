@@ -5,9 +5,11 @@ import type { EvictorProps } from '../../queries/list'
 import useListQuery from '../../queries/list'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import { renderToString } from 'react-dom/server';
 
 import '../../styles/list.scss'
 import { sortEvictors } from '../../utils/misc'
+import renderContent from '../../utils/contentful-render'
 
 const SingleEvictorPage = (props) => {
   // pull the evictor ID populated through Gatsby's "collection route" setup for dynamic pages
@@ -31,7 +33,9 @@ const SingleEvictorPage = (props) => {
   return (
     <Layout
       customTitle={`${evictorToDisplay.name} | The Worst Evictors of San Francisco and Oakland`}
-      customDescription={data.contentfulCitywideListPage.title}
+      customDescription={evictorToDisplay.citywideListDescription &&
+        renderToString(renderContent(evictorToDisplay.citywideListDescription))}
+      customImage={evictorToDisplay.localFile.childImageSharp.gatsbyImageData.images.fallback.src}
       className="page"
       hideFooter
     >
