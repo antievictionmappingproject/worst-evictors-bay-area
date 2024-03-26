@@ -1,24 +1,27 @@
 import React from 'react'
 import renderContent from '../utils/contentful-render'
-import {OutboundLink} from './OutboundLink'
-import type {EvictorProps} from '../queries/list'
-import {getImage} from 'gatsby-plugin-image'
+import { OutboundLink } from './OutboundLink'
+import type { EvictorProps } from '../queries/list'
+import { getImage } from 'gatsby-plugin-image'
 import {
   FormatBusinessAddress,
   titleCase,
 } from '../utils/string'
 import EvictorImage from './EvictorImage'
 import pin from '../images/pin.svg'
-import {formatLink} from '../utils/string'
+import { formatLink } from '../utils/string'
 
 import '../styles/list.scss'
 
 const EvictorProfile: React.FC<{
   content: EvictorProps
   city: string
-}> = ({content, city}) => {
-  const {networkDetails, details} = content.ebData[0]
+}> = ({ content, city }) => {
+  const { networkDetails, details } = content.ebData[0]
   const activeSince = content.activeSince
+
+  const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' })
+  const dateLastUpdated = formatter.format(new Date(content.lastUpdated))
 
   return (
     <section
@@ -68,6 +71,14 @@ const EvictorProfile: React.FC<{
                   name={content.photoCaption}
                   hideEyebrow
                 />
+                {content.aempUrl && (
+                  <OutboundLink
+                    href={content.aempUrl}
+                    className="btn btn-primary"
+                  >
+                    See AEMP's original profile on this landlord
+                  </OutboundLink>
+                )}
                 {content.banks?.length ? (
                   <p>
                     <span className="stat-name">Funded By</span>
@@ -120,6 +131,10 @@ const EvictorProfile: React.FC<{
                     's portfolio
                   </OutboundLink>
                 ))}
+                {content.lastUpdated && (<span className="date_updated">
+                  Profile last updated on {dateLastUpdated}
+                </span>
+                )}
               </>
             )}
           </div>

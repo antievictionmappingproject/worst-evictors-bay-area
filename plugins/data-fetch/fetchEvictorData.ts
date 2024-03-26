@@ -26,7 +26,7 @@ export default async function fetchEvictorData() {
         const { ebEntry, name, pullQuote, citywideListDescription } =
           item.fields
 
-        const evictorNameFormatted = formatLink(name)
+        const evictorNameFormatted = formatLink(name) // created formatted version of name
 
         if (!ebEntry?.length) {
           console.warn(
@@ -133,7 +133,7 @@ export default async function fetchEvictorData() {
           ...item.fields,
           id: item.sys.id,
           ebData,
-          nameFormatted: evictorNameFormatted,
+          nameFormatted: evictorNameFormatted, // add in formatted name as queryable field
           totalEvictions,
           activeSince,
           totalUnits,
