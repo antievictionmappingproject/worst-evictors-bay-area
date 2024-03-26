@@ -1,7 +1,7 @@
-import {useStaticQuery, graphql} from 'gatsby'
-import {ImageDataLike} from 'gatsby-plugin-image'
+import { useStaticQuery, graphql } from 'gatsby'
+import { ImageDataLike } from 'gatsby-plugin-image'
 
-export default function useIndexQuery() {
+export default function useListQuery() {
   const data = useStaticQuery(graphql`
     query {
       contentfulCitywideListPage {
@@ -9,13 +9,17 @@ export default function useIndexQuery() {
       }
       allEvictor {
         nodes {
+          id
           name
+          nameFormatted
           city
           nonprofitOrLowIncome
           corporation
           photoCaption
           shellCompanies
           tags
+          lastUpdated
+          aempUrl
           evictions {
             type
             evict_date
@@ -62,10 +66,14 @@ export default function useIndexQuery() {
 
 /** might as well define some proptypes */
 export type EvictorProps = {
+  id: number
   name: string
+  nameFormatted: string
   corporation: string
   city: string
   tags?: string[]
+  lastUpdated?: string
+  aempUrl?: string
   evictions: {
     type: string
     evict_date: string

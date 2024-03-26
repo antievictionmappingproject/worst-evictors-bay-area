@@ -2,6 +2,7 @@ import "dotenv/config"
 import { createClient } from "contentful"
 import type { EntryCollection } from "contentful"
 import getEBEntry from "./getEBEntry"
+import { formatLink } from "../../src/utils/string"
 
 export default async function fetchEvictorData() {
   const client = createClient({
@@ -24,6 +25,8 @@ export default async function fetchEvictorData() {
         // this is how the contentful cms presents it too
         const { ebEntry, name, pullQuote, citywideListDescription } =
           item.fields
+
+        const evictorNameFormatted = formatLink(name) // created formatted version of name
 
         if (!ebEntry?.length) {
           console.warn(
@@ -93,9 +96,8 @@ export default async function fetchEvictorData() {
           await ebData.reduce(
             async (shells: Promise<string[]>, business) => {
               const networkId = business.networkDetails[0].network_id
-              const networkUrl = `${
-                process.env.EB_DOMAIN || "https://evictorbook.com"
-              }/api/network/${networkId}/nodes`
+              const networkUrl = `${process.env.EB_DOMAIN || "https://evictorbook.com"
+                }/api/network/${networkId}/nodes`
               const nodes = await fetch(networkUrl).then((res) =>
                 res.json()
               )
@@ -131,6 +133,7 @@ export default async function fetchEvictorData() {
           ...item.fields,
           id: item.sys.id,
           ebData,
+          nameFormatted: evictorNameFormatted, // add in formatted name as queryable field
           totalEvictions,
           activeSince,
           totalUnits,
