@@ -70,8 +70,8 @@ export type EvictorProps = {
   corporation: string
   city: string
   tags?: string[]
-  lastUpdated?: Date
-  aempUrl: string
+  lastUpdated?: string
+  aempUrl?: string
   evictions: {
     type: string
     evict_date: string
