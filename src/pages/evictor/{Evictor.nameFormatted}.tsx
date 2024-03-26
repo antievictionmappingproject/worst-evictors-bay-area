@@ -10,9 +10,10 @@ import '../../styles/list.scss'
 import { sortEvictors } from '../../utils/misc'
 
 const SingleEvictorPage = (props) => {
-  // pull the evictor name populated through Gatsby's "collection route" setup for dynamic pages
+  // pull the evictor ID populated through Gatsby's "collection route" setup for dynamic pages
   // See more here: https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api
-  const evictorName = props.params.nameFormatted
+  const evictorId = props.pageContext.id
+
   const data = useListQuery() // pull the full list of evictors
   const evictors = sortEvictors(
     data.allEvictor.nodes
@@ -23,12 +24,13 @@ const SingleEvictorPage = (props) => {
   *
   * TODO - if this becomes a performance issue, can restructure around a dynamic query
   */
-  const evictor_to_display = evictors.filter((evictor) => evictor.nameFormatted == evictorName)[0]
-  const evictor_city = evictor_to_display.city == "sf" ? 'San Francisco' : 'Oakland'
+
+  const evictorToDisplay = evictors.filter((evictor) => evictor.id == evictorId)[0]
+  const evictorCity = evictorToDisplay.city == "sf" ? 'San Francisco' : 'Oakland'
 
   return (
     <Layout
-      customTitle="The Worst Evictors of San Francisco and Oakland"
+      customTitle={`${evictorToDisplay.name} | The Worst Evictors of San Francisco and Oakland`}
       customDescription={data.contentfulCitywideListPage.title}
       className="page"
       hideFooter
@@ -37,7 +39,7 @@ const SingleEvictorPage = (props) => {
         <Header isDescription={false} />
       </div>
       <div className="scroll-container">
-        <EvictorProfile content={evictor_to_display} city={evictor_city} />
+        <EvictorProfile content={evictorToDisplay} city={evictorCity} />
         <Footer />
       </div>
     </Layout>

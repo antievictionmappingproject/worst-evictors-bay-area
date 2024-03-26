@@ -9,6 +9,7 @@ export default function useListQuery() {
       }
       allEvictor {
         nodes {
+          id
           name
           nameFormatted
           city
@@ -65,6 +66,7 @@ export default function useListQuery() {
 
 /** might as well define some proptypes */
 export type EvictorProps = {
+  id: number
   name: string
   nameFormatted: string
   corporation: string
